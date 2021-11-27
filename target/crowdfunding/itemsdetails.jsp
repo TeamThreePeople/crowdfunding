@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>智能高清监控机器人</title>
+		<title>项目详情</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<!-- 先引入jQuery核心js文件 -->
 		<script src="js/jquery-3.1.1.js"></script>
