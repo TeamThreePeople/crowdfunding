@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="zh">
 	<head>
@@ -7,16 +7,21 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>前首页</title>
+		<!--  设置网页的小图标logo  favicon.ico-->
+		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 		<link href="https://fonts.googleapis.com/css?family=Barlow:400,800" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/base16.css" />
-		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/base16.css" />
 
-		<script src="js/three.min.js"></script>
-		<script src="js/Sky.js"></script>
-		<script src="js/hammer.min.js"></script>
-		<script src="js/charming.min.js"></script>
-		<script src="js/TweenMax.min.js"></script>
-		<script src="js/demo3.js"></script>
+		<script>document.documentElement.className="js";
+				var supportsCssVars=function(){
+					var e,t=document.createElement("style");
+					return t.innerHTML="root: { --tmp-var: bold; }",
+							document.head.appendChild(t),
+							e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),
+							t.parentNode.removeChild(t),e};
+				supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");
+		</script>
+
 
 	</head>
 	<body class="demo-3">
@@ -24,7 +29,7 @@
 			<div class="frame">
 				<div class="frame__title-wrap">
 					<h1 class="frame__title">本众筹系统由涛哥带俩小弟完成</h1>
-					<a class="frame__article" href="index.jsp">首页</a>
+					<a class="frame__article" href="index3.jsp">首页</a>
 				</div>
 				<a class="frame__github" href="#" target="_blank">众筹系统</a>
 				<a class="frame__previous" href="#">众筹系统</a>
@@ -280,11 +285,17 @@
 
 				</script>
 				<h2 class="content__title">众筹系统</h2>
-				<p class="content__subtitle"><a href="#" class="frame__demo" href="index.jsp">点此开启幸福之路</a></p>
+				<p class="content__subtitle"><a href="#" class="frame__demo" href="index3.jsp">点此开启幸福之路</a></p>
 			</div>
 			<div class="overlay"></div>
 		</main>
 		
 	</body>
+	<script src="${pageContext.request.contextPath}/js/three.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/Sky.js"></script>
+	<script src="${pageContext.request.contextPath}/js/hammer.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/charming.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/TweenMax.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/demo3.js"></script>
 
 </html>
