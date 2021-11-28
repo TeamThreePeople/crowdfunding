@@ -100,6 +100,7 @@
 	
 	
 	<body>
+<<<<<<< HEAD
 		
 		<!--导航部分-->
 		<div class="container" style="width: auto;height: 100px;">
@@ -157,6 +158,10 @@
 			<div style="border: #000000 solid 1px;"></div>	
 		</div>
 		
+=======
+
+	<%@ include file="connect/heard.jsp" %>
+>>>>>>> 第四次提交git众筹项目
 		
 		<!-- 订单支付 -->
 		<div class="container" style="background-color: lightgoldenrodyellow;">
@@ -357,11 +362,16 @@
 				
 			</div>
 		</div>
+<<<<<<< HEAD
 		
 		
 	
 	</body>
 	
+=======
+
+	<%@ include file="connect/foot.jsp" %>
+>>>>>>> 第四次提交git众筹项目
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js" ></script>
 	<!-- 先引入jQuery核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
@@ -384,4 +394,8 @@
 	</script>
 	
 	
+<<<<<<< HEAD
 </html>
+=======
+
+>>>>>>> 第四次提交git众筹项目

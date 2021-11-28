@@ -31,6 +31,7 @@
 
 	</head>
 	<body>
+<<<<<<< HEAD
 	<div id="mask">
 		<!--导航部分-->
 		<div class="container" style="width: auto;height: 100px;">
@@ -88,13 +89,24 @@
 			<div style="border: #000000 solid 1px;"></div>	
 		</div>
 	
+=======
+
+
+
+	<div id="mask">
+		<%@ include file="connect/heard.jsp" %>
+>>>>>>> 第四次提交git众筹项目
 		<!-- 分类导航条 -->
 		<div class="container" style="margin-top: 40px;padding: 0px;">
 			<div class="row">
 				<!-- 文字 -->
 				<div class="col-md-2" style="font-size: 40px;">更多</div>
 				<!-- 图片 -->
+<<<<<<< HEAD
 				<img src="../img/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
+=======
+				<img src="${pageContext.request.contextPath}/picture/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
+>>>>>>> 第四次提交git众筹项目
 			</div>
 			<div style="border: #000000 solid 1px;"></div>
 		</div>
@@ -112,15 +124,24 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						  </button>
+<<<<<<< HEAD
 						  <a class="navbar-brand" href="#">众筹首页</a>
+=======
+						  <a class="navbar-brand" href="${pageContext.request.contextPath}/index3.jsp">众筹首页</a>
+>>>>>>> 第四次提交git众筹项目
 						</div>
 					
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						  <ul class="nav navbar-nav">
 							<li class="active"><a href="#">项目总览 <span class="sr-only">(current)</span></a></li>
+<<<<<<< HEAD
 							<li><a href="#">发起众筹</a></li>
 							<li><a href="#">我的众筹</a></li>
+=======
+							<li><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起众筹</a></li>
+							<li><a href="${pageContext.request.contextPath}/jsp/personalcenter.jsp">我的众筹</a></li>
+>>>>>>> 第四次提交git众筹项目
 						  </ul>
 						</div><!-- /.navbar-collapse -->
 					</div><!-- /.container-fluid -->
@@ -269,14 +290,22 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<!--友情链接-->
 					<div align="center" style="margin-top: 10px;">
+<<<<<<< HEAD
 						
+=======
+
+>>>>>>> 第四次提交git众筹项目
 						<div class="col-md-2 col-sm-4 col-xs-6" align="center">
 							<p></p>
 							<a href="#">关于我们</a>
 							<p></p>
 							<img src="${pageContext.request.contextPath}/picture/erweima1.jpg" style="width: 100px;"/>
 							<p></p>
+<<<<<<< HEAD
 							
+=======
+
+>>>>>>> 第四次提交git众筹项目
 							</div>
 						<div class="col-md-2 col-sm-4 col-xs-6" align="center">
 							<p></p>
@@ -284,7 +313,11 @@
 							<p></p>
 							<img src="${pageContext.request.contextPath}/picture/erweima2.jpg" style="width: 100px;"/>
 							<p></p>
+<<<<<<< HEAD
 							
+=======
+
+>>>>>>> 第四次提交git众筹项目
 							</div>
 						<div class="col-md-2 col-sm-4 col-xs-6" align="center">
 							<p></p>
@@ -292,7 +325,11 @@
 							<p></p>
 							<img src="${pageContext.request.contextPath}/picture/erweima3.png" style="width: 100px;"/>
 							<p></p>
+<<<<<<< HEAD
 							
+=======
+
+>>>>>>> 第四次提交git众筹项目
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6" align="center">
 							<p></p>
@@ -300,7 +337,11 @@
 							<p></p>
 							<img src="${pageContext.request.contextPath}/picture/erweima9.jpg" style="width: 100px;"/>
 							<p></p>
+<<<<<<< HEAD
 							
+=======
+
+>>>>>>> 第四次提交git众筹项目
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6" align="center">
 							<p></p>
@@ -308,7 +349,11 @@
 							<p></p>
 							<img src="${pageContext.request.contextPath}/picture/erweima5.jpg" style="width: 100px;"/>
 							<p></p>
+<<<<<<< HEAD
 							
+=======
+
+>>>>>>> 第四次提交git众筹项目
 						</div>
 						<div class="col-md-2 col-sm-4 col-xs-6" align="center">
 							<p></p>
@@ -316,7 +361,11 @@
 							<p></p>
 							<img src="${pageContext.request.contextPath}/picture/erweima6.jpg" style="width: 100px;"/>
 							<p></p>
+<<<<<<< HEAD
 							
+=======
+
+>>>>>>> 第四次提交git众筹项目
 						</div>
 						<p></p>
 						<table align="center" style="text-align: center;" >
@@ -326,7 +375,11 @@
 							</tr>
 						</table>
 					</div>
+<<<<<<< HEAD
 				   
+=======
+
+>>>>>>> 第四次提交git众筹项目
 				  </div><!-- /.container-fluid -->
 				</nav>
 			</div>
@@ -352,11 +405,20 @@
 			<div id="shangxia2">
 				<span id="gotop1">
 					<a href="#top">
+<<<<<<< HEAD
 						<img src="../picture/huojian.svg" alt="返回顶部小火箭">
+=======
+						<img src="${pageContext.request.contextPath}/picture/huojian.svg" alt="返回顶部小火箭">
+>>>>>>> 第四次提交git众筹项目
 					</a>
 				</span>
 			</div>
 	</div>
+<<<<<<< HEAD
 	</body>
 
+=======
+
+	</body>
+>>>>>>> 第四次提交git众筹项目
 </html>

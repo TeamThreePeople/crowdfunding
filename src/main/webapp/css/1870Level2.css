@@ -1,5 +1,9 @@
 body {
+<<<<<<< HEAD
 	background: #524b31 url(../images/bGrounds/bGroundTile02.jpg) no-repeat 50% 0%;
+=======
+	background:rgb(255,250,232);
+>>>>>>> 第四次提交git众筹项目
 }
 
 
@@ -10,11 +14,19 @@ header {
 }
 
 #fillerDiv {
+<<<<<<< HEAD
 	/*background: url(../images/bottomShadow.png) no-repeat center top; */
 	width: 921px;
 	height: 120px;
 	position: relative;
 	top: 20px;
+=======
+	background: floralwhite;
+	width: 921px;
+	height: 120px;
+	position: relative;
+
+>>>>>>> 第四次提交git众筹项目
 	font-size:24px;
 	color: black;
 	font-weight:normal;
@@ -320,10 +332,14 @@ ul.subNav li {
 	color: #bbb090;
 }
 
+<<<<<<< HEAD
 .shadowPic {
 	background: #6b634c url(../images/bottomShadow.png) no-repeat center top;
 	height: 14px;
 }
+=======
+
+>>>>>>> 第四次提交git众筹项目
 /* 底部 */
 #picDiv {
 	/*background: #dbccae url(../images/Uhlans.png) no-repeat center top;*/

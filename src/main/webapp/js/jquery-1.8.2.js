@@ -1292,7 +1292,7 @@ jQuery.support = (function() {
 		hrefNormalized: ( a.getAttribute("href") === "/a" ),
 
 		// Make sure that element opacity exists
-		// (IE uses filter instead)
+		// (IE uses com.cf.filter instead)
 		// Use a regex to work around a WebKit issue. See #5145
 		opacity: /^0.5/.test( a.style.opacity ),
 
@@ -4190,7 +4190,7 @@ Expr = Sizzle.selectors = {
 					Sizzle.error( match[0] );
 				}
 
-				// numeric x and y parameters for Expr.filter.CHILD
+				// numeric x and y parameters for Expr.com.cf.filter.CHILD
 				// remember that false/true cast respectively to 0/1
 				match[3] = +( match[3] ? match[4] + (match[5] || 1) : 2 * ( match[2] === "even" || match[2] === "odd" ) );
 				match[4] = +( ( match[6] + match[7] ) || match[2] === "odd" );
@@ -4226,7 +4226,7 @@ Expr = Sizzle.selectors = {
 				match[2] = unquoted;
 			}
 
-			// Return only captures needed by the pseudo filter method (type and argument)
+			// Return only captures needed by the pseudo com.cf.filter method (type and argument)
 			return match.slice( 0, 3 );
 		}
 	},
@@ -4362,7 +4362,7 @@ Expr = Sizzle.selectors = {
 					Sizzle.error( "unsupported pseudo: " + pseudo );
 
 			// The user may use createPseudo to indicate that
-			// arguments are needed to create the filter function
+			// arguments are needed to create the com.cf.filter function
 			// just as Sizzle does
 			if ( fn[ expando ] ) {
 				return fn( argument );
@@ -5599,7 +5599,7 @@ jQuery.extend({
 	}
 });
 
-// Implement the identical functionality for filter and not
+// Implement the identical functionality for com.cf.filter and not
 function winnow( elements, qualifier, keep ) {
 
 	// Can't pass null or undefined to indexOf in Firefox 4
@@ -7064,22 +7064,22 @@ if ( !jQuery.support.opacity ) {
 			// Force it by setting the zoom level
 			style.zoom = 1;
 
-			// if setting opacity to 1, and no other filters exist - attempt to remove filter attribute #6652
+			// if setting opacity to 1, and no other filters exist - attempt to remove com.cf.filter attribute #6652
 			if ( value >= 1 && jQuery.trim( filter.replace( ralpha, "" ) ) === "" &&
 				style.removeAttribute ) {
 
-				// Setting style.filter to null, "" & " " still leave "filter:" in the cssText
-				// if "filter:" is present at all, clearType is disabled, we want to avoid this
+				// Setting style.com.cf.filter to null, "" & " " still leave "com.cf.filter:" in the cssText
+				// if "com.cf.filter:" is present at all, clearType is disabled, we want to avoid this
 				// style.removeAttribute is IE Only, but so apparently is this code path...
 				style.removeAttribute( "filter" );
 
-				// if there there is no filter style applied in a css rule, we are done
+				// if there there is no com.cf.filter style applied in a css rule, we are done
 				if ( currentStyle && !currentStyle.filter ) {
 					return;
 				}
 			}
 
-			// otherwise, set new filter values
+			// otherwise, set new com.cf.filter values
 			style.filter = ralpha.test( filter ) ?
 				filter.replace( ralpha, opacity ) :
 				filter + " " + opacity;
