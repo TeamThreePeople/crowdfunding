@@ -29,7 +29,7 @@
 		<!--  定义锚点  -->
 		<!-- <a name="top"></a> -->
 		
-		<!--导航部分-->
+		<%--<!--导航部分-->
 		<div class="container" style="width: 100%;height: 100px;">
 			<div class="row ">
 				<!-- 导航条 -->
@@ -83,8 +83,41 @@
 				</nav>
 			</div>
 			<div style="border: #000000 solid 1px;"></div>	
+		</div>--%>
+
+		<!--导航部分-->
+		<div class="container" style="width: 100%;height: 100px;">
+			<div class="row ">
+				<!-- 导航条 -->
+				<nav class="navbar navbar-fixed-top navbar-inverse" style="height: 70px;">
+					<div class="container-fluid">
+
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px;">
+							<ul class="nav navbar-nav">
+								<li style="margin-left: 30px;"><img src="${pageContext.request.contextPath}/picture/heard.png" ></li>
+								<li style="margin-left: 30px;"><a class="navbar-brand" href="${pageContext.request.contextPath}/index3.jsp" >首页</a></li>
+								<li class="active"><a href="jsp/more.jsp">众筹项目 <span class="sr-only">(current)</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起项目</a></li>
+								<li><a href="${pageContext.request.contextPath}/jsp/personalcenter.jsp">我的众筹</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="${pageContext.request.contextPath}/login.jsp">登录</a></li>
+								<li><a href="${pageContext.request.contextPath}/register.jsp">注册</a></li>
+
+							</ul>
+
+
+						</div><!-- /.navbar-collapse -->
+						</div><!-- /.container-fluid -->
+				</nav>
+			</div>
+			<div style="border: #000000 solid 1px;"></div>
 		</div>
-		
+
+
+
 		<!-- 轮播图 -->
 		<div id="app" data-state="0" align="center" style="margin-top: 0px;">
 			  <div class="ui-big-images" align="center" style="width: auto;">    
@@ -175,7 +208,7 @@
 				<!-- 文字 -->
 				<div class="col-md-2" style="font-size: 40px;">热门项目</div>
 				<!-- 图片 -->
-				<img src="../img/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
+				<img src="${pageContext.request.contextPath}/picture/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
 			</div>
 			<div style="border: #000000 solid 1px;"></div>
 			<div class="row" style="margin-top: 50px;padding: 0px;">
@@ -247,7 +280,7 @@
 				<!-- 文字 -->
 				<div class="col-md-2" style="font-size: 40px;">时间轴</div>
 				<!-- 图片 -->
-				<img src="../img/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
+				<img src="${pageContext.request.contextPath}/picture/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
 			</div>
 			<div style="border: #000000 solid 1px;"></div>
 			

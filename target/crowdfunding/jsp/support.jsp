@@ -30,8 +30,6 @@
 </head>
 <body>
 
-
-
 	<div class="htmleaf-container">
 		<div id="wrapper">
 		<div id="fillerDiv">
@@ -185,7 +183,9 @@
 	</div>  <!-- end wrapper div -->
 		
 	</div>
+
 </body>
+
 	<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"><\/script>')</script>
 	<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>

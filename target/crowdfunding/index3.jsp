@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <html>
@@ -29,8 +28,8 @@
 	<body>
 		<!--  定义锚点  -->
 		<!-- <a name="top"></a> -->
-		<%--<%@ include file="jsp/connect/heard.jsp" %>--%>
-		<!--导航部分-->
+		
+		<%--<!--导航部分-->
 		<div class="container" style="width: 100%;height: 100px;">
 			<div class="row ">
 				<!-- 导航条 -->
@@ -38,47 +37,87 @@
 				  <div class="container-fluid">
 				    <!-- Brand and toggle get grouped for better mobile display -->
 					<!-- 屏幕缩小之后的效果 -->
-
+				    <div class="navbar-header" style="margin-top: 10px;">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="index3.jsp">主页</a>
+				    </div>
+				
 				    <!-- Collect the nav links, forms, and other content for toggling -->
 					
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px;">
 						<ul class="nav navbar-nav">
-
-							<li style="margin-left: 30px;"><img src="${pageContext.request.contextPath}/picture/heard.png" ></li>
-							<li style="margin-left: 30px;"><a class="navbar-brand" href="index3.jsp" >首页</a></li>
-							<li class="active"><a href="jsp/more.jsp">众筹项目 <span class="sr-only">(current)</span></a></li>
-							<li><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起项目</a></li>
-							<li><a href="${pageContext.request.contextPath}/jsp/personalcenter.jsp">我的众筹</a></li>
-
-							<%--<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">捐助</a></li>
-									<li><a href="#">蔬菜</a></li>
-									<li><a href="#">食品</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="#">热门</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="jsp/complete.jsp">实名认证</a></li>
-								</ul>
-							</li>--%>
+				        <li class="active"><a href="jsp/more.jsp">众筹项目 <span class="sr-only">(current)</span></a></li>
+				        <li><a href="#">留守儿童</a></li>
+				        <li><a href="#">前沿科技</a></li>
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#">捐助</a></li>
+				            <li><a href="#">蔬菜</a></li>
+				            <li><a href="#">食品</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="#">热门</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a href="#">潮流</a></li>
 				          </ul>
 				        </li>
 						</ul>
-
+				      <form class="navbar-form navbar-right">
+				        <div class="form-group">
+				          <input type="text" class="form-control" placeholder="请输入关键词">
+				        </div>
+				        <button type="submit" class="btn btn-default">搜索</button>
+				      </form>
 				      <ul class="nav navbar-nav navbar-right">
-				      	<li><a href="${pageContext.request.contextPath}/login.jsp">登录</a></li>
-						<li><a href="${pageContext.request.contextPath}/register.jsp">注册</a></li>
+				      	<li><a href="login.jsp">登录</a></li>
+						<li><a href="register.jsp">注册</a></li>
+						<li><a href="">首页</a></li>
 				      </ul>
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->
 				</nav>
 			</div>
 			<div style="border: #000000 solid 1px;"></div>	
+		</div>--%>
+
+		<!--导航部分-->
+		<div class="container" style="width: 100%;height: 100px;">
+			<div class="row ">
+				<!-- 导航条 -->
+				<nav class="navbar navbar-fixed-top navbar-inverse" style="height: 70px;">
+					<div class="container-fluid">
+
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px;">
+							<ul class="nav navbar-nav">
+								<li style="margin-left: 30px;"><img src="${pageContext.request.contextPath}/picture/heard.png" ></li>
+								<li style="margin-left: 30px;"><a class="navbar-brand" href="${pageContext.request.contextPath}/index3.jsp" >首页</a></li>
+								<li class="active"><a href="jsp/more.jsp">众筹项目 <span class="sr-only">(current)</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起项目</a></li>
+								<li><a href="${pageContext.request.contextPath}/jsp/personalcenter.jsp">我的众筹</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="${pageContext.request.contextPath}/login.jsp">登录</a></li>
+								<li><a href="${pageContext.request.contextPath}/register.jsp">注册</a></li>
+
+							</ul>
+
+
+						</div><!-- /.navbar-collapse -->
+						</div><!-- /.container-fluid -->
+				</nav>
+			</div>
+			<div style="border: #000000 solid 1px;"></div>
 		</div>
 
 
-		
+
 		<!-- 轮播图 -->
 		<div id="app" data-state="0" align="center" style="margin-top: 0px;">
 			  <div class="ui-big-images" align="center" style="width: auto;">    

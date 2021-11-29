@@ -29,12 +29,7 @@
 	</style>
 </head>
 <body>
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> 第四次提交git众筹项目
 	<div class="htmleaf-container">
 		<div id="wrapper">
 		<div id="fillerDiv">
@@ -188,11 +183,9 @@
 	</div>  <!-- end wrapper div -->
 		
 	</div>
-<<<<<<< HEAD
-	
-=======
+
 </body>
->>>>>>> 第四次提交git众筹项目
+
 	<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js"><\/script>')</script>
 	<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
@@ -208,8 +201,4 @@
 
 		} );
 	</script>
-<<<<<<< HEAD
-</body>
-=======
->>>>>>> 第四次提交git众筹项目
 </html>

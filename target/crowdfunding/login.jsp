@@ -90,7 +90,7 @@
 				</div>
 			</div>
 			<div class="row" style="padding-top: 60px; clear: both;">
-				<div class="col-md-12 text-center"><p><small>&copy; All Rights Reserved. More Templates <a href="" target="_blank" title="股利多众筹">股利多众筹</a>  - Collect from <a href="" title="众筹" target="_blank">股利多众筹</a> </small></p></div>
+				<div class="col-md-12 text-center"><p><small>&copy; All Rights Reserved. More Templates <a href="http://www.moobnn.com/" target="_blank" title="股利多众筹">股利多众筹</a>  - Collect from <a href="http://www.moobnn.com/" title="股利多众筹" target="_blank">股利多众筹</a> </small></p></div>
 			</div>
 		</div>
 	

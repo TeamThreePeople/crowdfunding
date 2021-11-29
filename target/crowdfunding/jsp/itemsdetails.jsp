@@ -14,15 +14,15 @@
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 	</head>
 	<body>
-	<%@ include file="connect/heard.jsp" %>
-			
+	<%@ include file="connect/heard.jsp"%>>
+
 		<!-- 大标题 -->	
 		<div class="container" style="margin-top: 40px;padding: 0px;">
 			<div class="row">
 				<!-- 文字 -->
 				<div class="col-md-2" style="font-size: 40px;">项目详情</div>
 				<!-- 图片 -->
-				<img src="../img/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
+				<img src="${pageContext.request.contextPath}/picture/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
 			</div>
 			<div style="border: #000000 solid 1px;"></div>
 		</div>	
@@ -112,5 +112,4 @@
 		</div>	
 			
 				
-
-	<%@ include file="connect/foot.jsp" %>
+	<%@ include file="connect/foot.jsp"%>>

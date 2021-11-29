@@ -101,7 +101,9 @@
 	
 	<body>
 
+
 	<%@ include file="connect/heard.jsp" %>
+
 		
 		<!-- 订单支付 -->
 		<div class="container" style="background-color: lightgoldenrodyellow;">
@@ -303,7 +305,10 @@
 			</div>
 		</div>
 
+
+
 	<%@ include file="connect/foot.jsp" %>
+
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js" ></script>
 	<!-- 先引入jQuery核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
@@ -324,6 +329,4 @@
 			
 		})
 	</script>
-	
-	
 
