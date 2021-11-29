@@ -1,4 +1,4 @@
-package com.cf.dao;
+package com.team.cf.dao;
 
 
 
@@ -12,12 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import com.cf.utils.JDBCUtils;
-/**
- * @version 1.0
- * @Description 基础的CRUD操作
- * @Author chenmin
- * @Date 2021/11/23 15:18
- */
+
 public class BaseDao<T> {
 
     private QueryRunner queryRunner = new QueryRunner();

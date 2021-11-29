@@ -1,4 +1,4 @@
-package com.cf.vo;
+package com.team.cf.vo;
 
 import java.util.List;
 

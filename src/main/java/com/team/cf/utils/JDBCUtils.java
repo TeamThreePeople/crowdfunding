@@ -1,4 +1,4 @@
-package com.cf.utils;
+package com.team.cf.utils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
