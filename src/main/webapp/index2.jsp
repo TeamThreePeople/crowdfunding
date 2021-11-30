@@ -29,7 +29,7 @@
 			<div class="frame">
 				<div class="frame__title-wrap">
 					<h1 class="frame__title">本众筹系统由涛哥带俩小弟完成</h1>
-					<a class="frame__article" href="index3.jsp">首页</a>
+					<a class="frame__article" href="${pageContext.request.contextPath}/product?method=index">首页</a>
 				</div>
 				<a class="frame__github" href="#" target="_blank">众筹系统</a>
 				<a class="frame__previous" href="#">众筹系统</a>

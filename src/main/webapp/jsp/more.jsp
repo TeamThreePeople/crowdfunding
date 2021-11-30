@@ -184,7 +184,7 @@
 			</div>
 		</div>
 
-		<%--<!-- 尾部 -->
+		<!-- 尾部 -->
 		<div class="container" style="margin-top: 40px;padding: 0px;width: 1390px;">
 			<div class="row" >
 				<nav class="navbar navbar-inverse" style="height: 200px;color: pink;">
@@ -268,7 +268,7 @@
 				<p></p>
 				<p></p>
 			</div>
-		</div>--%>
+		</div>
 
 		<!-- 回到顶部 -->
 		<!-- 右侧小火箭图标返回顶部 -->
@@ -284,5 +284,9 @@
 				</span>
 			</div>
 	</div>
+	</body>
+</html>
 
+<%--
 	<%@ include file="connect/foot.jsp"%>>
+--%>

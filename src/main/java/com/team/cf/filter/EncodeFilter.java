@@ -11,6 +11,12 @@ public class EncodeFilter implements Filter {
 
     private String encode;
 
+    //初始化方法
+    public void init(FilterConfig config) throws ServletException {
+        encode = config.getInitParameter("encode");
+        System.out.println("EncodeFilter 初始化 "+encode);
+    }
+
     public EncodeFilter(){
         System.out.println("EncodeFilter 实例化");
     }
@@ -42,11 +48,7 @@ public class EncodeFilter implements Filter {
         chain.doFilter(req, resp);
     }
 
-    //初始化方法
-    public void init(FilterConfig config) throws ServletException {
-        encode = config.getInitParameter("encode");
-        System.out.println("EncodeFilter 初始化 "+encode);
-    }
+
 
 }
 

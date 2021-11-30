@@ -11,7 +11,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import com.cf.utils.JDBCUtils;
+import com.team.cf.utils.JDBCUtils;
 
 public class BaseDao<T> {
 

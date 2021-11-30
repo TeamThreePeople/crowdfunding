@@ -7,8 +7,9 @@
 --%>
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" isELIgnored="false" %>
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<c:set value="${pageContext.request.contextPath}" scope="application" var="path"></c:set>
 <!--导航部分-->
 <div class="container" style="width: 100%;height: 100px;">
     <div class="row ">
@@ -16,21 +17,7 @@
         <nav class="navbar navbar-fixed-top navbar-inverse" style="height: 70px;">
             <div class="container-fluid">
 
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <!-- 屏幕缩小之后的效果 -->
-                <%--<div class="navbar-header" style="margin-top: 10px;">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index3.jsp">主页</a>
-                </div>--%>
-
                 <!-- Collect the nav links, forms, and other content for toggling -->
-
-
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px;">
                     <ul class="nav navbar-nav">
                         <li style="margin-left: 30px;"><img src="${pageContext.request.contextPath}/picture/heard.png" ></li>
@@ -39,10 +26,31 @@
                         <li><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起项目</a></li>
                         <li><a href="${pageContext.request.contextPath}/jsp/personalcenter.jsp">我的众筹</a></li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="${pageContext.request.contextPath}/login.jsp">登录</a></li>
+                        <li><a href="${pageContext.request.contextPath}/register.jsp">注册</a></li>
 
+                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
     </div>
     <div style="border: #000000 solid 1px;"></div>
+
+    <%-- 当前若是商品列表展示，则头部页面有表单显示 --%>
+   <%-- <c:if test="${vo!=null}">
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" id="searchName" name="pname" value="${vo.query2}">
+            </div>
+            <input type="button" class="btn btn-success" value="Submit" onclick="query()" />
+
+            <script>
+                function query() {
+                    window.location.href="${path}/product?method=viewProductListByCidPname&cid=${vo.query1}&pname="+$("#searchName").val();
+                }
+            </script>
+        </form>
+    </c:if>--%>
+
 </div>
