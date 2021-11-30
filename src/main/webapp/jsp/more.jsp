@@ -22,12 +22,6 @@
 		<link href="${pageContext.request.contextPath}/css/picturechange.css" rel="stylesheet">
 		<!-- 滚动背景 -->
 		<link href="${pageContext.request.contextPath}/css/gundongBackground.css" rel="stylesheet">
-		<!-- 先引入jQuery核心js文件 -->
-		<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
-		<!-- 引入BootStrap核心js文件 -->
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-		<!-- 背景滚动 -->
-		<script src="${pageContext.request.contextPath}/js/gundongBackground.js"></script>
 
 	</head>
 	<body>
@@ -42,8 +36,6 @@
 				<!-- 文字 -->
 				<div class="col-md-2" style="font-size: 40px;">更多</div>
 				<!-- 图片 -->
-		
-
 				<img src="${pageContext.request.contextPath}/picture/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
 
 			</div>
@@ -51,17 +43,19 @@
 		</div>
 		
 
-		<!-- 分类内容 -->
+		<!-- 分类标签 -->
 		<div class="container">
 			<div class="row" style="height: 150px;border: lightgray 1px solid;border-radius: 4px;margin-top: 10px;">
 				<div id="">
 					<ul class="nav nav-pills">
 						<li class="active"><a href="#" style="color: #000000;">分类：</a></li>
+
 						<li><a href="#" style="color: #000000;">全部</a></li>
 						<li><a href="#" style="color: #000000;">科技</a></li>
 						<li><a href="#" style="color: #000000;">公益</a></li>
 						<li><a href="#" style="color: #000000;">农业</a></li>
 						<li><a href="#" style="color: #000000;">文化</a></li>
+
 					</ul>
 				</div>
 				<p></p>
@@ -136,10 +130,7 @@
 				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
 					<img src="${pageContext.request.contextPath}/picture/name1.png" >
 					<a href="#" style="text-align: left;"><p>活性富氢净水直饮机</p></a>
-					<!-- <a>
-						<span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
-					</a> -->
-					
+
 					</div>
 				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
 					<img src="${pageContext.request.contextPath}/picture/name2.png" >
@@ -285,6 +276,30 @@
 			</div>
 	</div>
 	</body>
+
+	<!-- 先引入jQuery核心js文件 -->
+	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
+	<!-- 引入BootStrap核心js文件 -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<!-- 背景滚动 -->
+	<script src="${pageContext.request.contextPath}/js/gundongBackground.js"></script>
+
+	<script>
+		$.ajax({
+			type:"get",
+			url:"${path}/category?method=findAllCategory",
+			dataType:"json",
+			success:function (list) {
+				console.log(list)
+				for(var i in list){  //下标
+					/* 通过商品类别的编号，查询商品列表的信息 */
+					var $li = "<li><a href='${path}/product?method=findAllProducts&cid="+list[i].cid+"'>"+list[i].cname+"</a></li>";
+					$("#categorys").append($li);
+				}
+			}
+		})
+	</script>
+
 </html>
 
 <%--
