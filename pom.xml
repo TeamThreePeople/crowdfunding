@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.cf</groupId>
@@ -21,7 +21,7 @@
 
   <dependencies>
 
-    <!-- 阿里支付 -->
+    <!-- 支付宝支付接口的jar包 -->
     <dependency>
       <groupId>com.alipay.sdk</groupId>
       <artifactId>alipay-sdk-java</artifactId>
@@ -68,12 +68,14 @@
     </dependency>
 
     <!--mysql驱动包 -->
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.38</version>
+      <version>8.0.16</version>
     </dependency>
-    <!--c3p0连接池 -->
+
+    <!--c3p0 -->
     <dependency>
       <groupId>c3p0</groupId>
       <artifactId>c3p0</artifactId>
@@ -87,21 +89,23 @@
       <version>1.2</version>
     </dependency>
 
-    <!-- BeanUtils工具类 -->
+    <!-- bean的工具类 -->
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.9.3</version>
     </dependency>
 
-    <!-- DbUtils工具类 -->
+    <!-- 数据库的工具类 -->
     <dependency>
       <groupId>commons-dbutils</groupId>
       <artifactId>commons-dbutils</artifactId>
       <version>1.6</version>
     </dependency>
 
-    <!-- json -->
+
+    <!-- 处理json数据 -->
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
@@ -122,6 +126,8 @@
       <version>3.17</version>
     </dependency>
 
+
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -129,10 +135,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>RELEASE</version>
+      <scope>compile</scope>
     </dependency>
+
   </dependencies>
 
   <build>
