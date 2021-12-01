@@ -196,7 +196,8 @@
 				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
 					<img src="${pageContext.request.contextPath}/${products.pimgs}" >
 					<p style="color: #000000;">
-						<a href="${pageContext.request.contextPath}/jsp/itemsdetails.jsp" style="text-align: left;">${products.name}</a>
+
+						<a href="${pageContext.request.contextPath}/product?method=findItemsById&id=${products.id}" style="text-align: left;">${products.name}</a>
 					</p>
 				</div>
 			</c:forEach>
@@ -343,7 +344,7 @@
 						<table align="center" style="text-align: center;" >
 							<p></p>
 							<tr>
-								<td colspan="17" style="font-weight: 1000;font-size: 18px;">扫描二维码，你想要的这里都有！！！</td>
+								<td colspan="17" style="font-weight: 800;font-size: 18px;">扫描二维码，你想要的这里都有！！！</td>
 							</tr>
 						</table>
 					</div>

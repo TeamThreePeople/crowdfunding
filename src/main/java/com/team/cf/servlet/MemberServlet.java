@@ -32,14 +32,6 @@ public class MemberServlet extends BasicServlet {
     //注册
     protected void register(HttpServletRequest request, HttpServletResponse response) throws InvocationTargetException, IllegalAccessException, IOException, ServletException {
         System.out.println("register执行了");
-//        Map<String, String[]> parameterMap = request.getParameterMap();
-//
-//
-//        Iterator<Map.Entry<String, String[]>> iterator = parameterMap.entrySet().iterator();
-//        while (iterator.hasNext()){
-//            Map.Entry<String, String[]> next = iterator.next();
-//            System.out.println(next.getKey()+","+next.getValue());
-//        }
 
         //用户名
         String name = request.getParameter("name");

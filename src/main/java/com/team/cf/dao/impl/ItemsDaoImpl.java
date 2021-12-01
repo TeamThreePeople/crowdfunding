@@ -22,4 +22,12 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         return products;
 
     }
+
+    //查询单个商品信息
+    @Override
+    public Items selectOneItems(String id) throws SQLException {
+        String sql = "select * from t_project where id = ? ";
+        Items items = this.getBean(sql, Items.class, id);
+        return items;
+    }
 }
