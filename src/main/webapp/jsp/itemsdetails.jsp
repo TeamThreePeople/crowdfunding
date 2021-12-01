@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +14,7 @@
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 	</head>
 	<body>
-	<%@ include file="connect/heard.jsp"%>
+	<%@ include file="connect/heard.jsp"%>>
 
 		<!-- 大标题 -->	
 		<div class="container" style="margin-top: 40px;padding: 0px;">
@@ -32,12 +31,12 @@
 		<div class="container"  style="margin-top: 40px;padding: 0px;">
 			<div class="row" style="border: lightgray 1px solid;height: 100px;background-color: whitesmoke;" >
 					<form class="navbar-form">
-						<p style="font-size: 24px;"> ${item.name} </p>
+						<p style="font-size: 24px;">智能高清监控机器人</p>
 						<p>可爱的造型，摄像安防远程互联的全能设计，让你随时随地守护您的家人，陪伴你的生活。</p>
 					</form>
 					<!--  表单 -->
 				<form class="navbar-form navbar-right" style="margin-right: 50px;margin-top: -40px;">
-				  <button type="submit" class="btn btn-default">关注 <span>${item.follower}</span></button>
+				  <button type="submit" class="btn btn-default">关注 <span>120</span></button>
 				</form>
 			</div>	
 		</div>
@@ -47,38 +46,30 @@
 			<div class="row" style="margin-top: -30px;padding: 0px;margin-left: -50px;">
 				<!-- 图片 -->
 				<div class="col-md-8 col-sm-12 col-xs-12" align="center" >
-					<img src="${pageContext.request.contextPath}/${item.pimgs}" >
+					<img src="${pageContext.request.contextPath}/picture/object1.png" >
 				</div>
 				<!-- 介绍 -->
 				<div class="col-md-4 col-sm-12 col-xs-12"  style="border: lightgray 1px solid;height: 435px;">
-					<div style="font-style: italic;background-color: green;width: 55px;border-radius: 4px;margin-top: 10px;">
-						<c:if test="${item.status==0}">
-							<span style="color: white;">众筹中</span>
-						</c:if>
-						<c:if test="${item.status==1}">
-							<span style="color: white;">众筹成功</span>
-						</c:if>
-						<c:if test="${item.status==2}">
-							<span style="color: white;">众筹失败</span>
-						</c:if>
+					<div style="font-style: italic;background-color: green;width: 50px;border-radius: 4px;margin-top: 10px;">
+						<span style="color: white;">众筹中</span>
 					</div>
 					
 					<table border="10px"  bordercolor="white" style="margin-top: 35px;">
 						
 						<tr>
-							<td colspan="2" ><span style="font-size: 24px;">已筹资金：￥<span> ${item.supportmoney} </span></span></td>
+							<td colspan="2" ><span style="font-size: 24px;">已筹资金：￥<span>50000.00</span></span></td>
 						</tr>
 						<tr>
-							<td width="280px">目标金额：<span> ${item.money} </span></td><td>达成：<span> ${item.completion} %</span></td>
+							<td width="280px">目标金额：<span>1000.00</span></td><td>达成：<span>60%</span></td>
 						</tr>
 						<tr>
 							<td colspan="2">进度条</td>
 						</tr>
 						<tr>
-							<td>剩余<span> ${item.day} </span>天</td>
+							<td>剩余<span>15</span>天</td>
 						</tr>
 						<tr>
-							<td>已有<span> ${item.supporter} </span>人支持该项目</td>
+							<td>已有<span>629</span>人支持该项目</td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
