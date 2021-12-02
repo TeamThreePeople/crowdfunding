@@ -22,13 +22,15 @@ public class Items {
     private int memberid;// 发起人ID
     private Date createdate;// 创建日期
     private int follower;//关注者数量
+
     private String pimgs;//图片
+    private int  cid;//商品分类id
 
 
     public Items() {
     }
 
-    public Items(Integer id, String name, String remark, Double money, int day, int status, Date deploydate, Double supportmoney, int supporter, int completion, int memberid, Date createdate, int follower, String pimgs) {
+    public Items(Integer id, String name, String remark, Double money, int day, int status, Date deploydate, Double supportmoney, int supporter, int completion, int memberid, Date createdate, int follower, String pimgs, int cid) {
         this.id = id;
         this.name = name;
         this.remark = remark;
@@ -43,6 +45,7 @@ public class Items {
         this.createdate = createdate;
         this.follower = follower;
         this.pimgs = pimgs;
+        this.cid = cid;
     }
 
     /**
@@ -269,7 +272,23 @@ public class Items {
         this.pimgs = pimgs;
     }
 
+    /**
+     * 获取
+     * @return cid
+     */
+    public int getCid() {
+        return cid;
+    }
+
+    /**
+     * 设置
+     * @param cid
+     */
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
     public String toString() {
-        return "Items{id = " + id + ", name = " + name + ", remark = " + remark + ", money = " + money + ", day = " + day + ", status = " + status + ", deploydate = " + deploydate + ", supportmoney = " + supportmoney + ", supporter = " + supporter + ", completion = " + completion + ", memberid = " + memberid + ", createdate = " + createdate + ", follower = " + follower + ", pimgs = " + pimgs + "}";
+        return "Items{id = " + id + ", name = " + name + ", remark = " + remark + ", money = " + money + ", day = " + day + ", status = " + status + ", deploydate = " + deploydate + ", supportmoney = " + supportmoney + ", supporter = " + supporter + ", completion = " + completion + ", memberid = " + memberid + ", createdate = " + createdate + ", follower = " + follower + ", pimgs = " + pimgs + ", cid = " + cid + "}";
     }
 }

@@ -17,6 +17,8 @@ public class PageVo<T> {
     //查询条件
     private String query1;
     private String query2;
+    private String query3;
+    private String query4;
     //数据
     private List<T> list;
 
@@ -24,12 +26,14 @@ public class PageVo<T> {
     public PageVo() {
     }
 
-    public PageVo(Integer pageNow, Integer myCounts, Integer myPages, String query1, String query2, List<T> list) {
+    public PageVo(Integer pageNow, Integer myPages,  Integer myCounts, String query1, String query2, String query3, String query4, List<T> list) {
         this.pageNow = pageNow;
         this.myCounts = myCounts;
         this.myPages = myPages;
         this.query1 = query1;
         this.query2 = query2;
+        this.query3 = query3;
+        this.query4 = query4;
         this.list = list;
     }
 
@@ -115,6 +119,38 @@ public class PageVo<T> {
 
     /**
      * 获取
+     * @return query3
+     */
+    public String getQuery3() {
+        return query3;
+    }
+
+    /**
+     * 设置
+     * @param query3
+     */
+    public void setQuery3(String query3) {
+        this.query3 = query3;
+    }
+
+    /**
+     * 获取
+     * @return query4
+     */
+    public String getQuery4() {
+        return query4;
+    }
+
+    /**
+     * 设置
+     * @param query4
+     */
+    public void setQuery4(String query4) {
+        this.query4 = query4;
+    }
+
+    /**
+     * 获取
      * @return list
      */
     public List<T> getList() {
@@ -130,6 +166,6 @@ public class PageVo<T> {
     }
 
     public String toString() {
-        return "PageVo{pageNow = " + pageNow + ", myCounts = " + myCounts + ", myPages = " + myPages + ", query1 = " + query1 + ", query2 = " + query2 + ", list = " + list + "}";
+        return "PageVo{pageNow = " + pageNow + ", myCounts = " + myCounts + ", myPages = " + myPages + ", query1 = " + query1 + ", query2 = " + query2 + ", query3 = " + query3 + ", query4 = " + query4 + ", list = " + list + "}";
     }
 }
