@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
@@ -90,7 +91,7 @@
 							<tr>
 								<td align="center">
 									<div class="profile-pic" >
-										<img src="../img/TV.png" />
+										<img src="${pageContext.request.contextPath}/${item.pimgs}" />
 									</div>
 								</td>
 							</tr>
@@ -227,18 +228,18 @@
 											  			<th style="text-align:center"><span style="color: #000000;">操作</span></th>
 											  		</tr>
 											  		<tr class="data" align="center">
-											  			<td class="id">${items.id}</td>
-											  			<td>${items.name}</td>
-											  			<td>${items.detail}</td>
-											  			<td>${items.price}</td>
-											  			<td><fmt:formatDate value="${items.createTime}" pattern="yyyy-MM-dd"/></td>
-											  			<td>
-											  				<img src="${items.pic}" width="64px" height="auto"/>
+											  			<td class="id">信息</td>
+														<td>日期<%--<fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd"/>--%></td>
+														<td>金额</td>
+														<td>数量</td>
+														<td>状态</td>
+											  			<td>图片
+<%--											  				<img src="${item.pic}" width="64px" height="auto"/>--%>
 											  			</td>
 											  			<td>
-											  				<a href="javascript:void(0)" class="btn btn-info" onclick="showModify()">详情</a>
+											  				<a href="javascript:void(0)" class="btn btn-info" onclick="${pageContext.request.contextPath}/product?method=findItemsById&id=${products.id}">详情</a>
 															<br />
-											  				<a href="" class="btn btn-danger">删除</a>
+											  				<a href="${path}/cart?method=delCartItem&id=${item.id}" class="btn btn-danger">删除</a>
 											  			</td>
 											  		</tr>
 											  		

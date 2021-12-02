@@ -6,16 +6,17 @@
 	<head>
 		<meta charset="utf-8">
 		<title>项目详情</title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/fontawesome-all.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-		<!-- 先引入jQuery核心js文件 -->
-		<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
-		<!-- 引入BootStrap核心js文件 -->
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
 		<!--  设置网页的小图标logo  favicon.ico-->
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
+<%--		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">--%>
 	</head>
 	<body>
-	<%@ include file="connect/heard.jsp"%>>
+	<%@ include file="connect/heard.jsp"%>
 
 		<!-- 大标题 -->	
 		<div class="container" style="margin-top: 40px;padding: 0px;">
@@ -30,17 +31,21 @@
 		
 		<!-- 简单介绍 -->
 		<div class="container"  style="margin-top: 40px;padding: 0px;">
-			<div class="row" style="border: lightgray 1px solid;height: 100px;background-color: whitesmoke;" >
+			<div class="row" style="border: lightgray 1px solid;height: 100px;background-color: whitesmoke;width: 1000px;" >
 					<form class="navbar-form">
 						<p style="font-size: 24px;"> ${item.name} </p>
 						<p>可爱的造型，摄像安防远程互联的全能设计，让你随时随地守护您的家人，陪伴你的生活。</p>
 					</form>
 					<!--  表单 -->
-				<form class="navbar-form navbar-right" style="margin-right: 50px;margin-top: -40px;">
-				  <button type="submit" class="btn btn-default">关注 <span>${item.follower}</span></button>
-				</form>
+				<%--<form class="navbar-form navbar-right" style="margin-right: 50px;margin-top: -40px;">
+				  <button type="button" id="btn-digg" class="btn btn-default"> 关注 </button>
+						<span> ${item.follower} </span>
+				</form>--%>
 			</div>	
 		</div>
+		<section id="btnSection2" style="margin-top: -30px;margin-left: 1150px;">
+			<button id="btnOut2" class="magicBtn success fill round">关注</button>
+		</section>
 		
 		<!-- 图片加介绍 -->
 		<div class="container" style="margin-top: 40px;padding: 0px;">
@@ -83,7 +88,7 @@
 						<tr>
 							<td colspan="2" align="center">
 								<button type="button" style="width: 330px;height: 50px;border: white; border-radius: 4px;background-color: rgb(240,173,78);font-size: 24px;">
-									<span style="color: white;"><a href="support.jsp">立即支持</a>></span>
+									<span style="color: white;"><a href="${path}/jsp/support.jsp">立即支持</a>></span>
 								</button>
 							</td>
 						</tr>
@@ -121,4 +126,16 @@
 		</div>	
 			
 				
-	<%@ include file="connect/foot.jsp"%>>
+	<%@ include file="connect/foot.jsp"%>
+	</body>
+
+	<!-- 先引入jQuery核心js文件 -->
+	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
+	<!-- 引入BootStrap核心js文件 -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+<%--关注按钮	--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/magicBtn27.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/js/main27.js" type="text/javascript"></script>
+</html>
