@@ -159,17 +159,17 @@
 				<div class="col-md-4 col-sm-4 col-xs-6" align="center">
 					<img src="${pageContext.request.contextPath}/picture/jiqiren.png" >
 					<p></p>
-					<button ><a href="${pageContext.request.contextPath}/product?method=findItemsById&id=1" style="color: #000000;">项目详情&gt;&gt;</a></button>
+					<button ><a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=1" style="color: #000000;">项目详情&gt;&gt;</a></button>
 					</div>
 				<div class="col-md-4 col-sm-4 col-xs-6" align="center">
 					<img src="${pageContext.request.contextPath}/picture/shouhuan.png" >
 					<p></p>
-					<button><a href="${pageContext.request.contextPath}/product?method=findItemsById&id=2" style="color: #000000;">项目详情&gt;&gt;</a></button>
+					<button><a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=2" style="color: #000000;">项目详情&gt;&gt;</a></button>
 					</div>
 				<div class="col-md-4 col-sm-4 col-xs-6" align="center">
 					<img src="${pageContext.request.contextPath}/picture/quwenkou.png" >
 					<p></p>
-					<button><a href="${pageContext.request.contextPath}/product?method=findItemsById&id=3" style="color: #000000;">项目详情&gt;&gt;</a></button>
+					<button><a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=3" style="color: #000000;">项目详情&gt;&gt;</a></button>
 					</div>
 			</div>
 		</div>
@@ -194,11 +194,11 @@
 
 			<c:forEach items="${requestScope.productsView}" var="products">
 				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
-					<a href="${pageContext.request.contextPath}/product?method=findItemsById&id=${products.id}">
-						<img src="${pageContext.request.contextPath}/${products.pimgs}" >
+					<a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=${products.id}">
+						<img src="${pageContext.request.contextPath}/${products.pimgs}"  >
 					</a>
 					<p style="color: #000000;">
-						<a href="${pageContext.request.contextPath}/product?method=findItemsById&id=${products.id}" style="text-align: left;">${products.name}</a>
+						<a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=${products.id}" style="text-align: left;"  >${products.name}</a>
 					</p>
 				</div>
 			</c:forEach>

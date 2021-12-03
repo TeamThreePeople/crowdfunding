@@ -13,6 +13,9 @@ public interface MemberDao {
     //查单个
     public Member selectOne(Object... params) throws Exception;
 
+    //查单个 by id
+    public Member selectOneById(Integer id) throws Exception;
+
     //增
     public int insertMember(Member member) throws Exception;
 

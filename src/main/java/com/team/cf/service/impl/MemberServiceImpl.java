@@ -6,6 +6,8 @@ import com.team.cf.entity.Member;
 import com.team.cf.service.MemberService;
 import com.team.cf.utils.JDBCUtils;
 
+import java.sql.SQLException;
+
 
 /**
  * @Description TODO
@@ -53,9 +55,30 @@ public class MemberServiceImpl implements MemberService {
         return false;
     }
 
-    //登陆
+    //登录
     @Override
-    public Member login(String name, String pwd) {
+    public Member login(String loginacct, String password) {
+        try {
+            Member member = dao.selectOne(loginacct, password);
+            return member;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
+        }
+        return null;
+    }
+
+    //通过id找人
+    @Override
+    public Member findMemberById(Integer id) {
+        try {
+            Member member = dao.selectOneById(id);
+            return member;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }

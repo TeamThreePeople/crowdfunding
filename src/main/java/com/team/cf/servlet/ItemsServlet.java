@@ -48,11 +48,11 @@ public class ItemsServlet extends BasicServlet {
         System.out.println("findItemsById 执行了");
 
         //商品id
-        String id = request.getParameter("id");
-        System.out.println("id = "+id);
+        String aid = request.getParameter("aid");
+        System.out.println("aid = "+aid);
 
         //执行业务
-        Items item = itemsService.findItemsById(id);
+        Items item = itemsService.findItemsById(aid);
         System.out.println("item = "+item);
         Date now =new Date();
         Date deploydate = item.getDeploydate();
@@ -69,5 +69,6 @@ public class ItemsServlet extends BasicServlet {
 
 
     }
+
 
 }

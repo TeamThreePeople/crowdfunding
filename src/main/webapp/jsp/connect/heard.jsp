@@ -26,10 +26,21 @@
                         <li><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起项目</a></li>
                         <li><a href="${pageContext.request.contextPath}/jsp/personalcenter.jsp">我的众筹</a></li>
                     </ul>
+                    <%--登录注册,以及登录成功后的欢迎信息--%>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="${pageContext.request.contextPath}/login.jsp">登录</a></li>
-                        <li><a href="${pageContext.request.contextPath}/register.jsp">注册</a></li>
+                        <c:if test="${sessionScope.member==null}">
+                            <li><a href="${pageContext.request.contextPath}/login.jsp">登录</a></li>
+                            <li><a href="${pageContext.request.contextPath}/register.jsp">注册</a></li>
+                        </c:if>
 
+                        <c:if test="${sessionScope.member!=null}">
+                            <li><a>欢迎</a> </li>
+                            <li style="color: white">
+                                <a><span style="color: pink">${sessionScope.member.loginacct}</span></a>
+                            </li>
+                            <li><a  style="color: white" href="${pageContext.request.contextPath}/member?method=logout">登出</a></li>
+                            <li><a href="${pageContext.request.contextPath}/register.jsp">注册</a></li>
+                        </c:if>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

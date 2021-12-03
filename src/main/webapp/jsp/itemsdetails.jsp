@@ -4,16 +4,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<meta charset="utf-8">
 		<title>项目详情</title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/fontawesome-all.min.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
-
+		<%--爱心关注--%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style29.css"/>
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
 		<!--  设置网页的小图标logo  favicon.ico-->
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
-<%--		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">--%>
 	</head>
 	<body>
 	<%@ include file="connect/heard.jsp"%>
@@ -31,21 +29,22 @@
 		
 		<!-- 简单介绍 -->
 		<div class="container"  style="margin-top: 40px;padding: 0px;">
-			<div class="row" style="border: lightgray 1px solid;height: 100px;background-color: whitesmoke;width: 1000px;" >
-					<form class="navbar-form">
-						<p style="font-size: 24px;"> ${item.name} </p>
-						<p>可爱的造型，摄像安防远程互联的全能设计，让你随时随地守护您的家人，陪伴你的生活。</p>
-					</form>
-					<!--  表单 -->
-				<%--<form class="navbar-form navbar-right" style="margin-right: 50px;margin-top: -40px;">
-				  <button type="button" id="btn-digg" class="btn btn-default"> 关注 </button>
-						<span> ${item.follower} </span>
-				</form>--%>
+			<div class="row" style="border: lightgray 1px solid;height: 100px;background-color: whitesmoke;" >
+				<form class="navbar-form">
+					<p style="font-size: 24px;"> ${item.name} </p>
+					<p>可爱的造型，摄像安防远程互联的全能设计，让你随时随地守护您的家人，陪伴你的生活。</p>
+				</form>
+
+				<%--<div class="heart" id="like1" rel="${flag}" name="heart" value="heart" style="margin-top: -60px;margin-left: 1200px;">
+					<div class="likeCount" id="likeCount1" >${item.follower} </div>
+				</div>--%>
+
+				<div id="likes">
+					<%@ include file="heart.jsp"%>
+				</div>
+
 			</div>	
 		</div>
-		<section id="btnSection2" style="margin-top: -30px;margin-left: 1150px;">
-			<button id="btnOut2" class="magicBtn success fill round">关注</button>
-		</section>
 		
 		<!-- 图片加介绍 -->
 		<div class="container" style="margin-top: 40px;padding: 0px;">
@@ -133,9 +132,101 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
 	<!-- 引入BootStrap核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<%--	爱心关注--%>
+<%--	<script src="${pageContext.request.contextPath}/js/heart.js"></script>--%>
 
-<%--关注按钮	--%>
-	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
-	<script src="${pageContext.request.contextPath}/js/magicBtn27.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath}/js/main27.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function()
+        {
+
+            $('body').on("click",'.heart',function()
+            {
+
+                var A=$(this).attr("id");
+                var B=A.split("like");
+                var messageID=B[1];
+                var C=parseInt($("#likeCount"+messageID).html());
+                $(this).css("background-position","")
+                var D=$(this).attr("rel");
+
+                if(D === 'like')
+                {
+                    $("#likeCount"+messageID).html(C+1);
+                    $(this).addClass("heartAnimation").attr("rel","unlike");
+
+                }
+                else
+                {
+                    $("#likeCount"+messageID).html(C-1);
+                    $(this).removeClass("heartAnimation").attr("rel","like");
+                    $(this).css("background-position","left");
+                }
+
+
+            });
+
+
+        });
+    </script>
+
+    <%--<script>
+
+		/*window.onload=show;
+
+		function show() {
+			$.ajax({
+				url:"${path}/great?method=findGreatByAidAndUid",
+				data:{"aid":${item.id}},
+				success:function () {
+					if (${flag}){
+						$("#likeCount"+messageID).html(${item.follower}+1);
+						$(this).addClass("heartAnimation").attr("rel","unlike");
+					}
+				}
+			})
+		};*/
+
+
+		/*function show2() {
+			$.ajax({
+				url:"${path}/great?method=findGreatByAidAndUid",
+				data:{"aid":${item.id}},
+				success:function (data) {
+					$("#like").html(data);
+					console.log(${flag});
+				}
+			})
+		};*/
+
+
+		/*$(document).ready(function() {
+			$('body').on("click",'.heart',function()
+			{
+				var A=$(this).attr("id");
+				var B=A.split("like");
+				var messageID=B[1];
+				var C=parseInt($("#likeCount"+messageID).html());//关注者数量
+
+				$(this).css("background-position","");
+
+				var D=$(this).attr("rel");
+
+				//if(D === 'like')
+				if (D ==  )
+				{
+					$("#likeCount"+messageID).html(C+1);
+					$(this).addClass("heartAnimation").attr("rel","unlike");
+				}
+				else
+				{
+					$("#likeCount"+messageID).html(C-1);
+					$(this).removeClass("heartAnimation").attr("rel","like");
+					$(this).css("background-position","left");
+				}
+			});
+		});*/
+
+
+	</script>--%>
+
 </html>

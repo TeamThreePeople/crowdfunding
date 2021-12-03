@@ -1,15 +1,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>个人中心</title>
-
-
-
-
 		<!-- <link rel="stylesheet" type="text/css" href="css/normalize.css" /> -->
 			<!-- <link rel="stylesheet" type="text/css" href="css/default.css"> -->
 			<!-- 分类按钮 -->
@@ -29,6 +26,7 @@
 			
 	</head>
 	<body>
+
 
 
 		<%@ include file="connect/heard.jsp" %>
@@ -91,7 +89,7 @@
 							<tr>
 								<td align="center">
 									<div class="profile-pic" >
-										<img src="../img/TV.png" />
+										<img src="${pageContext.request.contextPath}/itemsimgs/p_008.jpg" />
 									</div>
 								</td>
 							</tr>
@@ -99,16 +97,44 @@
 								<td><br></td>
 							</tr>
 							<tr align="center">
-								<td><span id="name" style="color: #000000;">zhangsan</span> </td>
+								<td>
+									<c:if test="${member.loginacct eq null}">
+										<span id="name" style="color: #000000;">名字</span>
+									</c:if>
+									<c:if test="${member.loginacct ne null}">
+										<span id="name" style="color: #000000;">${member.loginacct}</span>
+									</c:if>
+								</td>
 							</tr>
 							<tr>
 								<td><br></td>
 							</tr>
 							<tr>
 								<td align="center">
-									<div style="background-color: red;width: 90px;border-radius: 4px;margin-left: 85px;">
-										<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">未实名认证</a></span>
-									</div>
+										<c:if test="${member.authstatus==0}">
+											<div style="background-color: red;width: 90px;border-radius: 4px;margin-left: 85px;">
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">未实名认证</a></span>
+											</div>
+										</c:if>
+
+										<c:if test="${member.authstatus==1}">
+											<div style="background-color: deepskyblue;width: 120px;border-radius: 4px;margin-left: 70px;">
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">实名认证申请中</a></span>
+											</div>
+										</c:if>
+
+										<c:if test="${member.authstatus==2}">
+											<div style="background-color: forestgreen;width: 90px;border-radius: 4px;margin-left: 85px;">
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">已实名认证</a></span>
+											</div>
+										</c:if>
+
+										<c:if test="${member.authstatus eq null}">
+											<div style="background-color: red;width: 100px;border-radius: 4px;margin-left: 75px;">
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">实名认证状态</a></span>
+											</div>
+										</c:if>
+
 								</td>
 							</tr>
 							<tr>

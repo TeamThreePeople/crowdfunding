@@ -20,5 +20,8 @@ public interface MemberService {
     public boolean validateName(String loginacct);
 
     //登陆
-    public Member login(String name, String pwd);
+    public Member login(String username,String userpswd);
+
+    //个人中心信息
+    public Member findMemberById(Integer id);
 }
