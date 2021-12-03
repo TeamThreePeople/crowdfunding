@@ -284,8 +284,6 @@
             <!-- End Wizzy -->
         </div>
 	</div>
-	<%@ include file="connect/foot.jsp"%>>
-</body>
 
 
 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
@@ -313,4 +311,4 @@
 		}
 	</script>
 
-</html>
+	<%@ include file="connect/foot.jsp"%>>

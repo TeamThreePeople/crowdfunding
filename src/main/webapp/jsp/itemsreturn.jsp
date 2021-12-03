@@ -101,10 +101,7 @@
 		<div class="container" style="margin-top: 30px;">
 			<div class="row">
 				<div id="show">
-					
-					
-				
-				<form action="" method="">
+				<form action="${pageContext.request.contextPath}/projectReturn?method=ProjectReturnForm&items=${items}.getId()" method="post" enctype="multipart/form-data">
 					<table class="tb" >
 						
 						<!-- 回报类型 -->
@@ -115,14 +112,11 @@
 									<input type="radio" name="type" id="" value="" style="margin-left: 10px;"/>虚拟物品回报
 								</td>
 						</tr>
-						
-					
-						
 						<!-- 支持金额(元) -->
 						<tr >
 							<td style="width: 300px;text-align: right;">支持金额(元)</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="money" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<input type="text" class="form-control" name="supportmoney" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								
 							</td>
 						</tr>
@@ -132,7 +126,7 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">回报内容</td>
 							<td >
-									<textarea  class="form-control"  rows="4" cols="60" placeholder="简单描述回报内容,不超过200字" style="margin-left: 50px;"></textarea>
+									<textarea  class="form-control" name="content" rows="4" cols="60" placeholder="简单描述回报内容,不超过200字" style="margin-left: 50px;"></textarea>
 							</td>
 						</tr>
 						
@@ -143,7 +137,8 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">说明图片</td>
 							<td style="text-align: left;">
-								<input type="file" class="" name="itemspicture" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<img id="picture" style="margin-left: 50px;" name="picture" width="120" height="120" />
+								<input type="file" class="" name="itemspicture" aria-describedby="sizing-addon2" required onchange="showPreview(this)" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 									支持jpg、jpeg、png、gif格式，大小不超过2M，建议尺寸：740*457px
 								</span>
@@ -152,9 +147,9 @@
 						
 						<!-- 回报数量(名) -->
 						<tr >
-							<td style="width: 300px;text-align: right;">支持金额(元)</td>
+							<td style="width: 300px;text-align: right;">回报数量</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="money" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<input type="text" class="form-control" name="count" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 									"0"为不限回报数量
 								</span>
@@ -182,7 +177,7 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">运费(元)</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="money" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<input type="text" class="form-control" name="freight" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 									"0"为包邮
 								</span>
@@ -195,8 +190,8 @@
 							<td style="width: 300px;text-align: right;">发票</td>
 							
 							<td style="text-align: left;">
-									<input type="radio" name="" id="" value="" checked="checked" style="margin-left: 50px;"/>不可开发票
-									<input type="radio" name="" id="" value=""  style="margin-left: 50px;"/>可开发票 
+									<input type="radio" name="invoice" id="" value="" checked="checked" style="margin-left: 50px;"/>不可开发票
+									<input type="radio" name="invoice" id="" value=""  style="margin-left: 50px;"/>可开发票
 									<span id=""  style="text-align: left;margin-left: 10px;font-size: 5px;font-weight: bold;">
 										（包括个人发票和自定义抬头发票）
 									</span>
@@ -209,7 +204,7 @@
 							<td style="text-align: left;">
 								
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-									<input type="text" class="" name="money" aria-describedby="sizing-addon2" style="width: 100px;">天后，向支持者发送回报
+									<input type="text" class="" name="rtndate" aria-describedby="sizing-addon2" style="width: 100px;">天后，向支持者发送回报
 									(项目结束后)
 								</span>
 							</td>
@@ -227,14 +222,12 @@
 				</div>
 				
 					<div class="row" style="margin-top: 50px;text-align: center;">
-						<button type="button" class="btn btn-warning"><a href="itemsconfirm.jsp">下一步</a></button>
+						<button type="button" class="btn btn-warning"><a href="${pageContext.request.contextPath}/jsp/itemsconfirm.jsp">下一步</a></button>
 					</div>
 				
 				
 			</div>
 		</div>
-	<%@ include file="connect/foot.jsp"%>
-	</body>
 
 	
 	<!-- 先引入jQuery核心js文件 -->
@@ -242,6 +235,8 @@
 	<!-- 引入BootStrap核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script >
+
+
 		$("#show").hide();
 		var flag = true;
 		$("#addreturn").click(function(){
@@ -267,6 +262,19 @@
 				
 		})
 
+		//将文件流以url形式读取，实现图片实时显示：
+		function showPreview(source) {
+			var file = source.files[0];
+			if (window.FileReader) {
+				var fr = new FileReader();
+				fr.onloadend = function (e) {
+					document.getElementById("picture").src = e.target.result;
+				}
+				fr.readAsDataURL(file);
+			}
+		}
+
+
 	</script>
 
-</html>
+	<%@ include file="connect/foot.jsp"%>>

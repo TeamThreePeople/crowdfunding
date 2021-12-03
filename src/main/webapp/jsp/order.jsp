@@ -69,11 +69,11 @@
 					 <th>配送费用</th>
 				 </tr>
 				 <tr >
-					 <td style="border: 1px solid #ddd; height: 100px;">活性富氧净水直饮机</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">佘家涛</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">每满1750人抽取一台活性富氧净水直饮机</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${items.name}</td><%--活性富氧净水直饮机--%>
+					 <td style="border: 1px solid #ddd; height: 100px;">${name}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${items.remark}</td><%--每满1750人抽取一台活性富氧净水直饮机--%>
 					 <td style="border: 1px solid #ddd; height: 100px;"><input type="text" name="" id="" value=""  style="width: 35px;" /></td>
-					 <td style="border: 1px solid #ddd; height: 100px;">￥1.00</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">￥${count}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;">免运费</td>
 				 </tr>
 				</table>
@@ -83,13 +83,13 @@
 		<div class="container">
 
 			<!-- 总价 -->
-			<div class="row" style="text-align: right;">
-				<span >总价(含运费):￥1.00</span>
+			<div class="row" style="text-align: right;"><%--拿到不同的项目对应的钱数--%>
+				<span >总价(含运费):￥${count}</span>
 			</div>
 			<!-- 结算按钮 -->
 			<div class="row" style="text-align: right;">
 				<!-- Indicates caution should be taken with this action -->
-				<button type="button" class="btn btn-warning"><a href="order2.jsp"><span class="glyphicon glyphicon-credit-card"></span>去支付</a></button>
+				<button type="button" class="btn btn-warning"><a href="jsp/order2.jsp"><span class="glyphicon glyphicon-credit-card"></span>去支付</a></button>
 			</div>
 		</div>
 
@@ -122,6 +122,3 @@
 		</div>
 
 <%@ include file="connect/foot.jsp" %>
-	</body>
-
-</html>

@@ -24,8 +24,7 @@ public class Items {
     private int follower;//关注者数量
 
     private String pimgs;//图片
-    private int  cid;//商品分类id
-
+    private int cid;//商品分类id
 
     public Items() {
     }
@@ -45,6 +44,15 @@ public class Items {
         this.createdate = createdate;
         this.follower = follower;
         this.pimgs = pimgs;
+        this.cid = cid;
+    }
+
+    public Items(String name, String remark, Double money, int day, int cid) {
+
+        this.name = name;
+        this.remark = remark;
+        this.money = money;
+        this.day = day;
         this.cid = cid;
     }
 

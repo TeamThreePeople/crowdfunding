@@ -74,7 +74,7 @@
 						<tr>
 							<td colspan="2" align="center">
 								<button type="button" style="width: 330px;height: 50px;border: white; border-radius: 4px;background-color: rgb(240,173,78);font-size: 24px;">
-									<span style="color: white;"><a href="support.jsp">立即支持</a>></span>
+									<span style="color: white;"><a href="${pageContext.request.contextPath}/product?method=findProductById&id=1">立即支持</a>></span>
 								</button>
 							</td>
 						</tr>
@@ -102,16 +102,10 @@
 						</tr>
 						
 					</table>
-				
-				
+
 				</div>
-				
-				
-				
 			</div>
 		</div>	
 			
 				
-	<%@ include file="connect/foot.jsp"%>
-	</body>
-</html>
+	<%@ include file="connect/foot.jsp"%>>

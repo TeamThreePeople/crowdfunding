@@ -74,9 +74,10 @@
 		<!-- 项目信息 -->
 		<div class="container" style="margin-top: 50px;">
 			<div class="row" >
-				
-				<form action="" method="">
+				<%--当前表单支持文件上传功能 enctype="multipart/form-data"--%>
+				<form action="${pageContext.request.contextPath}/form?method=registerForm" method="post" enctype="multipart/form-data">
 					<h2>项目信息</h2>
+
 					<hr >
 					<table class="tb" cellspacing="" cellpadding="">
 						
@@ -85,19 +86,19 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">分类信息</td>
 							<td style="text-align: left;">
-									<input type="checkbox" name="type" id="" value="" style="margin-left: 50px;"/>科技
-									<input type="checkbox" name="type" id="" value="" style="margin-left: 10px;"/>设计
-									<input type="checkbox" name="type" id="" value="" style="margin-left: 10px;"/>公益
-									<input type="checkbox" name="type" id="" value="" style="margin-left: 10px;"/>农业
+									<input type="radio" name="type" id="" value="0" style="margin-left: 50px;"/>科技
+									<input type="radio" name="type" id="" value="1" style="margin-left: 10px;"/>设计
+									<input type="radio" name="type" id="" value="2" style="margin-left: 10px;"/>公益
+									<input type="radio" name="type" id="" value="3" style="margin-left: 10px;"/>农业
 							
-								</td>
+							</td>
 						</tr>
 						
 						<!-- 项目名称 -->
 						<tr >
 							<td style="width: 300px;text-align: right;">项目名称</td>
 							<td >
-									<input type="text" class="form-control" name="itemsname" aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
+									<input type="text" class="form-control" name="itemsname" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 									
 							</td>
 						</tr>
@@ -107,7 +108,7 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">筹资金额(元)</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="money" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<input type="text" class="form-control" name="money" required aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 									筹资金额不能低于100元，不能高于1000000000元
 								</span>
@@ -117,9 +118,9 @@
 						
 						<!-- 筹资天数(元) -->
 						<tr >
-							<td style="width: 300px;text-align: right;">筹资天数(元)</td>
+							<td style="width: 300px;text-align: right;">筹资天数(天)</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="moneyday" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<input type="text" class="form-control" name="moneyday" required aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 									一般10-90天，建议30天
 								</span>
@@ -130,7 +131,8 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">项目图片</td>
 							<td style="text-align: left;">
-								<input type="file" class="" name="itemspicture" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<img id="picture" style="margin-left: 50px;" name="picture" width="120" height="120" />
+								<input type="file" class="" id="itemspicture" name="itemspicture" required aria-describedby="sizing-addon2" onchange="showPreview(this)" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 									图片上无文字，支持jpg、jpeg、png、gif格式，大小不超过2M，建议尺寸：740*457px
 								</span>
@@ -141,9 +143,8 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">项目详情</td>
 							<td style="text-align: left;">
-								<input type="file" class="" name="itemspicture" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<input type="text" class="form-control" name="itemsremark" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-									支持jpg、jpeg、png、gif格式，大小不超过2M，建议尺寸：宽740px
 								</span>
 							</td>
 						</tr>
@@ -158,27 +159,27 @@
 						
 						<!-- 自我介绍 -->
 						<tr >
-							<td style="width: 300px;text-align: right;">自我介绍</td>
+							<td style="width: 300px;text-align: right;">真实姓名</td>
 							<td >
-									<input type="text" class="form-control" name="itemsname" aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
+									<input type="text" class="form-control" name="realname" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 							</td>
 						</tr>
 						
 						
 						<!-- 详细自我介绍 -->
-						<tr >
-							<td style="width: 300px;text-align: right;">详细自我介绍</td>
+						<%--<tr >
+							<td style="width: 300px;text-align: right;">身份证号</td>
 							<td >
-									<textarea  class="form-control"  rows="4" cols="60" style="margin-left: 50px;"></textarea>
-									
+									&lt;%&ndash;<textarea  class="form-control"  rows="4" cols="60" style="margin-left: 50px;"></textarea>&ndash;%&gt;
+								<input type="text" class="form-control" name="itemsname" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 							</td>
-						</tr>
+						</tr>--%>
 						
 						<!-- 联系电话 -->
 						<tr >
-							<td style="width: 300px;text-align: right;">联系电话</td>
+							<td style="width: 300px;text-align: right;">电子邮箱</td>
 							<td >
-									<input type="text" class="form-control" name="itemsname" aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
+									<input type="text" class="form-control" name="email" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 									
 							</td>
 						</tr>
@@ -191,17 +192,28 @@
 					</div>
 					
 					</div>
-					
-					<input type="button" name="" value="下一步"  onclick="window.location.href='itemsreturn.jsp'";  style=" width: 70px;height: 40px; margin-top: 10px;margin-left: 50%;background-color: orange;"/>
-					
-				</form>
+
+					<input type="submit" name="" value="提交";  style=" width: 70px;height: 40px; margin-top: 10px;margin-left: 50%;background-color: orange;"/>
+
+				</form> <%--onclick="window.location.href='itemsreturn.jsp'"--%>
 			</div>
 		</div>
+	<script type="text/javascript">
+		//将文件流以url形式读取，实现图片实时显示：
+		function showPreview(source){
+			var file = source.files[0];
+			if(window.FileReader){
+				var fr = new FileReader();
+				fr.onloadend = function(e){
+					document.getElementById("picture").src=e.target.result;
+				}
+				fr.readAsDataURL(file);
+			}
+		}
+	</script>
 
 
 
 
 
 	<%@ include file="connect/foot.jsp"%>>
-	</body>
-</html>
