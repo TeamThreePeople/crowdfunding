@@ -8,7 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"  pageEncoding="UTF-8" isELIgnored="false" %>
 
 <!-- 尾部 -->
-<div class="container" style="margin-top: 40px;padding: 0px;width: auto;height: auto;">
+<div class="container" style="margin-top: 75px;padding: 0px;width: 1250px;height: auto;">
     <div class="row" >
         <nav class="navbar navbar-inverse" style="height: 200px;color: pink;">
             <div class="container-fluid">
@@ -79,5 +79,3 @@
 </div>
 
 
-    </body>
-</html>

@@ -233,6 +233,8 @@
 				
 			</div>
 		</div>
+	<%@ include file="connect/foot.jsp"%>
+	</body>
 
 	
 	<!-- 先引入jQuery核心js文件 -->
@@ -267,4 +269,4 @@
 
 	</script>
 
-	<%@ include file="connect/foot.jsp"%>>
+</html>

@@ -122,3 +122,6 @@
 		</div>
 
 <%@ include file="connect/foot.jsp" %>
+	</body>
+
+</html>

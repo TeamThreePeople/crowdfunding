@@ -103,7 +103,7 @@
 </head>
 <body>
 	
-	<%@ include file="connect/heard.jsp"%>
+	<%@ include file="connect/heard.jsp"%>>
 	
 	
 	<!-- 实名认证-账户类型选择 -->
@@ -284,8 +284,10 @@
             <!-- End Wizzy -->
         </div>
 	</div>
-
+	<%@ include file="connect/foot.jsp"%>>
 </body>
+
+
 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.min.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.wizzy.js"></script>
     <script src="${pageContext.request.contextPath}/js/script.js"></script>
@@ -310,7 +312,5 @@
 			}
 		}
 	</script>
-
-	<%@ include file="connect/foot.jsp"%>
 
 </html>

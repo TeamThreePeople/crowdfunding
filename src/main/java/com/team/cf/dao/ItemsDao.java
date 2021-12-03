@@ -13,5 +13,10 @@ public interface ItemsDao  {
     //查询商品详情 编号
     public Items selectOneItems(String id) throws SQLException;
 
+    //通过商品编号，查询商品信息
+    public Items selectOne(String pid) throws Exception;
+
+    //查询没有条件的所有商品
+    public List<Items> showAll(String cid,String pname, String status,String sort_id,int begin) throws SQLException;
 
 }
