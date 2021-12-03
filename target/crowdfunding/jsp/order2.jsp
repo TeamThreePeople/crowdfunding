@@ -121,7 +121,7 @@
 		<div class="container" style="margin-top: 10px;">
 			<div class="row">
 				<!-- 请在下单后15分钟内付款，否则您的订单会被自动关闭。 -->
-				<div class="alert alert-warning alert-dismissible" role="alert" style=" width: 900px; pa">
+				<div class="alert alert-warning alert-dismissible" role="alert" style=" width: 900px;">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  <strong>注意!</strong> 请在下单后15分钟内付款，否则您的订单会被自动关闭。
 				</div>

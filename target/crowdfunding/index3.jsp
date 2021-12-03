@@ -184,7 +184,7 @@
 					</div>
 				</td>
 				<td >
-					<a href="jsp/more.jsp" >更多...</a>
+					<a  href="${path}/jsp/more.jsp">更多...</a>
 				</td>
 				</tr>
 			</table>
@@ -203,23 +203,6 @@
 				</div>
 			</c:forEach>
 
-
-
-<%--
-				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
-					<img src="${pageContext.request.contextPath}/picture/name2.png" >
-					<a href="部分项目2.jsp" style="text-align: left;"><p style="color: #000000;">酷驰触控龙头，智享厨房黑科技</p></a>
-					
-				</div>
-				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
-					<img src="${pageContext.request.contextPath}/picture/name3.png" >
-					<a href="部分项目3.jsp" style="text-align: left;"><p style="color: #000000;">小熊猫鱼眼全景安防摄像机</p></a>
-					
-				</div>
-				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
-					<img src="${pageContext.request.contextPath}/picture/name4.png" >
-					<a href="部分项目4.jsp" style="text-align: left;"><p style="color: #000000;">一款紧致的机械表</p></a>
-				</div>--%>
 			</div>
 		</div>
 		
@@ -386,11 +369,16 @@
 	
 	<!-- 引入BootStrap核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/js/ajaxs.js"></script>
 	<!-- 轮播图 -->
 	<script src='https://unpkg.com/flipping@1.1.0/dist/flipping.web.js'></script>
 	<script src="${pageContext.request.contextPath}/js/lunbotu.js"></script>
 	<!-- 小火箭 -->
 	<script src="${pageContext.request.contextPath}/js/xiaohuojian.js"></script>
-	
+
+	<script>
+
+
+	</script>
+
 </html>

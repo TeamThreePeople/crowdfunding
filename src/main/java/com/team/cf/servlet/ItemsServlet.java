@@ -6,7 +6,8 @@ import com.team.cf.service.impl.CategoryServiceImpl;
 import com.team.cf.service.impl.ItemsServiceImpl;
 
 import com.team.cf.vo.PageVo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

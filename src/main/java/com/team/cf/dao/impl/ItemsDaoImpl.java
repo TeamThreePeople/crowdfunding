@@ -87,6 +87,11 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         return list;
     }
 
+    @Override
+    public Items selectOne(String pid) throws Exception {
+        return null;
+    }
+
 
     @Override
     public List<Items> showAll(String cid, String pname, String status, String sort_id, int begin) throws SQLException {
@@ -97,10 +102,13 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         return list;
     }
 
-    //通过商品编号，查询商品信息
+
+    //查询单个商品信息
     @Override
-    public Items selectOne(String pid) throws Exception {
-        return null;
+    public Items selectOneItems(String id) throws SQLException {
+        String sql = "select * from t_project where id = ? ";
+        Items items = this.getBean(sql, Items.class, id);
+        return items;
     }
 
 }

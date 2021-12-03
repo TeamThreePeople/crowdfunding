@@ -31,8 +31,21 @@ public class ItemsServiceImpl implements ItemsService {
         return null;
     }
 
-
-
+    //查询商品详情 编号
+    @Override
+    public Items findItemsById(String id) {
+        System.out.println("ItemsServiceImpl findItemsById");
+        try {
+            Items items = dao.selectOneItems(id);
+            System.out.println("items = "+items);
+            return items;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
+        }
+        return null;
+    }
 
     /**
      * 分页+搜索+商品列表展示
