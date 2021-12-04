@@ -111,7 +111,7 @@ public class ItemsServiceImpl implements ItemsService {
         return null;
     }
 
-    //修改关注数量
+    //根据人id修改关注数量
     @Override
     public boolean modifyLikeNumerber(int id ,int count) {
 
@@ -137,5 +137,19 @@ public class ItemsServiceImpl implements ItemsService {
             JDBCUtils.close();
         }
         return 0;
+    }
+
+    //通过人id和商品id查找商品信息  个人中心我的关注
+    @Override
+    public List<Items> selectAllItemsByUid(int uid) {
+        try {
+            List<Items> list = dao.selectAllItemsByUid(uid);
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
+        }
+        return null;
     }
 }

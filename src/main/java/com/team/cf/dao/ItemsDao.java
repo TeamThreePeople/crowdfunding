@@ -10,7 +10,6 @@ public interface ItemsDao  {
     //首页商品查询
     public List<Items> selectAllItems() throws SQLException ;
 
-
     //查询商品详情 编号
     public Items selectOneItems(String id) throws SQLException;
 
@@ -27,8 +26,13 @@ public interface ItemsDao  {
     //查询没有条件的所有商品
     public List<Items> showAll(String cid,String pname, String status,String sort_id,int begin) throws SQLException;
 
+    //根据人id修改关注数量
     public int modifyLikeNumerber(int id ,int count) throws SQLException;
 
-
+    //查询喜欢这件商品的人数
     public int selectLikeCount(int id) throws SQLException;
+
+    //通过人id和商品id查找商品信息  个人中心我的关注
+    public List<Items> selectAllItemsByUid(int uid) throws SQLException;
+
 }

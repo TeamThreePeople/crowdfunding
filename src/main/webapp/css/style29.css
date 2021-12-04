@@ -6,7 +6,7 @@ body{color: #333333;}
     }
     #container h3{font-family: "Microsoft YaHei";}
     .heart {
-		background: url(../picture/web_heart_animation.png) no-repeat left;
+		background: url(../picture/web_heart_animation.png) no-repeat right;
 		height: 100px;
 	    width: 100px;
 	    cursor: pointer;
@@ -15,7 +15,7 @@ body{color: #333333;}
         background-size:2900%;
     }
     .heart:hover, .heart:focus{
-    background-position: right;
+    background-position: left;
 	}
 
     @-webkit-keyframes heartBlast {
