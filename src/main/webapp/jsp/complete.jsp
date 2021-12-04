@@ -86,7 +86,6 @@
 		</div>
 
 
-	<%@ include file="connect/foot.jsp" %>
-	</body>
-</html>
 
+
+<%@ include file="connect/foot.jsp" %>

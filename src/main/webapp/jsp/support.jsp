@@ -14,7 +14,7 @@
 	<!--  设置网页的小图标logo  favicon.ico-->
 	<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 	<style type="text/css">
-		#support{
+		.support{
 		background-color:goldenrod;
 		width: 50px;
 		height: 30px;
@@ -22,7 +22,7 @@
 		font-size: 18px;
 		font-weight: 700;
 		border-radius: 5px;
-		top: 90px;
+		top: 110px;
 		text-decoration: none;
 		position: absolute;
 	    }
@@ -50,125 +50,131 @@
 				
 			</div>  <!-- end navTabs div -->
 		</div>
-		
-		
-		<div id="subMenu" class="subMenu">
-			
-			<ul>
-				<li>
-					<a href="#" class="pos1">
-						<span class="menuPreview"></span>
-						<span class="menuImage"></span>
-					</a>
-					<div class="menuDescription">
-						<h2>￥1</h2>
-						<!-- <h3>The Preliminaries</h3> -->
-						<p class="p2">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每满1750人抽取一台饮水机，至少抽取一台，抽取名额（小数点后一位四舍五入）=参与人数+1750，由苏宁官方抽取
-						</p>
-						<p>
-							<ul class="subNav">
-								<li><span class="p1">配送费用：全国包邮</span></li>
-								<li><span class="p1">预计发放时间：项目筹款成功后30天内</span></li>
-								<li><span class="p1">支持风险：无</span></li>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a id="support" href="order.jsp">支持</a>
-							</ul>
-						</p>
-						
-					</div>  <!-- end menuDescription div -->
-				</li>
-				<li>
-					<a href="#" class="pos2">
-						<span class="menuPreview"></span>
-						<span class="menuImage"></span>
-					</a>
-					<div class="menuDescription">
-						<h2>￥149</h2>
-						<!-- <h3>The Fighting Men of 1870</h3> -->
-						<p class="p2">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每满1750人抽取一台康佳液晶电视，至少抽取一台，抽取名额（小数点后一位四舍五入）=参与人数+1750，由苏宁官方抽取
-						</p>
-						<p>
-							<ul class="subNav">
-								<li><span class="p1">配送费用：全国包邮</span></li>
-								<li><span class="p1">预计发放时间：项目筹款成功后30天内</span></li>
 
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a id="support" href="order.jsp">支持</a>
-							</ul>
-						</p>
-					</div>  <!-- end menuDescription div -->
-				</li>
-				<li>
-					<a href="#" class="pos3">
-						<span class="menuPreview"></span>
-						<span class="menuImage"></span>
-					</a>
-					<div class="menuDescription">
-						<h2>￥249</h2>
-						
-						<p class="p2">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每满1750人抽取一台电冰箱，至少抽取一台，抽取名额（小数点后一位四舍五入）=参与人数+1750，由苏宁官方抽取
-						</p>
-						<p>
+			<div id="subMenu" class="subMenu">
+
+				<ul>
+					<li>  <%--${pageContext.request.contextPath}/product?method=index--%>
+						<a href="#" class="pos1">
+							<span class="menuPreview"></span>
+							<span class="menuImage"></span>
+						</a>
+						<div class="menuDescription">
+							<h2>￥1</h2>
+							<!-- <h3>The Preliminaries</h3> -->
+							<p class="p2">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
+							</p>
+							<p>
 							<ul class="subNav">
-								<li><span class="p1">配送费用：全国包邮</span></li>
-								<li><span class="p1">预计发放时间：项目筹款成功后30天内</span></li>
-								<li><span class="p1">支持风险：无</span></li>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a id="support" href="order.jsp">支持</a>
+								<li><span class="p1">项目名称：${items.name}</span></li>
+								<li><span class="p1">发起日期：${items.deploydate}</span></li>
+								<li><span class="p1">目标金额：${items.money}元</span></li>
+								<li><span class="p1">筹资天数：${items.day}天</span></li>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=1">支持</a>
 							</ul>
-						</p>
-					</div>  <!-- end menuDescription div -->
-				</li>
-				<li>
-					<a href="#" class="pos4">
-						<span class="menuPreview"></span>
-						<span class="menuImage"></span>
-					</a>
-					<div class="menuDescription">
-						<h2>￥549</h2>
-						
-						<p class="p2">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每满1750人抽取一台美的变频空调，至少抽取一台，抽取名额（小数点后一位四舍五入）=参与人数+1750，由苏宁官方抽取
-						</p>
-						<p>
+							</p>
+
+						</div>  <!-- end menuDescription div -->
+					</li>
+					<li>
+						<a href="#" class="pos2">
+							<span class="menuPreview"></span>
+							<span class="menuImage"></span>
+						</a>
+						<div class="menuDescription">
+							<h2>￥149</h2>
+							<!-- <h3>The Fighting Men of 1870</h3> -->
+							<p class="p2">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
+							</p>
+							<p>
 							<ul class="subNav">
-								<li><span class="p1">配送费用：全国包邮</span></li>
-								<li><span class="p1">预计发放时间：项目筹款成功后30天内</span></li>
-								<li><span class="p1">支持风险：无</span></li>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a id="support" href="order.jsp">支持</a>
+							<li><span class="p1">项目名称：${items.name}</span></li>
+							<li><span class="p1">发起日期：${items.deploydate}</span></li>
+							<li><span class="p1">目标金额：${items.money}元</span></li>
+							<li><span class="p1">筹资天数：${items.day}天</span></li>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=149">支持</a>
 							</ul>
-						</p>
-					</div>  <!-- end menuDescription div -->
-				</li>
-				<li>
-					<a href="#" class="pos5">
-						<span class="menuPreview"></span>
-						<span class="menuImage"></span>
-					</a>
-					<div class="menuDescription">
-						<h2>￥1999</h2>
-						<!-- <h3>Battle Narratives of 1870-71</h3> -->
-						<p>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每满1750人抽取一台华为mate40pro，至少抽取一台，抽取名额（小数点后一位四舍五入）=参与人数+1750，由苏宁官方抽取
-						</p>
-						<p>
+							</p>
+						</div>  <!-- end menuDescription div -->
+					</li>
+					<li>
+						<a href="#" class="pos3">
+							<span class="menuPreview"></span>
+							<span class="menuImage"></span>
+						</a>
+						<div class="menuDescription">
+							<h2>￥249</h2>
+
+							<p class="p2">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
+							</p>
+							<p>
 							<ul class="subNav">
-								<li><span class="p1">配送费用：全国包邮</span></li>
-								<li><span class="p1">预计发放时间：项目筹款成功后30天内</span></li>
-								<li><span class="p1">支持风险：无</span></li>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a id="support" href="order.jsp">支持</a>
+							<li><span class="p1">项目名称：${items.name}</span></li>
+							<li><span class="p1">发起日期：${items.deploydate}</span></li>
+							<li><span class="p1">目标金额：${items.money}元</span></li>
+							<li><span class="p1">筹资天数：${items.day}天</span></li>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=249">支持</a>
 							</ul>
-						</p>
-					</div>  <!-- end menuDescription div -->
-				</li>
-							
-			</ul>
-		</div>  <!-- end subMenu div -->
+							</p>
+						</div>  <!-- end menuDescription div -->
+					</li>
+					<li>
+						<a href="#" class="pos4">
+							<span class="menuPreview"></span>
+							<span class="menuImage"></span>
+						</a>
+						<div class="menuDescription">
+							<h2 >￥549</h2>
+
+							<p class="p2">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
+							</p>
+							<p>
+							<ul class="subNav">
+							<li><span class="p1">项目名称：${items.name}</span></li>
+							<li><span class="p1">发起日期：${items.deploydate}</span></li>
+							<li><span class="p1">目标金额：${items.money}元</span></li>
+							<li><span class="p1">筹资天数：${items.day}天</span></li>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=549">支持</a>
+							</ul>
+							</p>
+						</div>  <!-- end menuDescription div -->
+					</li>
+					<li>
+						<a href="#" class="pos5">
+							<span class="menuPreview"></span>
+							<span class="menuImage"></span>
+						</a>
+						<div class="menuDescription">
+							<h2>￥1999</h2>
+							<!-- <h3>Battle Narratives of 1870-71</h3> -->
+							<p>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
+							</p>
+							<p>
+							<ul class="subNav">
+							<li><span class="p1">项目名称：${items.name}</span></li>
+							<li><span class="p1">发起日期：${items.deploydate}</span></li>
+							<li><span class="p1">目标金额：${items.money}元</span></li>
+							<li><span class="p1">筹资天数：${items.day}天</span></li>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=1999">支持</a>
+							</ul>
+							</p>
+						</div>  <!-- end menuDescription div -->
+					</li>
+--%>
+				</ul>
+			</div>  <!-- end subMenu div -->
+
+		<!-- end subMenu div -->--%>
 		
 		<div class="shadowPic"></div>
 		
@@ -176,9 +182,6 @@
 		<div id="picDiv">
 		
 		</div>  <!-- end picDiv div -->
-		
-		
-
 
 	</div>  <!-- end wrapper div -->
 		

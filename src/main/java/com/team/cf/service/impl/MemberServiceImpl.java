@@ -81,4 +81,18 @@ public class MemberServiceImpl implements MemberService {
 
         return null;
     }
+
+    //校验账户与密码是否匹配
+    @Override
+    public Member confirm(String loginacct, String userpswd) {
+        Member member = null;
+        try {
+            member = dao.ConfirmOne(loginacct, userpswd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.close();
+        }
+        return member;
+    }
 }

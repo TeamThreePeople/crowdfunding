@@ -67,18 +67,26 @@
 			</div>
 		</div>
 		
-		<form action="" method="">
+		<form action="${pageContext.request.contextPath}/confirm?method=confirmMember" method="post">
 			
 		
 		<table class="tb" style="margin-top: 100px;" >
-		
+
+			<%
+				Object o = request.getAttribute("msg");
+				if(o!=null){
+			%>
+			<h2 style="color: red; margin-top: 60px; text-align: center" ><%=o%></h2>
+			<%
+				}
+			%>
 		<!-- 用户名 -->
 		<tr >
-			<td style="width: 550px;text-align: right;">用户名</td>
+			<td style="width: 550px;text-align: right;">登陆账号</td>
 			<td>
 				<div class="input-group" style="text-align: center;">
 					<span class="input-group-addon" id="sizing-addon2" ><span class="glyphicon glyphicon-user"></span></span>
-					<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2" style="width: 350px;">
+					<input type="text" name="loginacct" class="form-control" placeholder="loginAccount" aria-describedby="sizing-addon2" style="width: 350px;">
 				</div>
 			</td>
 		</tr>
@@ -90,7 +98,7 @@
 			<td>
 				<div class="input-group" style="text-align: center;">
 					<span class="input-group-addon" id="sizing-addon2" ><span class="glyphicon glyphicon-leaf"></span></span>
-					<input type="password" class="form-control" placeholder="password" aria-describedby="sizing-addon2" style="width: 350px;">
+					<input type="password" name="userpswd" class="form-control" placeholder="password" aria-describedby="sizing-addon2" style="width: 350px;">
 				</div>
 			</td>
 		</tr>
@@ -110,5 +118,3 @@
 
 
 <%@ include file="connect/foot.jsp" %>
-	</body>
-</html>

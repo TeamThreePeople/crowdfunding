@@ -106,8 +106,16 @@ public class ItemsServiceImpl implements ItemsService {
 
     //通过商品编号，插入商品信息
     @Override
-    public Items findProductById(String pid) {
-
+    public Items findProductById(String id) {
+        try {
+            Items items = dao.selectOneItems(id);
+            System.out.println("items imp="+items);
+            return items;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.close();
+        }
         return null;
     }
 

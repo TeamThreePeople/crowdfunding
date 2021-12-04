@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 import com.team.cf.entity.Great;
 import com.team.cf.entity.Items;
 import com.team.cf.entity.Member;
-import com.team.cf.service.CategoryService;
+
 import com.team.cf.service.GreatService;
-import com.team.cf.service.impl.CategoryServiceImpl;
+
 import com.team.cf.service.impl.GreatServiceImpl;
 import com.team.cf.service.impl.ItemsServiceImpl;
 
@@ -180,6 +180,10 @@ public class ItemsServlet extends BasicServlet {
         System.out.println("productsView = "+productsView);
     }
 
+
+
+
+
     //查询商品详情 编号
     public void findItemsById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("findItemsById 执行了");
@@ -224,6 +228,24 @@ public class ItemsServlet extends BasicServlet {
 
 
     }
+
+    //立即支持详情页(点击立即支持)
+    public void findProductById1(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        String id = request.getParameter("id");
+        System.out.println("lijizhichi id="+id);
+
+        String name = request.getParameter("name");
+        System.out.println("lijizhichi name="+name);
+
+        //执行业务
+        Items items = itemsService.findProductById(id);
+        request.setAttribute("items",items);
+        request.setAttribute("name",name);
+        System.out.println("lijizhichi items="+items);
+        request.getRequestDispatcher("jsp/support.jsp").forward(request,response);
+    }
+
 
 
     //通过人id和商品id查找商品信息  个人中心我的关注

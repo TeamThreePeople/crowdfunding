@@ -308,7 +308,7 @@
 
 
 	<%@ include file="connect/foot.jsp" %>
-	</body>
+
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js" ></script>
 	<!-- 先引入jQuery核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
@@ -329,4 +329,4 @@
 			
 		})
 	</script>
-</html>
+

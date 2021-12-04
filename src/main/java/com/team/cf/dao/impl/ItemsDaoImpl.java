@@ -89,6 +89,8 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
 
     @Override
     public Items selectOne(String pid) throws Exception {
+
+
         return null;
     }
 
