@@ -3,7 +3,6 @@ package com.team.cf.dao;
 
 import com.team.cf.entity.Member;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface MemberDao {
@@ -14,8 +13,8 @@ public interface MemberDao {
     //查单个
     public Member selectOne(Object... params) throws Exception;
 
-    //查单个
-    public Member ConfirmOne(Object... params) throws Exception;
+    //查单个 by id
+    public Member selectOneById(Integer id) throws Exception;
 
     //增
     public int insertMember(Member member) throws Exception;

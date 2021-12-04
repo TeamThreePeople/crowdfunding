@@ -1,14 +1,12 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>个人中心</title>
-
-
-
-
 		<!-- <link rel="stylesheet" type="text/css" href="css/normalize.css" /> -->
 			<!-- <link rel="stylesheet" type="text/css" href="css/default.css"> -->
 			<!-- 分类按钮 -->
@@ -28,6 +26,7 @@
 			
 	</head>
 	<body>
+
 
 
 		<%@ include file="connect/heard.jsp" %>
@@ -90,7 +89,7 @@
 							<tr>
 								<td align="center">
 									<div class="profile-pic" >
-										<img src="../img/TV.png" />
+										<img src="${pageContext.request.contextPath}/itemsimgs/p_008.jpg" />
 									</div>
 								</td>
 							</tr>
@@ -98,16 +97,44 @@
 								<td><br></td>
 							</tr>
 							<tr align="center">
-								<td><span id="name" style="color: #000000;">zhangsan</span> </td>
+								<td>
+									<c:if test="${member.loginacct eq null}">
+										<span id="name" style="color: #000000;">名字</span>
+									</c:if>
+									<c:if test="${member.loginacct ne null}">
+										<span id="name" style="color: #000000;">${member.loginacct}</span>
+									</c:if>
+								</td>
 							</tr>
 							<tr>
 								<td><br></td>
 							</tr>
 							<tr>
 								<td align="center">
-									<div style="background-color: red;width: 90px;border-radius: 4px;margin-left: 85px;">
-										<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">未实名认证</a></span>
-									</div>
+										<c:if test="${member.authstatus==0}">
+											<div style="background-color: red;width: 90px;border-radius: 4px;margin-left: 85px;">
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">未实名认证</a></span>
+											</div>
+										</c:if>
+
+										<c:if test="${member.authstatus==1}">
+											<div style="background-color: deepskyblue;width: 120px;border-radius: 4px;margin-left: 70px;">
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">实名认证申请中</a></span>
+											</div>
+										</c:if>
+
+										<c:if test="${member.authstatus==2}">
+											<div style="background-color: forestgreen;width: 90px;border-radius: 4px;margin-left: 85px;">
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">已实名认证</a></span>
+											</div>
+										</c:if>
+
+										<c:if test="${member.authstatus eq null}">
+											<div style="background-color: red;width: 100px;border-radius: 4px;margin-left: 75px;">
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">实名认证状态</a></span>
+											</div>
+										</c:if>
+
 								</td>
 							</tr>
 							<tr>
@@ -227,18 +254,18 @@
 											  			<th style="text-align:center"><span style="color: #000000;">操作</span></th>
 											  		</tr>
 											  		<tr class="data" align="center">
-											  			<td class="id">${items.id}</td>
-											  			<td>${items.name}</td>
-											  			<td>${items.detail}</td>
-											  			<td>${items.price}</td>
-											  			<td><fmt:formatDate value="${items.createTime}" pattern="yyyy-MM-dd"/></td>
-											  			<td>
-											  				<img src="${items.pic}" width="64px" height="auto"/>
+											  			<td class="id">信息</td>
+														<td>日期<%--<fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd"/>--%></td>
+														<td>金额</td>
+														<td>数量</td>
+														<td>状态</td>
+											  			<td>图片
+<%--											  				<img src="${item.pic}" width="64px" height="auto"/>--%>
 											  			</td>
 											  			<td>
-											  				<a href="javascript:void(0)" class="btn btn-info" onclick="showModify()">详情</a>
+											  				<a href="javascript:void(0)" class="btn btn-info" onclick="${pageContext.request.contextPath}/product?method=findItemsById&id=${products.id}">详情</a>
 															<br />
-											  				<a href="" class="btn btn-danger">删除</a>
+											  				<a href="${path}/cart?method=delCartItem&id=${item.id}" class="btn btn-danger">删除</a>
 											  			</td>
 											  		</tr>
 											  		
@@ -470,7 +497,7 @@
 						<table align="center" style="text-align: center;" >
 							<p></p>
 							<tr>
-								<td colspan="17" style="font-weight: 1000;font-size: 18px;color: pink;">扫描二维码，你想要的这里都有！！！</td>
+								<td colspan="17" style="font-weight: 900;font-size: 18px;color: pink;">扫描二维码，你想要的这里都有！！！</td>
 							</tr>
 						</table>
 					</div>
@@ -479,8 +506,6 @@
 				</nav>
 			</div>
 		</div>
-
-
 		<div class="container" style="margin-top: 0px;text-align: center;width: auto;">
 			<div class="row" style="background-color: gray;">
 				<p></p>

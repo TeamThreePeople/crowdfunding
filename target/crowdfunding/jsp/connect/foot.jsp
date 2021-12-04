@@ -24,7 +24,7 @@
                         <p></p>
 
                     </div>
-                    <div class="col-md-2 col-sm-4 col-xs-4" align="center">
+                    <div class="col-md-2 hidden-sm hidden-xs" align="center">
                         <p></p>
                         <a href="#">联系我们</a>
                         <p></p>
@@ -32,7 +32,7 @@
                         <p></p>
 
                     </div>
-                    <div class="col-md-2 col-sm-4 col-xs-4" align="center">
+                    <div class="col-md-2 hidden-sm hidden-xs" align="center">
                         <p></p>
                         <a href="#">招贤纳士</a>
                         <p></p>
@@ -48,7 +48,7 @@
                         <p></p>
 
                     </div>
-                    <div class="col-md-2 col-sm-4 col-xs-4" align="center">
+                    <div class="col-md-2 hidden-sm hidden-xs" align="center">
                         <p></p>
                         <a href="#">法律声明</a>
                         <p></p>
@@ -68,7 +68,7 @@
                     <table align="center" style="text-align: center;" >
                         <p></p>
                         <tr>
-                            <td colspan="17" style="font-weight: 1000;font-size: 18px;">扫描二维码，你想要的这里都有！！！</td>
+                            <td colspan="17" style="font-weight: 800;font-size: 18px;">扫描二维码，你想要的这里都有！！！</td>
                         </tr>
                     </table>
                 </div>
