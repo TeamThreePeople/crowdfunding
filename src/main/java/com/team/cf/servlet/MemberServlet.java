@@ -52,7 +52,7 @@ public class MemberServlet extends BasicServlet {
                     //将cookie添加至响应中
                     response.addCookie(rememberCookie);
                 }
-                response.sendRedirect(request.getContextPath()+"/index3.jsp");
+                response.sendRedirect(request.getContextPath()+"/product?method=index");
 
             }else{
                 request.setAttribute("msg","用户名与密码不匹配");

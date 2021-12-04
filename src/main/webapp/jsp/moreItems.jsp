@@ -17,7 +17,7 @@
             <div class="col-md-3" align="center" >
                 <img src="${path}/${product.pimgs}" style="width: 250px;height: 200px">
                 <p style="color: #000000;">
-                    <a href="${path}/product?method=findProductById&pid=${product.id}&cname=${cname}&cid=${vo.query1}&pname=${vo.query2}&pageNow=${vo.pageNow}" style="text-align: left;">${product.name}</a>
+                    <a href="${path}/product?method=findItemsById&aid=${product.id}" style="text-align: left;">${product.name}</a>
                 </p>
             </div>
         </c:forEach>

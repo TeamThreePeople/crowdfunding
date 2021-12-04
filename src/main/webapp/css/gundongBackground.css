@@ -35,6 +35,7 @@
 				left: 0;
 				width: 100%;
 				height: auto;
-				background-color: lightyellow;
+				/*background-color: lightyellow;*/
+				background-color: #f8f8f9;
 				opacity: 0.8;
 			}

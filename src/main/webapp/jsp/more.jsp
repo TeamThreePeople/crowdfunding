@@ -29,7 +29,7 @@
 		<%--<!-- 分类按钮 -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style24.css"/>--%>
 	</head>
-	<body >
+	<body style="background: #f8f8f9">
 
 
 	<div id="mask">

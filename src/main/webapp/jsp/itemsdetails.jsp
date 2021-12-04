@@ -136,12 +136,11 @@
 <%--	<script src="${pageContext.request.contextPath}/js/heart.js"></script>--%>
 
     <script>
+
         $(document).ready(function()
         {
-
             $('body').on("click",'.heart',function()
             {
-
                 var A=$(this).attr("id");
                 var B=A.split("like");
                 var messageID=B[1];
@@ -161,27 +160,22 @@
                     $(this).removeClass("heartAnimation").attr("rel","like");
                     $(this).css("background-position","left");
                 }
-
-
             });
-
-
         });
+
     </script>
 
-    <%--<script>
+    <script>
 
 		/*window.onload=show;
+
 
 		function show() {
 			$.ajax({
 				url:"${path}/great?method=findGreatByAidAndUid",
 				data:{"aid":${item.id}},
-				success:function () {
-					if (${flag}){
-						$("#likeCount"+messageID).html(${item.follower}+1);
-						$(this).addClass("heartAnimation").attr("rel","unlike");
-					}
+				success:function (data) {
+
 				}
 			})
 		};*/
@@ -227,6 +221,6 @@
 		});*/
 
 
-	</script>--%>
+	</script>
 
 </html>
