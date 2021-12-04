@@ -6,16 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java"  pageEncoding="UTF-8" isELIgnored="false" %>
-<html>
+<%--<html>
 <head>
     <title>爱心关注</title>
 </head>
-<body>
+<body>--%>
     <div class="heart" id="like1" rel="like" name="heart" value="heart"   onclick="show2()" style="margin-top: -60px;margin-left: 1200px;">
         <div class="likeCount" id="likeCount1" >${item.follower} </div>
     </div>
-</body>
-<%--<script>
+<%--</body>
+&lt;%&ndash;<script>
     $(document).ready(function()
     {
 
@@ -47,5 +47,5 @@
 
 
     });
-</script>--%>
-</html>
+</script>&ndash;%&gt;
+</html>--%>

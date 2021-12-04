@@ -111,6 +111,31 @@ public class ItemsServiceImpl implements ItemsService {
         return null;
     }
 
+    //修改关注数量
+    @Override
+    public boolean modifyLikeNumerber(int id ,int count) {
 
-
+        try {
+            int i = dao.modifyLikeNumerber(id, count);
+            return i>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
+        }
+        return false;
+    }
+    //查询总关注数
+    @Override
+    public int selectLikeCount(int id) {
+        try {
+            int i = dao.selectLikeCount(id);
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
+        }
+        return 0;
+    }
 }

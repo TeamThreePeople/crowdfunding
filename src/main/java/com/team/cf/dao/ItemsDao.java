@@ -27,4 +27,8 @@ public interface ItemsDao  {
     //查询没有条件的所有商品
     public List<Items> showAll(String cid,String pname, String status,String sort_id,int begin) throws SQLException;
 
+    public int modifyLikeNumerber(int id ,int count) throws SQLException;
+
+
+    public int selectLikeCount(int id) throws SQLException;
 }

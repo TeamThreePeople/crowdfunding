@@ -18,4 +18,10 @@ public interface ItemsService {
 
     public Items findProductById(String pid);
 
+    //修改关注数量
+    public boolean modifyLikeNumerber(int id ,int count);
+
+    //查询总关注数
+    public int  selectLikeCount(int id);
+
 }

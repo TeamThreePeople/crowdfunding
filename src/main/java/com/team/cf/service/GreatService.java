@@ -7,8 +7,8 @@ public interface GreatService {
     public Great findGreatByAidAndUid(Integer aid, Integer uid);
 
     //添加点赞
-    public boolean insertGreat(Great great) ;
+    public boolean insertGreat(int aid ,int uid) ;
 
     //删除点赞
-    public boolean deleteGreat(Great great) ;
+    public boolean deleteGreat(int aid ,int uid) ;
 }

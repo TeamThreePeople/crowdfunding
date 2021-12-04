@@ -8,7 +8,7 @@
 		<meta charset="utf-8">
 		<title>项目详情</title>
 		<%--爱心关注--%>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style29.css"/>
+<%--		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style29.css"/>--%>
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 		<!--  设置网页的小图标logo  favicon.ico-->
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
@@ -35,13 +35,25 @@
 					<p>可爱的造型，摄像安防远程互联的全能设计，让你随时随地守护您的家人，陪伴你的生活。</p>
 				</form>
 
-				<%--<div class="heart" id="like1" rel="${flag}" name="heart" value="heart" style="margin-top: -60px;margin-left: 1200px;">
+				<%--<div class="heart" id="like1" rel="like" name="heart" value="heart" style="margin-top: -60px;margin-left: 1200px;">
 					<div class="likeCount" id="likeCount1" >${item.follower} </div>
 				</div>--%>
+                <div style="margin-top: -30px;margin-left: 1100px;">
+                    <button type="button" name="like" value="${userLike}"  >
+					<span id="like" >
+           					  &#10084;&nbsp;&nbsp;
+					</span>
+                        <span id="sumLike">
+                            ${item.follower}
+                        </span>
+                    </button>
+                </div>
 
-				<div id="likes">
+
+
+				<%--<div id="aixin">
 					<%@ include file="heart.jsp"%>
-				</div>
+				</div>--%>
 
 			</div>	
 		</div>
@@ -135,98 +147,85 @@
 	<%--	爱心关注--%>
 <%--	<script src="${pageContext.request.contextPath}/js/heart.js"></script>--%>
 
-    <script>
-        $(document).ready(function()
-        {
+	<script>
 
-            $('body').on("click",'.heart',function()
-            {
+		$.ajax({
+			url:"${path}/product?method=findItemsById",
+			data:{/*"ulike":,*/"aid":${item.id}},
+			type:"post",
+			success:function (){
+			    console.log("进入了success");
+				//var s = rs.sumLike
+				$("button[name='like']").val();
+				//$("#sumLike").html(s);
+			},
+			error:function () {
+				console.log("进入了error")
+			}
+		});
 
-                var A=$(this).attr("id");
-                var B=A.split("like");
-                var messageID=B[1];
-                var C=parseInt($("#likeCount"+messageID).html());
-                $(this).css("background-position","")
-                var D=$(this).attr("rel");
 
-                if(D === 'like')
-                {
-                    $("#likeCount"+messageID).html(C+1);
-                    $(this).addClass("heartAnimation").attr("rel","unlike");
 
+
+		$(function (){
+	/*		<进入页面判断用户点赞状态，爱心变色，已点赞为红色，未点赞为黑色>*/
+		    var userLike = $("button[name='like']").val();
+            if (userLike == 1) {
+                $("span[id='like']").css("color","red");
+            }else {
+                $("span[id='like']").css("color","black");
+            }
+			<%--单击按钮触发事件--%>
+		    $("button[name='like']").click(function() {
+                userl =$(this).val();
+
+                /*<!用户点击状态判断，1为点赞，0为没点赞>*/
+                if (userl == 1) {
+                    selected()
+                }else {
+                    selecting()
                 }
-                else
-                {
-                    $("#likeCount"+messageID).html(C-1);
-                    $(this).removeClass("heartAnimation").attr("rel","like");
-                    $(this).css("background-position","left");
-                }
+		    })
 
+		});
+			<%--已点赞事件，取消点赞，改变颜色，post传递数据修改用户点赞状态，和返回点赞总数--%>
+			function selected() {
+				$("span[id='like']").css("color","black");
 
-            });
+				$.ajax({
+                    url:"${path}/great?method=findGreatByAidAndUid",
+                    data:{"ulike":0,"aid":${item.id}},
+                    type:"post",
+                    dataType:"JSON",
+                    success:function (rs){
 
-
-        });
-    </script>
-
-    <%--<script>
-
-		/*window.onload=show;
-
-		function show() {
-			$.ajax({
-				url:"${path}/great?method=findGreatByAidAndUid",
-				data:{"aid":${item.id}},
-				success:function () {
-					if (${flag}){
-						$("#likeCount"+messageID).html(${item.follower}+1);
-						$(this).addClass("heartAnimation").attr("rel","unlike");
-					}
-				}
-			})
-		};*/
-
-
-		/*function show2() {
-			$.ajax({
-				url:"${path}/great?method=findGreatByAidAndUid",
-				data:{"aid":${item.id}},
-				success:function (data) {
-					$("#like").html(data);
-					console.log(${flag});
-				}
-			})
-		};*/
-
-
-		/*$(document).ready(function() {
-			$('body').on("click",'.heart',function()
-			{
-				var A=$(this).attr("id");
-				var B=A.split("like");
-				var messageID=B[1];
-				var C=parseInt($("#likeCount"+messageID).html());//关注者数量
-
-				$(this).css("background-position","");
-
-				var D=$(this).attr("rel");
-
-				//if(D === 'like')
-				if (D ==  )
-				{
-					$("#likeCount"+messageID).html(C+1);
-					$(this).addClass("heartAnimation").attr("rel","unlike");
-				}
-				else
-				{
-					$("#likeCount"+messageID).html(C-1);
-					$(this).removeClass("heartAnimation").attr("rel","like");
-					$(this).css("background-position","left");
-				}
-			});
-		});*/
-
-
-	</script>--%>
+                    var s = rs;
+                    $("button[name='like']").val(0);
+                    $("#sumLike").html(s);
+                    },
+                    error:function (rs) {
+                    alert(rs);
+                    }
+                })
+			}
+		<%--未点赞事件，点赞，改变颜色，post传递数据修改用户点赞状态，和返回点赞总数--%>
+			function selecting() {
+				$("span[id='like']").css("color","red");
+				$.ajax({
+                    url:"${path}/great?method=findGreatByAidAndUid",
+                    data:{"ulike":1,"aid":${item.id}},
+                    type:"post",
+                    dataType:"JSON",
+                    success:function (rs){
+                    var s = rs;
+                    $("button[name='like']").val(1);
+                    $("#sumLike").html(s);
+                    },
+                    error:function (rs) {
+                    alert(rs);
+                    }
+			    })
+			}
+	</script>
 
 </html>

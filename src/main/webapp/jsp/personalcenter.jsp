@@ -497,7 +497,7 @@
 						<table align="center" style="text-align: center;" >
 							<p></p>
 							<tr>
-								<td colspan="17" style="font-weight: 1000;font-size: 18px;color: pink;">扫描二维码，你想要的这里都有！！！</td>
+								<td colspan="17" style="font-weight: 900;font-size: 18px;color: pink;">扫描二维码，你想要的这里都有！！！</td>
 							</tr>
 						</table>
 					</div>
@@ -506,8 +506,6 @@
 				</nav>
 			</div>
 		</div>
-
-
 		<div class="container" style="margin-top: 0px;text-align: center;width: auto;">
 			<div class="row" style="background-color: gray;">
 				<p></p>

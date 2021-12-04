@@ -37,6 +37,8 @@ public class MemberServlet extends BasicServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println(username+","+password);
+
+
         if(username!=null&&password!=null&& !username.equals("") && !password.equals("")){
             Member member = service.login(username, password);
             if(member!=null){
@@ -52,7 +54,7 @@ public class MemberServlet extends BasicServlet {
                     //将cookie添加至响应中
                     response.addCookie(rememberCookie);
                 }
-                response.sendRedirect(request.getContextPath()+"/index3.jsp");
+                response.sendRedirect(request.getContextPath()+"/product?method=index");
 
             }else{
                 request.setAttribute("msg","用户名与密码不匹配");
@@ -80,7 +82,7 @@ public class MemberServlet extends BasicServlet {
         passwordCookie.setMaxAge(0);
         response.addCookie(usernameCookie);
         response.addCookie(passwordCookie);
-        response.sendRedirect(request.getContextPath() + "/index3.jsp");
+        response.sendRedirect(request.getContextPath() + "/product?method=index");
     }
 
 
@@ -155,5 +157,4 @@ public class MemberServlet extends BasicServlet {
 
         request.getRequestDispatcher("personalcenter.jsp").forward(request,response);
     }
-
 }
