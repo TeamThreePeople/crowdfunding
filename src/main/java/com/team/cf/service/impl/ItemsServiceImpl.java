@@ -106,11 +106,44 @@ public class ItemsServiceImpl implements ItemsService {
 
     //通过商品编号，插入商品信息
     @Override
-    public Items findProductById(String pid) {
-
+    public Items findProductById(String id) {
+        try {
+            Items items = dao.selectOneItems(id);
+            System.out.println("items imp="+items);
+            return items;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.close();
+        }
         return null;
     }
 
+    //修改关注数量
+    @Override
+    public boolean modifyLikeNumerber(int id ,int count) {
 
-
+        try {
+            int i = dao.modifyLikeNumerber(id, count);
+            return i>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
+        }
+        return false;
+    }
+    //查询总关注数
+    @Override
+    public int selectLikeCount(int id) {
+        try {
+            int i = dao.selectLikeCount(id);
+            return i;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
+        }
+        return 0;
+    }
 }

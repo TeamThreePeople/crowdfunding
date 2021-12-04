@@ -26,17 +26,17 @@ public class GreatDaoImpl extends BaseDao<Great> implements GreatDao {
 
     //插入点赞情况
     @Override
-    public int insertGreat(Great great) throws SQLException {
+    public int insertGreat(int aid ,int uid) throws SQLException {
         String sql = "insert into great values(default,?,?)";
-        int i = this.update(sql, great.getAid(), great.getUid());
+        int i = this.update(sql,aid, uid);
         return i;
     }
 
     //删除点赞情况
     @Override
-    public int deleteGreat(Great great) throws SQLException {
+    public int deleteGreat(int aid ,int uid) throws SQLException {
         String sql = "delete from great where aid = ? and uid = ?";
-        int i = this.update(sql, great.getAid(), great.getUid());
+        int i = this.update(sql,aid,uid);
         return i;
     }
 

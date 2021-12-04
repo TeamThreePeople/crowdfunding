@@ -1,8 +1,12 @@
 package com.team.cf.servlet;
 
+import com.team.cf.entity.Great;
 import com.team.cf.entity.Items;
-import com.team.cf.service.CategoryService;
-import com.team.cf.service.impl.CategoryServiceImpl;
+import com.team.cf.entity.Member;
+
+import com.team.cf.service.GreatService;
+
+import com.team.cf.service.impl.GreatServiceImpl;
 import com.team.cf.service.impl.ItemsServiceImpl;
 
 import com.team.cf.vo.PageVo;
@@ -13,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +32,7 @@ import java.util.List;
 public class ItemsServlet extends BasicServlet {
 
     private ItemsServiceImpl itemsService = new ItemsServiceImpl();
-
+    private GreatService greatService = new GreatServiceImpl();
 
     //展示首页项目
     public void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -161,9 +166,20 @@ public class ItemsServlet extends BasicServlet {
         request.setAttribute("pname",pname);
         request.setAttribute("pageNow",pageNow);
         request.setAttribute("cid",cid);
+
         request.getRequestDispatcher(request.getContextPath()+"/jsp/itemsdetails.jsp").forward(request,response);
 
     }
+
+    @Test
+    public void test(){
+        List<Items> productsView = itemsService.viewAllItems();
+        System.out.println(1);
+        System.out.println("productsView = "+productsView);
+    }
+
+
+
 
 
     //查询商品详情 编号
@@ -173,6 +189,15 @@ public class ItemsServlet extends BasicServlet {
         //商品id
         String aid = request.getParameter("aid");
         System.out.println("aid = "+aid);
+        int uid  = 0;
+        //获取会话信息
+        HttpSession session = request.getSession();
+        Member member = (Member)session.getAttribute("member");
+        if (member!=null){
+            System.out.println("此人已登录");
+            uid = member.getId();
+        }
+
 
         //执行业务
         Items item = itemsService.findItemsById(aid);
@@ -182,19 +207,44 @@ public class ItemsServlet extends BasicServlet {
         long nowTime = now.getTime();
         long deploydateTime = deploydate.getTime();
         int i = (int) ((deploydateTime - nowTime) / 1000 / 60 / 60 / 24);
+
+
+        Great great = greatService.findGreatByAidAndUid(Integer.parseInt(aid), uid);
+        int userLike = 0;
+        if (great!=null){
+            System.out.println("itemsServlet=========进来了");
+            userLike = 1;
+        }
+
         request.setAttribute("item",item);
-        request.setAttribute("i",i);
+        request.setAttribute("userLike",userLike);
+
+
+
 
         //跳转至商品详情页
         request.getRequestDispatcher(request.getContextPath()+"/jsp/itemsdetails.jsp").forward(request,response);
 
+
     }
 
-    @Test
-    public void test(){
-        List<Items> productsView = itemsService.viewAllItems();
-        System.out.println(1);
-        System.out.println(productsView);
+    //立即支持详情页(点击立即支持)
+    public void findProductById1(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        String id = request.getParameter("id");
+        System.out.println("lijizhichi id="+id);
+
+        String name = request.getParameter("name");
+        System.out.println("lijizhichi name="+name);
+
+        //执行业务
+        Items items = itemsService.findProductById(id);
+        request.setAttribute("items",items);
+        request.setAttribute("name",name);
+        System.out.println("lijizhichi items="+items);
+        request.getRequestDispatcher("jsp/support.jsp").forward(request,response);
     }
+
+
 
 }

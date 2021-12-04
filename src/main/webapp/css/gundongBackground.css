@@ -7,7 +7,7 @@
 			  font-family: 'Ubuntu Mono', sans-serif;
 			  height: 200%;
 			  width: 100%;
-			  background-image: url('/img/bg.jpg');
+			  background-image: url('../more/12/img/bg.jpg');
 			  background-attachment: fixed;
 			  background-size: cover;
 			}

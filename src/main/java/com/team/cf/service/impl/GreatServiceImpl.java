@@ -4,6 +4,7 @@ import com.team.cf.dao.GreatDao;
 import com.team.cf.dao.impl.GreatDaoImpl;
 import com.team.cf.entity.Great;
 import com.team.cf.service.GreatService;
+import com.team.cf.utils.JDBCUtils;
 
 import java.sql.SQLException;
 
@@ -25,34 +26,43 @@ public class GreatServiceImpl implements GreatService {
             return great;
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            JDBCUtils.close();
         }
         return null;
     }
 
     //添加点赞
     @Override
-    public boolean insertGreat(Great great) {
+    public boolean insertGreat(int aid ,int uid) {
         System.out.println("GreatServiceImpl insertGreat");
         try {
-            int i = dao.insertGreat(great);
+            int i = dao.insertGreat(aid,uid);
             return i>0;
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
         }
         return false;
     }
 
     //删除点赞
     @Override
-    public boolean deleteGreat(Great great) {
+    public boolean deleteGreat(int aid ,int uid) {
         System.out.println("GreatServiceImpl deleteGreat");
         try {
-            int i = dao.deleteGreat(great);
+            int i = dao.deleteGreat(aid,uid);
             return i>0;
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            JDBCUtils.close();
         }
 
         return false;
     }
+
+
+
 }

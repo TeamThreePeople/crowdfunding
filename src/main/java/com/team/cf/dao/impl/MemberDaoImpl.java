@@ -5,6 +5,7 @@ import com.team.cf.dao.MemberDao;
 import com.team.cf.entity.Member;
 import com.team.cf.utils.JDBCUtils;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -38,6 +39,15 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
         System.out.println("MemberDaoImpl selectOneById 查询");
         String sql = "select *from t_member where id = ?";
         Member member = this.getBean(sql, Member.class, id);
+        System.out.println("member = "+ member);
+        return member;
+    }
+
+    @Override
+    public Member ConfirmOne(Object... params) throws Exception {
+        System.out.println("MemberDaoImpl 查询");
+        String sql = "select * from t_member where loginacct = ? and userpswd = ?";
+        Member member = this.getBean(sql, Member.class, params);
         System.out.println("member = "+ member);
         return member;
     }

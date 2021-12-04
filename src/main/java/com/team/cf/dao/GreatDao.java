@@ -10,8 +10,8 @@ public interface GreatDao {
     public Great findGreatByAidAndUid(Integer aid,Integer uid) throws SQLException;
 
     //添加点赞
-    public int insertGreat(Great great) throws SQLException;
+    public int insertGreat(int aid ,int uid) throws SQLException;
 
     //删除点赞
-    public int deleteGreat(Great great) throws SQLException;
+    public int deleteGreat(int aid ,int uid) throws SQLException;
 }

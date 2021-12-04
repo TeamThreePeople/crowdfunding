@@ -89,6 +89,8 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
 
     @Override
     public Items selectOne(String pid) throws Exception {
+
+
         return null;
     }
 
@@ -111,4 +113,18 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         return items;
     }
 
+    @Override
+    public int modifyLikeNumerber(int id ,int count) throws SQLException {
+        String sql = "update t_project set follower = ? where id = ?";
+        int i = this.update(sql,count,id);
+        return i;
+    }
+
+    @Override
+    public int selectLikeCount(int id) throws SQLException {
+        String sql = "select follower from t_project where id = ?";
+        int i = (int)this.getSingleValue(sql, id);
+        return i;
+
+    }
 }
