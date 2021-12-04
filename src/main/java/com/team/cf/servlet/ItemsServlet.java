@@ -44,7 +44,7 @@ public class ItemsServlet extends BasicServlet {
     }
 
     //立即支持详情页(点击立即支持)
-    public void findProductById(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    public void findProductById2(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
         String id = request.getParameter("id");
         System.out.println("lijizhichi id="+id);
