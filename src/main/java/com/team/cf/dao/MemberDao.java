@@ -13,6 +13,10 @@ public interface MemberDao {
     //查单个
     public Member selectOne(Object... params) throws Exception;
 
+
+    //查单个
+    public Member ConfirmOne(Object... params) throws Exception;
+
     //查单个 by id
     public Member selectOneById(Integer id) throws Exception;
 
