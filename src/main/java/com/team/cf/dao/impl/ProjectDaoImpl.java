@@ -17,7 +17,7 @@ public class ProjectDaoImpl extends BaseDao<Items> implements ProjectDao {
         Items items = this.getBean(sql, Items.class, id);
         return items;
     }
-
+     //通过项目id查看用户姓名
     @Override
     public String selectOneName(String id) throws Exception {
         String sql="select m.realname from t_project p join t_member m on p.memberid=m.id where p.id=?";

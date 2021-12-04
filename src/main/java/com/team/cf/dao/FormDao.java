@@ -13,4 +13,6 @@ public interface FormDao {
     public String selectRealNameByEmail(String email) throws SQLException;
     //插入项目
     public int insertProject(Items items) throws Exception;
+    //通过项目名字查询项目id
+    public Integer selectIdByProjectName(String projectName) throws SQLException;
 }

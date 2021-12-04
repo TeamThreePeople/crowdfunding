@@ -57,5 +57,18 @@ public class FormServiceImpl implements FormService {
         }
         return realname;
     }
+    //通过项目名字查询项目id
+    @Override
+    public int selectIdByProjectName(String name) {
+        Integer id=0;
+        try {
+            id = dao.selectIdByProjectName(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.close();
+        }
+        return id;
+    }
 
 }

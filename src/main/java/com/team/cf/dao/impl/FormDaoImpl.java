@@ -36,4 +36,12 @@ public class FormDaoImpl extends BaseDao implements FormDao {
         return i;
     }
 
+    //通过项目名字查询项目id
+    @Override
+    public Integer selectIdByProjectName(String projectName) throws SQLException {
+        String sql="select id from t_project where name = ?";
+        Integer id = (Integer) this.getSingleValue(sql, projectName);
+        return id;
+    }
+
 }

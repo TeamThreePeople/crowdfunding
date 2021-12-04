@@ -11,5 +11,6 @@ public interface FormService {
     public Object selectIdByEmail(String email);
     //通过email查询发起人真实姓名
     public String selectRealNameByEmail(String email);
-
+    //通过项目名字查询项目id
+    public int selectIdByProjectName(String name);
 }

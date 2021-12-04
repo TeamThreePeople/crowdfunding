@@ -101,15 +101,15 @@
 		<div class="container" style="margin-top: 30px;">
 			<div class="row">
 				<div id="show">
-				<form action="${pageContext.request.contextPath}/projectReturn?method=ProjectReturnForm&items=${items}.getId()" method="post" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath}/projectReturn?method=ProjectReturnForm&itemsid=${itemsid}" method="post" enctype="multipart/form-data">
 					<table class="tb" >
 						
 						<!-- 回报类型 -->
 						<tr>
 							<td style="width: 300px;text-align: right;">回报类型</td>
 							<td style="text-align: left;">
-									<input type="radio" name="type" id="" value=""  checked="checked" style="margin-left: 50px;"/>实物回报
-									<input type="radio" name="type" id="" value="" style="margin-left: 10px;"/>虚拟物品回报
+									<input type="radio" name="type" id="" value="0"  checked="checked" style="margin-left: 50px;"/>实物回报
+									<input type="radio" name="type" id="" value="1" style="margin-left: 10px;"/>虚拟物品回报
 								</td>
 						</tr>
 						<!-- 支持金额(元) -->
@@ -129,10 +129,6 @@
 									<textarea  class="form-control" name="content" rows="4" cols="60" placeholder="简单描述回报内容,不超过200字" style="margin-left: 50px;"></textarea>
 							</td>
 						</tr>
-						
-						
-						
-
 						<!-- 说明图片 -->
 						<tr >
 							<td style="width: 300px;text-align: right;">说明图片</td>
@@ -160,11 +156,11 @@
 						
 						<!-- 单笔限购 -->
 						<tr >
-							<td style="width: 300px;text-align: right;">支持金额(元)</td>
+							<td style="width: 300px;text-align: right;">单笔限购</td>
 							
 							<td style="text-align: left;">
-									<input type="radio" name="xiangou" id="yes" value="" checked="checked" style="margin-left: 50px;"/>不限购
-									<input type="radio" name="xiangou" id="no" value=""  style="margin-left: 50px;"/>限购
+									<input type="radio" name="xiangou" id="yes" value="0" checked="checked" style="margin-left: 50px;"/>不限购
+									<input type="radio" name="xiangou" id="no" value="1"  style="margin-left: 50px;"/>限购
 									
 									<input type="text" id="show2" name="money" aria-describedby="sizing-addon2" style="width: 100px;">
 									
@@ -190,8 +186,8 @@
 							<td style="width: 300px;text-align: right;">发票</td>
 							
 							<td style="text-align: left;">
-									<input type="radio" name="invoice" id="" value="" checked="checked" style="margin-left: 50px;"/>不可开发票
-									<input type="radio" name="invoice" id="" value=""  style="margin-left: 50px;"/>可开发票
+									<input type="radio" name="invoice" id="" value="0" checked="checked" style="margin-left: 50px;"/>不可开发票
+									<input type="radio" name="invoice" id="" value="1"  style="margin-left: 50px;"/>可开发票
 									<span id=""  style="text-align: left;margin-left: 10px;font-size: 5px;font-weight: bold;">
 										（包括个人发票和自定义抬头发票）
 									</span>

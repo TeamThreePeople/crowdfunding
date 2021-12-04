@@ -52,12 +52,6 @@ public class ItemsServlet extends BasicServlet {
         String name = request.getParameter("name");
         System.out.println("lijizhichi name="+name);
 
-        //cname不为null,说明是经过点击导航栏进入列表页
-        /*String cname = request.getParameter("cname");
-        if(cname!=null && !cname.equals("")){
-            request.setAttribute("cname",came);
-        }*/
-
         //执行业务
         Items items = itemsService.findProductById(id);
         request.setAttribute("items",items);

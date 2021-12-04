@@ -86,10 +86,10 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">分类信息</td>
 							<td style="text-align: left;">
-									<input type="radio" name="type" id="" value="0" style="margin-left: 50px;"/>科技
-									<input type="radio" name="type" id="" value="1" style="margin-left: 10px;"/>设计
-									<input type="radio" name="type" id="" value="2" style="margin-left: 10px;"/>公益
-									<input type="radio" name="type" id="" value="3" style="margin-left: 10px;"/>农业
+									<input type="radio" name="type" id="" value="1" style="margin-left: 50px;"/>科技
+									<input type="radio" name="type" id="" value="2" style="margin-left: 10px;"/>设计
+									<input type="radio" name="type" id="" value="3" style="margin-left: 10px;"/>公益
+									<input type="radio" name="type" id="" value="4" style="margin-left: 10px;"/>农业
 							
 							</td>
 						</tr>
@@ -161,7 +161,7 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">真实姓名</td>
 							<td >
-									<input type="text" class="form-control" name="realname" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
+									<input type="text" class="form-control" name="name" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 							</td>
 						</tr>
 						

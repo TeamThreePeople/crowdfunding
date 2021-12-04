@@ -9,7 +9,7 @@ public class ProjectReturn {
     private Integer id;//
     private Integer projectid;//项目ID
     private String type;//0 -实物回报，1 虚拟物品回报
-    private int supportmoney;//支持 金额
+    private Integer supportmoney;//支持 金额
     private String content;//回报内容
     private Integer count;//0 为不限回报数量
     private Integer signalpurchase;// 单笔限购
@@ -18,13 +18,16 @@ public class ProjectReturn {
     private String invoice;//0 -不开发票，1 -开发票
     private Integer rtndate;//回报时间,众筹成功后多少天进行回报
 
+
     public ProjectReturn() {
     }
 
-    public ProjectReturn(/*Integer projectid,*/ String type, int supportmoney, String content, Integer count, Integer signalpurchase, Integer freight, String invoice, Integer rtndate) {
+    public ProjectReturn(Integer projectid, String type, Integer supportmoney, String content, Integer count, Integer signalpurchase, Integer freight, String invoice, Integer rtndate) {
+
         this.projectid = projectid;
         this.type = type;
         this.supportmoney = supportmoney;
+
         this.content = content;
         this.count = count;
         this.signalpurchase = signalpurchase;
@@ -86,7 +89,7 @@ public class ProjectReturn {
      * 获取
      * @return supportmoney
      */
-    public int getSupportmoney() {
+    public Integer getSupportmoney() {
         return supportmoney;
     }
 
@@ -94,7 +97,7 @@ public class ProjectReturn {
      * 设置
      * @param supportmoney
      */
-    public void setSupportmoney(int supportmoney) {
+    public void setSupportmoney(Integer supportmoney) {
         this.supportmoney = supportmoney;
     }
 
