@@ -4,6 +4,7 @@ import com.team.cf.dao.GreatDao;
 import com.team.cf.dao.impl.GreatDaoImpl;
 import com.team.cf.entity.Great;
 import com.team.cf.service.GreatService;
+import com.team.cf.utils.DataSourceUtils;
 import com.team.cf.utils.JDBCUtils;
 
 import java.sql.SQLException;
@@ -27,7 +28,11 @@ public class GreatServiceImpl implements GreatService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -42,7 +47,11 @@ public class GreatServiceImpl implements GreatService {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -57,9 +66,12 @@ public class GreatServiceImpl implements GreatService {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return false;
     }
 

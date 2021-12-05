@@ -24,6 +24,7 @@ public interface ItemsService {
     //查询总关注数
     public int  selectLikeCount(int id);
 
-    //通过人id和商品id查找商品信息  个人中心我的关注
-    public PageVo<Items> selectAllItemsByUid(int uid,int pageNow);
+    //通过订单编号，查询订单明细及商品信息
+    public Items selectItemAndProductByOid(String oid);
+
 }

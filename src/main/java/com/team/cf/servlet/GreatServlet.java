@@ -29,7 +29,18 @@ public class GreatServlet extends BasicServlet{
     private ItemsService itemsService = new ItemsServiceImpl();
     //判断点赞情况
     protected void findGreatByAidAndUid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     //从会话中获取人的id
+        /*
+        int uid = 0;*/
+
+        /*Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie!=null) {
+                if (cookie.getName().equals("id")) {
+                    uid = Integer.parseInt(cookie.getValue());
+                }
+            }
+        }
+*/
         int uid  = 0;
         //获取会话信息
         HttpSession session = request.getSession();
@@ -41,9 +52,7 @@ public class GreatServlet extends BasicServlet{
 
 
         //接收前端数
-        //商品id
         int aid = Integer.parseInt(request.getParameter("aid"));
-        //点赞的状态
         int ulike = Integer.parseInt( request.getParameter("ulike"));
         System.out.println("ulike="+ulike);
         System.out.println("aid = "+aid);
@@ -52,13 +61,10 @@ public class GreatServlet extends BasicServlet{
         Gson gson = new Gson();
         if (ulike==1){
             //关注加一
-            //找到之前在数据库中关注的数量
+            //找到关注的数量
             int likeCount = itemsService.selectLikeCount(aid);
-            //根据人id修改关注数量
             itemsService.modifyLikeNumerber(aid, likeCount+1);
-            //找到修改后在数据库中关注的数量
             int follower = itemsService.selectLikeCount(aid);
-            //插入商品id和人id
             service.insertGreat(aid, uid);
             //将数据封装进Gson中
             String str = gson.toJson(follower+"");
@@ -70,13 +76,10 @@ public class GreatServlet extends BasicServlet{
 
         }else {
             //关注减一
-            //找到之前在数据库中关注的数量
+            //找到关注数量
             int likeCount = itemsService.selectLikeCount(aid);
-            //根据人id修改关注数量
             itemsService.modifyLikeNumerber(aid, likeCount-1);
-            //找到修改后在数据库中关注的数量
             int follower = itemsService.selectLikeCount(aid);
-            //删除商品id和人id
             service.deleteGreat(aid, uid);
             //将数据封装进Gson中
             String str = gson.toJson(follower+"");
@@ -87,5 +90,45 @@ public class GreatServlet extends BasicServlet{
             out.close();
 
         }
+
+
+
+        //点赞数
+      /*  int count = Integer.parseInt(request.getParameter("count"));
+
+        boolean b = itemsService.modifyLikeNumerber(aid, count);*/
+
+        Great great = service.findGreatByAidAndUid(aid, uid);
+
+        /*if (b){
+
+            //将数据封装进Gson中
+            String str = gson.toJson(userLike);
+            //将json数据，响应至客户端
+            PrintWriter out = response.getWriter();
+            out.write(str);
+            out.flush();
+            out.close();
+            //request.setAttribute("flag",flag);
+            //request.getRequestDispatcher(request.getContextPath()+"/jsp/itemsdetails.jsp").forward(request,response);
+            //response.sendRedirect(request.getContextPath()+"/jsp/itemsdetails.jsp");
+
+        }else {
+            userLike = 0;
+
+            //将数据封装进Gson中
+            String str = gson.toJson(userLike);
+            //将json数据，响应至客户端
+            PrintWriter out = response.getWriter();
+            out.write(str);
+            out.flush();
+            out.close();
+            //request.getRequestDispatcher(request.getContextPath()+"/jsp/itemsdetails.jsp").forward(request,response);
+           //request.setAttribute("flag",flag);
+          // response.sendRedirect(request.getContextPath()+"/jsp/itemsdetails.jsp");
+
+        }
+*/
+
     }
 }

@@ -28,7 +28,7 @@
 		<link href="${pageContext.request.contextPath}/css/gundongBackground.css" rel="stylesheet">
 
 	</head>
-	<body >
+	<body style="background: #f8f8f9">
 
 
 	<div id="mask">

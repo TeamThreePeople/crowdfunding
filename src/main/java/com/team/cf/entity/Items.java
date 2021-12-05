@@ -26,6 +26,8 @@ public class Items {
     private String pimgs;//图片
     private int cid;//商品分类id
 
+
+
     public Items() {
     }
 

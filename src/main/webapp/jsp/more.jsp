@@ -26,7 +26,8 @@
 		<link href="${pageContext.request.contextPath}/css/picturechange.css" rel="stylesheet">
 		<!-- 滚动背景 -->
 		<link href="${pageContext.request.contextPath}/css/gundongBackground.css" rel="stylesheet">
-
+		<%--<!-- 分类按钮 -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style24.css"/>--%>
 	</head>
 	<body style="background: #f8f8f9">
 
@@ -98,6 +99,8 @@
 					</form>
 				</c:if>
 			</div>
+
+
 		</div>
 
 		<div class="main" style="height: 500px">
@@ -128,7 +131,7 @@
 
 	<script>
 
-			window.onload=myfunction;
+		window.onload=myfunction;
 
 			function myfunction(){
 				$.ajax({
@@ -137,7 +140,7 @@
 						$(".main").html(data);
 					}
 				})
-			}
+			};
 
 			//分类
 			$(document).on('click','#l1 li',function (){
@@ -199,7 +202,6 @@
 				});
 				$(this).siblings().removeClass("active");
 			});
-
 			//下一页
 			function next(pageNow,query1,query2,query3,query4) {
 				$.ajax({
@@ -210,8 +212,7 @@
 
 					}
 				})
-			}
-
+			};
 			//上一页
 			function first(pageNow,query1,query2,query3,query4) {
 				$.ajax({
@@ -222,8 +223,7 @@
 
 					}
 				})
-			}
-
+			};
 			//当前页
 			function curr(pageNow,query1,query2,query3,query4) {
 				$.ajax({
@@ -234,7 +234,7 @@
 
 					}
 				})
-			}
+			};
 
 			function search() {
 				$.ajax({
@@ -247,7 +247,10 @@
 
 					}
 				});
-			}
+			};
+
+
+
 	</script>
 
 

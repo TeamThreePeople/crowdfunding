@@ -170,6 +170,7 @@
 							</p>
 						</div>  <!-- end menuDescription div -->
 					</li>
+
 				</ul>
 			</div>  <!-- end subMenu div -->
 
@@ -197,10 +198,9 @@
 	<script src="${pageContext.request.contextPath}/js/jquery.accordianMenu_jvollmer3.js"></script>
 
 	<script>
-		$( function() {
 
-			$( '#subMenu' ).accordianMenu();
 
-		} );
+
+
 	</script>
 </html>
