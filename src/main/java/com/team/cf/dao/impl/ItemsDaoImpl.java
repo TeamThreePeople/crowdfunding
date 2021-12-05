@@ -131,9 +131,17 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
 
     //通过人id和商品id查找商品信息  个人中心我的关注
     @Override
-    public List<Items> selectAllItemsByUid(int uid) throws SQLException {
-        String sql = "select p.* from great g ,t_project p , t_member m where g.uid =  m.id and g.aid = p.id and m.id = ?";
-        List<Items> list = this.getBeanList(sql, Items.class, uid);
+    public List<Items> selectAllItemsByUid(int uid,int begin) throws SQLException {
+        String sql = "select p.* from great g ,t_project p , t_member m where g.uid =  m.id and g.aid = p.id and m.id = ? limit ?,2";
+        List<Items> list = this.getBeanList(sql, Items.class, uid,begin);
         return list;
+    }
+
+    //通过人id和商品id查找商品信息  个人中心我的关注  总数
+    @Override
+    public Long selectAllLikeItemsByUid(int uid) throws SQLException {
+        String sql = "select count(*) from great g ,t_project p , t_member m where g.uid =  m.id and g.aid = p.id and m.id = ? ";
+        Long count = (Long) this.getSingleValue(sql, uid);
+        return count;
     }
 }

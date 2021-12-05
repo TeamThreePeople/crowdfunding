@@ -170,11 +170,10 @@
 							</p>
 						</div>  <!-- end menuDescription div -->
 					</li>
---%>
 				</ul>
 			</div>  <!-- end subMenu div -->
 
-		<!-- end subMenu div -->--%>
+		<!-- end subMenu div -->
 		
 		<div class="shadowPic"></div>
 		

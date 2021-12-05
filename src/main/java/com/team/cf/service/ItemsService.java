@@ -25,5 +25,5 @@ public interface ItemsService {
     public int  selectLikeCount(int id);
 
     //通过人id和商品id查找商品信息  个人中心我的关注
-    public List<Items> selectAllItemsByUid(int uid);
+    public PageVo<Items> selectAllItemsByUid(int uid,int pageNow);
 }

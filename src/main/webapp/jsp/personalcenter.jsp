@@ -23,6 +23,8 @@
 			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles17.css">
 			<!--  设置网页的小图标logo  favicon.ico-->
 			<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
+            <!-- 分页按钮 -->
+<%--            <link href="${pageContext.request.contextPath}/css/fenyeanniu.css" rel="stylesheet">--%>
 			
 	</head>
 	<body>
@@ -223,14 +225,19 @@
 					                  <!-- Nav tabs -->
 					                  <ul class="nav nav-tabs" role="tablist" style="margin-left: 25px;">
 					                      <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">我支持的</a></li>
-					                      <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">我关注的</a></li>
+					                      <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab" >我关注的</a></li>
 					                      <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">我发起的</a></li>
 										  <button type="button"  style="width: 100px;height: 40px;margin-top: 2px;margin-left: 360px;border-radius: 4px;border: lightgrey solid 1px ;background-color: rgb(240,173,78);color: white;font-weight: 800;"><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起众筹</a></button>
 									  </ul>
 					                  <!-- Tab panes -->
 					                  <div class="tab-content tabs" style="width: 850px;height: 550px;margin-left: 25px;">
 					                      <!-- 我支持的 -->
-										  <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                          <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                              <div class="mySupport" style="height: 1000px">
+                                                  <%@ include file="personSupport.jsp" %>
+                                              </div>
+                                          </div>
+										  <%--<div role="tabpanel" class="tab-pane fade in active" id="Section1">
 											  <!-- 选择按钮 -->
 											  <nav class="nav default" style="margin-left: 10px;margin-top: -5px;">
 												<ul>
@@ -255,12 +262,12 @@
 											  		</tr>
 											  		<tr class="data" align="center">
 											  			<td class="id">信息</td>
-														<td>日期<%--<fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd"/>--%></td>
+														<td>日期&lt;%&ndash;<fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd"/>&ndash;%&gt;</td>
 														<td>金额</td>
 														<td>数量</td>
 														<td>状态</td>
 											  			<td>图片
-<%--											  				<img src="${item.pic}" width="64px" height="auto"/>--%>
+&lt;%&ndash;											  				<img src="${item.pic}" width="64px" height="auto"/>&ndash;%&gt;
 											  			</td>
 											  			<td>
 											  				<a href="javascript:void(0)" class="btn btn-info" onclick="${pageContext.request.contextPath}/product?method=findItemsById&id=${products.id}">详情</a>
@@ -289,34 +296,42 @@
 											  </div>
 											  		
 									
-					                      </div>
+					                      </div>--%>
 										  <!-- 我关注的 -->
-					                      <div role="tabpanel" class="tab-pane fade" id="Section2">
-					                         <div class="row" style="width:850px;">
-					                            	<table class="table table-bordered" style="margin-left: 5px;">
+                                          <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                              <div class="myLike" style="height: 1000px">
+                                                  <%@ include file="personLike.jsp" %>
+                                              </div>
+                                          </div>
+					                      <%--<div role="tabpanel" class="tab-pane fade" id="Section2">
+					                         <div class="row" style="width:850px;" >
+					                            	<table class="table table-bordered" style="margin-left: 5px;" id="myLike">
 					                            		<tr align="center" >
-					                            			<th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
+					                            			<th style="text-align:center"><span style="color: #000000;">项目名称</span> </th>
+					                            			<th style="text-align:center"><span style="color: #000000;">项目图片</span> </th>
 					                            			<th style="text-align:center"><span style="color: #000000;">支持人数</span></th>
 					                            			<th style="text-align:center"><span style="color: #000000;">关注人数</span></th>
 					                            			<th style="text-align:center"><span style="color: #000000;">操作</span></th>
 					                            		</tr>
-					                            		<tr class="data" align="center">
+
+					                            		&lt;%&ndash;<tr class="data" align="center">
 					                            			<td class="id"><span style="color: #000000;">${items.id}</span></td>
+					                            			<td class="id">${items.id}</td>
 					                            			<td><span style="color: #000000;">${items.name}</span></td>
 					                            			<td><span style="color: #000000;">${items.detail}</span></td>
 					                            			<td>
 					                            				<a href="" class="btn btn-danger">取消关注</a>
 					                            			</td>
-					                            		</tr>
+					                            		</tr>&ndash;%&gt;
 					                            		
-					                            		<tr align="center">
+					                            		&lt;%&ndash;<tr align="center">
 					                            			<td colspan="8">
 					                            				<input class="btn btn-success" type="button" value="首页"
 					                            					   onclick=""/>&nbsp;&nbsp;
 					                            				<input class="btn btn-success" type="button" id="pre" value="上一页"
 					                            					   onclick=""/>&nbsp;&nbsp;
 					                            				<!-- 当前页 -->
-					                            				<input type="text" id="pageNow" value="1" style="text-align:center"/>&nbsp;&nbsp;
+					                            				<input type="text" id="nowPage" name="nowPage" value="1" style="text-align:center"/>&nbsp;&nbsp;
 					                            				<input class="btn btn-success" type="button" value="跳转"
 					                            					   onclick=""/>&nbsp;&nbsp;
 					                            				<input class="btn btn-success" type="button" id="next" value="下一页"
@@ -324,14 +339,15 @@
 					                            				<input class="btn btn-success" type="button" value="末页"
 					                            					   onclick=""/>&nbsp;&nbsp;
 					                            			</td>
-					                            		</tr>
+					                            		</tr>&ndash;%&gt;
 					                            	</table>
 					                            </div>
-					                         </div>
+					                         </div>--%>
+
 										  <!-- 我发起的 -->
 					                      <div role="tabpanel" class="tab-pane fade" id="Section3">
 					                         <!-- 选择按钮 -->
-					                         <nav class="nav default" style="margin-left: 10px;margin-top: -5px;">
+                                              <nav class="nav default" style="margin-left: 10px;margin-top: -5px;">
 													<ul>
 													  <li class="nav__item "><a href="#"><span style="color: #000000;">全部的众筹</span> </a> </li>
 													  <li class="nav__item active"><a href="#"><span style="color: #000000;">众筹中</span></a></li>
@@ -341,8 +357,7 @@
 					                         </nav>
 					                         
 					                         <!-- 分页数据 -->
-					                         
-					                           <div class="row" style="width:850px;">
+                                              <div class="row" style="width:850px;">
 					                         	<table class="table table-bordered" style="margin-left: 5px;">
 					                         		<tr align="center" >
 					                         			<th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
@@ -435,9 +450,10 @@
 			
 			</div>
 		</div>
-		
+
+		<%--<%@ include file="connect/foot.jsp"%>--%>
 		<!-- 尾部 -->
-		<div class="container" style="margin-top: 800px;padding: 0px;width: auto;height: auto;">
+<%--		<div class="container" style="margin-top: 800px;padding: 0px;width: auto;height: auto;">
 			<div class="row" >
 				<nav class="navbar  navbar-inverse" style="height: 200px;color: pink;">
 				  <div class="container-fluid">
@@ -521,7 +537,7 @@
 				<p></p>
 			</div>
 		</div>
-	
+	--%>
 		<!-- 旋转按钮 -->
 		<div id='ss_menu'>
 		  <div>
@@ -560,4 +576,117 @@
 	<!-- 折线图 -->
 	<script src="${pageContext.request.contextPath}/js/Chart.js"></script>
 	<script src="${pageContext.request.contextPath}/js/zhexiantu.js"></script>
+	<script>
+		window.onload=myfunction;
+
+		function myfunction(){
+			$.ajax({
+				url:"${path}/product?method=selectAllItemsByUid",
+				success:function (data){
+					$(".myLike").html(data);
+				}
+			})
+		}
+
+        //下一页
+        function next(pageNow,query1,query2,query3,query4) {
+            $.ajax({
+                type:"get",
+                url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+                success:function (content) {
+                    $(".myLike").html(content);
+
+                }
+            })
+        }
+
+        //上一页
+        function first(pageNow,query1,query2,query3,query4) {
+            $.ajax({
+                type:"get",
+                url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+                success:function (content) {
+                    $(".myLike").html(content);
+
+                }
+            })
+        }
+
+        //当前页
+        function curr(pageNow,query1,query2,query3,query4) {
+            $.ajax({
+                type:"get",
+                url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+                success:function (content) {
+                    $(".myLike").html(content);
+
+                }
+            })
+        }
+
+        //点击取消关注
+        function deleteLike(aid) {
+            $.ajax({
+                url:"${path}/product?method=deleteLike",
+                data:{"aid":aid},
+                type:"post",
+                success:function (data) {
+                    $(".myLike").html(data);
+                    fulsh2();
+                }
+            })
+        }
+
+        function fulsh2() {
+            $.ajax({
+                url:"${path}/product?method=selectAllItemsByUid",
+                success:function (data) {
+                    $(".myLike").html(data);
+                }
+            })
+        }
+
+
+	</script>
+
+
+	<%--<script>
+
+		function selectAllItemsByUid(){
+			$.ajax({
+				type:"get",
+				url:"${path}/product?method=selectAllItemsByUid",
+				dataType:"json",
+				success:function (pageVo) {
+					console.log(pageVo);
+					for(var i in pageVo.list){  //下标
+						/!* 通过商品类别的编号，查询商品列表的信息 *!/
+						//var $li = "<li><a href='${path}/product?method=findAllProducts&cid="+list[i].cid+"'>"+list[i].cname+"</a></li>";
+						//var $li = "<li><a href=''></a></li>";
+						var $tr = "<tr class=\"data\" align=\"center\">" +
+								"<td >" +
+								"<span style=\"color: #000000;\">${pageVo.list.name}</span>"+
+								"</td>" +
+								"<td >" +
+								"<span style=\"color: #000000;\">${pageVo.list.pimgs}</span>"+
+								"</td>" +
+								"<td>"  +
+								"<span style=\"color: #000000;\">${pageVo.list.supporter}</span>"+
+								"</td>" +
+								"<td>"  +
+								"<span style=\"color: #000000;\">${pageVo.list.follower}</span>"+
+								"</td>" +
+								"<td>"  +
+								"<a href=\"\" class=\"btn btn-danger\">取消关注</a>" +
+								"</td>" +
+								"</tr>";
+
+						$("#myLike").append($tr);
+						//$("#myLike").append($li1);
+					}
+				}
+			})
+		}
+
+	</script>--%>
 </html>
