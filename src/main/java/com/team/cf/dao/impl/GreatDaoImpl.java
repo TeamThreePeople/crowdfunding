@@ -1,10 +1,9 @@
 package com.team.cf.dao.impl;
 
-import com.mysql.cj.xdevapi.SqlDataResult;
+
 import com.team.cf.dao.BaseDao;
 import com.team.cf.dao.GreatDao;
 import com.team.cf.entity.Great;
-
 import java.sql.SQLException;
 
 /**
