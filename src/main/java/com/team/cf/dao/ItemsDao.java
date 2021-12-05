@@ -29,6 +29,8 @@ public interface ItemsDao  {
 
     public int modifyLikeNumerber(int id ,int count) throws SQLException;
 
-
     public int selectLikeCount(int id) throws SQLException;
+
+    //通过订单编号，查询订单明细及商品信息
+    public Items selectItemAndProductByOid(String oid) throws SQLException;
 }

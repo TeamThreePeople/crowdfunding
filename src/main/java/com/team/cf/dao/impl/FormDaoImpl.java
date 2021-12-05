@@ -3,7 +3,7 @@ package com.team.cf.dao.impl;
 import com.team.cf.dao.BaseDao;
 import com.team.cf.dao.FormDao;
 import com.team.cf.entity.Items;
-import com.team.cf.entity.Member;
+import com.team.cf.utils.DataSourceUtils;
 
 import java.sql.SQLException;
 
@@ -17,14 +17,14 @@ public class FormDaoImpl extends BaseDao implements FormDao {
     @Override
     public Object selectIdByEmail(String email) throws SQLException {
         String sql="select id from t_member where email=?";
-        Object id = this.getSingleValue(sql, email);
+        Object id = this.getSingleValue(DataSourceUtils.getConnection(),sql, email);
         return id;
     }
     //通过email查询发起人真实姓名
     @Override
     public String selectRealNameByEmail(String email) throws SQLException {
         String sql="select realname from t_member where email=?";
-        String realname = (String) this.getSingleValue(sql, email);
+        String realname = (String) this.getSingleValue(DataSourceUtils.getConnection(),sql, email);
         return realname;
     }
 
@@ -32,7 +32,7 @@ public class FormDaoImpl extends BaseDao implements FormDao {
     @Override
     public int insertProject(Items items) throws Exception {
         String sql="insert into t_project values(default,?,?,?,?,'0',CURRENT_DATE(),0,0,0,?,CURRENT_DATE(),?,null,?)";//第四个0发起人
-        int i = this.update(sql, items.getName(), items.getRemark(), items.getMoney(), items.getDay(),items.getMemberid(), items.getPimgs(), items.getCid());
+        int i = this.update(DataSourceUtils.getConnection(),sql, items.getName(), items.getRemark(), items.getMoney(), items.getDay(),items.getMemberid(), items.getPimgs(), items.getCid());
         return i;
     }
 
@@ -40,7 +40,7 @@ public class FormDaoImpl extends BaseDao implements FormDao {
     @Override
     public Integer selectIdByProjectName(String projectName) throws SQLException {
         String sql="select id from t_project where name = ?";
-        Integer id = (Integer) this.getSingleValue(sql, projectName);
+        Integer id = (Integer) this.getSingleValue(DataSourceUtils.getConnection(),sql, projectName);
         return id;
     }
 

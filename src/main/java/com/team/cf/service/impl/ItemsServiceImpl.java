@@ -3,6 +3,7 @@ package com.team.cf.service.impl;
 import com.team.cf.dao.impl.ItemsDaoImpl;
 import com.team.cf.entity.Items;
 import com.team.cf.service.ItemsService;
+import com.team.cf.utils.DataSourceUtils;
 import com.team.cf.utils.JDBCUtils;
 import com.team.cf.vo.PageVo;
 
@@ -26,7 +27,11 @@ public class ItemsServiceImpl implements ItemsService {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -42,7 +47,11 @@ public class ItemsServiceImpl implements ItemsService {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -73,7 +82,11 @@ public class ItemsServiceImpl implements ItemsService {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return vo;
     }
@@ -97,7 +110,11 @@ public class ItemsServiceImpl implements ItemsService {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return vo;
     }
@@ -114,7 +131,11 @@ public class ItemsServiceImpl implements ItemsService {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -129,7 +150,11 @@ public class ItemsServiceImpl implements ItemsService {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -142,8 +167,30 @@ public class ItemsServiceImpl implements ItemsService {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return 0;
+    }
+
+    //通过订单编号，查询订单明细及商品信息
+    @Override
+    public Items selectItemAndProductByOid(String oid) {
+        try {
+            Items items = dao.selectItemAndProductByOid(oid);
+            return items;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }

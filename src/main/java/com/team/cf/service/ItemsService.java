@@ -24,4 +24,7 @@ public interface ItemsService {
     //查询总关注数
     public int  selectLikeCount(int id);
 
+    //通过订单编号，查询订单明细及商品信息
+    public Items selectItemAndProductByOid(String oid);
+
 }

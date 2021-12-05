@@ -3,6 +3,7 @@ package com.team.cf.service.impl;
 import com.team.cf.dao.impl.FormDaoImpl;
 import com.team.cf.entity.Items;
 import com.team.cf.service.FormService;
+import com.team.cf.utils.DataSourceUtils;
 import com.team.cf.utils.JDBCUtils;
 
 import java.sql.SQLException;
@@ -25,7 +26,11 @@ public class FormServiceImpl implements FormService {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -39,7 +44,11 @@ public class FormServiceImpl implements FormService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return id;
     }
@@ -53,7 +62,11 @@ public class FormServiceImpl implements FormService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return realname;
     }
@@ -66,7 +79,11 @@ public class FormServiceImpl implements FormService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return id;
     }

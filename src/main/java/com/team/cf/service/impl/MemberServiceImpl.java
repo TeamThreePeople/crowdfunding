@@ -4,6 +4,7 @@ import com.team.cf.dao.MemberDao;
 import com.team.cf.dao.impl.MemberDaoImpl;
 import com.team.cf.entity.Member;
 import com.team.cf.service.MemberService;
+import com.team.cf.utils.DataSourceUtils;
 import com.team.cf.utils.JDBCUtils;
 
 import java.sql.SQLException;
@@ -28,7 +29,11 @@ public class MemberServiceImpl implements MemberService {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -50,7 +55,11 @@ public class MemberServiceImpl implements MemberService {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -64,7 +73,11 @@ public class MemberServiceImpl implements MemberService {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -77,6 +90,12 @@ public class MemberServiceImpl implements MemberService {
             return member;
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;
@@ -91,7 +110,11 @@ public class MemberServiceImpl implements MemberService {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return member;
     }
