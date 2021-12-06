@@ -653,7 +653,7 @@
 
 
 			/*window.onload=myfunction;*/
-
+			//我的关注
 			function myfunction(){
 				$.ajax({
 					url:"${path}/product?method=selectAllItemsByUid",
