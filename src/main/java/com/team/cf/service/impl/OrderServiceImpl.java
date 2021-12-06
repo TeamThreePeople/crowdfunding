@@ -206,7 +206,42 @@ public class OrderServiceImpl implements OrderService {
             return i>0?true:false;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
+    }
+
+    //查看订单状态
+    @Override
+    public PageVo<Orders> selectOrderStatus(int uid,int status, int pageNow) {
+        PageVo<Orders> vo = null;
+        try {
+            //获取总记录数(状态)
+            int myCounts = dao.selectOrderStatusCount(uid,status).intValue();//15
+            //计算总页数
+            int myPages = (int)(myCounts%3==0?myCounts/3:Math.ceil(myCounts/3.0));//8
+            //计算起始值
+            int begin = (pageNow-1)*3;
+            //查询数据
+            List<Orders> ordersList = dao.selectOrderStatus(uid,status, begin);
+            //封装VO
+            vo = new PageVo<>(pageNow,myPages,myCounts,String.valueOf(status),null,null,null,ordersList);
+            System.out.println("myCounts="+myCounts+",myPages="+myPages);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return vo;
     }
 }

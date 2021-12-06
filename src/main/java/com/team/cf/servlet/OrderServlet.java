@@ -222,7 +222,42 @@ public class OrderServlet extends BasicServlet {
 
             request.getRequestDispatcher(request.getContextPath()+"/jsp/modaldetails.jsp").forward(request,response);
         }
+    }
 
+
+    //查看订单状态
+    public void orderStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //已经处于登陆状态
+        HttpSession session = request.getSession();
+        Member user = (Member) session.getAttribute("member");
+
+        String status = request.getParameter("status");
+        System.out.println("status="+status);
+        //获取当前页
+        int pageNow = 1;  //默认查询第一页
+        String page = request.getParameter("pageNow");
+        if(page!=null){
+            pageNow = Integer.parseInt(page);
+        }
+
+        //获取登陆者的用户编号 uid
+        PageVo<Orders> vo = orderService.selectOrderStatus(user.getId(),Integer.parseInt(status), pageNow);
+        System.out.println("vo="+vo);
+        request.setAttribute("vo",vo);
+
+        //获取订单编号，并且查询订单明细，及商品信息
+        for (Orders orders : vo.getList()) {
+            //获取订单编号
+            String oid = orders.getOrdernum();
+            //根据订单编号，查询订单明细及商品信息
+            Items items = itemsService.selectItemAndProductByOid(oid);
+            orders.setItems(items);
+            System.out.println(orders.getItems().getName());
+        }
+
+        request.getRequestDispatcher(request.getContextPath()+"/jsp/orderstatus.jsp").forward(request,response);
+        //orderService.selectOrderStatus()
 
     }
+
 }
