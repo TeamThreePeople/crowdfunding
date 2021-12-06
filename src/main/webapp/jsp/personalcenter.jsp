@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -223,8 +222,8 @@
 					              <div class="tab" role="tabpanel" style="position: absolute;">
 					                  <!-- Nav tabs -->
 					                  <ul class="nav nav-tabs" role="tablist" style="margin-left: 25px;">
-					                      <li role="presentation" class="active"><a href="#Section1" id="supportbtn" aria-controls="home" role="tab" data-toggle="tab">我支持的</a></li>
-					                      <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">我关注的</a></li>
+					                      <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">我支持的</a></li>
+					                      <li role="presentation"><a href="#Section2"   onclick="myfunction()"  aria-controls="profile" role="tab" data-toggle="tab" >我关注的</a></li>
 					                      <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">我发起的</a></li>
 										  <button type="button"  style="width: 100px;height: 40px;margin-top: 2px;margin-left: 360px;border-radius: 4px;border: lightgrey solid 1px ;background-color: rgb(240,173,78);color: white;font-weight: 800;"><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起众筹</a></button>
 									  </ul>
@@ -235,9 +234,9 @@
 											  <!-- 选择按钮 -->
 											  <nav class="nav default" style="margin-left: 10px;margin-top: -5px;">
 												<ul>
-												  <li class="nav__item "><a href="#"><span style="color: #000000;">全部的众筹</span> </a> </li>
-												  <li class="nav__item active"><a href="#"><span style="color: #000000;">已经支持</span></a></li>
-												  <li class="nav__item"><a href="#"><span style="color: #000000;">未支付</span></a></li>
+												  <li class="nav__item active"><a href=""><span style="color: #000000;">全部的众筹</span> </a> </li>
+												  <li class="nav__item"><a href=""><span style="color: #000000;">已经支持</span></a></li>
+												  <li class="nav__item"><a href=""><span style="color: #000000;">未支付</span></a></li>
 												</ul>
 											  </nav>
 					                          
@@ -272,9 +271,14 @@
 									
 					                      </div>
 										  <!-- 我关注的 -->
-					                      <div role="tabpanel" class="tab-pane fade" id="Section2">
-					                         <div class="row" style="width:850px;">
-					                            	<table class="table table-bordered" style="margin-left: 5px;">
+                                          <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                              <div class="myLike" style="height: 1000px">
+                                                  <%@ include file="personLike.jsp" %>
+                                              </div>
+                                          </div>
+					                      <%--<div role="tabpanel" class="tab-pane fade" id="Section2">
+					                         <div class="row" style="width:850px;" >
+					                            	<table class="table table-bordered" style="margin-left: 5px;" id="myLike">
 					                            		<tr align="center" >
 					                            			<th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
 					                            			<th style="text-align:center"><span style="color: #000000;">支持人数</span></th>
@@ -308,7 +312,7 @@
 					                            		</tr>
 					                            	</table>
 					                            </div>
-					                         </div>
+					                         </div>--%>
 										  <!-- 我发起的 -->
 					                      <div role="tabpanel" class="tab-pane fade" id="Section3">
 					                         <!-- 选择按钮 -->
@@ -645,6 +649,80 @@
 				}
 			})
 		};
+
+
+
+			/*window.onload=myfunction;*/
+
+			function myfunction(){
+				$.ajax({
+					url:"${path}/product?method=selectAllItemsByUid",
+					success:function (data){
+						$(".myLike").html(data);
+					}
+				})
+			}
+
+			//下一页
+			function next1(pageNow,query1,query2,query3,query4) {
+				$.ajax({
+					type:"get",
+					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					success:function (content) {
+						$(".myLike").html(content);
+
+					}
+				})
+			}
+
+			//上一页
+			function first1(pageNow,query1,query2,query3,query4) {
+				$.ajax({
+					type:"get",
+					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					success:function (content) {
+						$(".myLike").html(content);
+
+					}
+				})
+			}
+
+			//当前页
+			function curr1(pageNow,query1,query2,query3,query4) {
+				$.ajax({
+					type:"get",
+					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					success:function (content) {
+						$(".myLike").html(content);
+
+					}
+				})
+			}
+
+			//点击取消关注
+			function deleteLike(aid) {
+				$.ajax({
+					url:"${path}/product?method=deleteLike",
+					data:{"aid":aid},
+					type:"post",
+					success:function (data) {
+						$(".myLike").html(data);
+						fulsh2();
+					}
+				})
+			}
+
+			function fulsh2() {
+				$.ajax({
+					url:"${path}/product?method=selectAllItemsByUid",
+					success:function (data) {
+						$(".myLike").html(data);
+					}
+				})
+			}
+
+
+
 
 
 	</script>

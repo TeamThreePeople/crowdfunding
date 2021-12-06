@@ -66,47 +66,47 @@
 		<div id="app" data-state="0" align="center" style="margin-top: 0px;">
 			  <div class="ui-big-images" align="center" style="width: auto;">    
 			    <div class="ui-big-image" data-key="0">
-			      <img src="https://picsum.photos/1200/1200/?image=1005" alt=""/>
+			      <img src="itemsimgs/p_001.jpg" alt=""/>
 			    </div>
 			    <div class="ui-big-image" data-key="1">
-			      <img src="https://picsum.photos/1200/1200/?image=804" alt=""/>
+			      <img src="itemsimgs/p_002.jpg" alt=""/>
 			    </div>
 			    <div class="ui-big-image" data-key="2">
-			      <img src="https://picsum.photos/1200/1200/?image=838" alt=""/>
+			      <img src="itemsimgs/p_003.jpg" alt=""/>
 			    </div>
 			    <div class="ui-big-image" data-key="3">
-			      <img src="https://picsum.photos/1200/1200/?image=832" alt=""/>
+			      <img src="itemsimgs/p_004.jpg" alt=""/>
 			    </div>
 			    <div class="ui-big-image" data-key="4">
-			      <img src="https://picsum.photos/1200/1200/?image=836" alt=""/>
+			      <img src="itemsimgs/p_005.jpg" alt=""/>
 			    </div>
 			    <div class="ui-big-image" data-key="5">
-			      <img src="https://picsum.photos/1200/1200/?image=823" alt=""/>
+			      <img src="itemsimgs/p_006.jpg" alt=""/>
 			    </div>
 			  </div>
 			  <div class="ui-thumbnails">
 			    <div class="ui-thumbnail" tabindex="-1" data-key="0">
-			      <img src="https://picsum.photos/1200/1200/?image=1005" alt="" />
+			      <img src="itemsimgs/p_001.jpg" alt="" />
 			      <div class="ui-cuticle" data-flip-key="cuticle" style="width: 150px;"></div>
 			    </div>
 			    <div class="ui-thumbnail" tabindex="-1" data-key="1">
-			      <img src="https://picsum.photos/1200/1200/?image=804" alt="" />
+			      <img src="itemsimgs/p_002.jpg" alt="" />
 			      <div class="ui-cuticle" data-flip-key="cuticle" style="width: 150px;"></div>
 			    </div>
 			    <div class="ui-thumbnail" tabindex="-1" data-key="2">
-			      <img src="https://picsum.photos/1200/1200/?image=838" alt="" />
+			      <img src="itemsimgs/p_003.jpg" alt="" />
 			      <div class="ui-cuticle" data-flip-key="cuticle" style="width: 150px;"></div>
 			    </div>
 			    <div class="ui-thumbnail" tabindex="-1" data-key="3">
-			      <img src="https://picsum.photos/1200/1200/?image=832" alt=""/>
+			      <img src="itemsimgs/p_004.jpg" alt=""/>
 			      <div class="ui-cuticle" data-flip-key="cuticle" style="width: 150px;"></div>
 			    </div>
 			    <div class="ui-thumbnail" tabindex="-1" data-key="4">
-			      <img src="https://picsum.photos/1200/1200/?image=836" alt="" />
+			      <img src="itemsimgs/p_005.jpg" alt="" />
 			      <div class="ui-cuticle" data-flip-key="cuticle" style="width: 150px;"></div>
 			    </div>
 			    <div class="ui-thumbnail" tabindex="-1" data-key="5">
-			      <img src="https://picsum.photos/1200/1200/?image=823" alt="" />
+			      <img src="itemsimgs/p_006.jpg" alt="" />
 			      <div class="ui-cuticle" data-flip-key="cuticle" style="width: 150px;"></div>
 			    </div>
 			  </div>

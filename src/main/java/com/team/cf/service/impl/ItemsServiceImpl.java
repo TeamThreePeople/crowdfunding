@@ -193,4 +193,35 @@ public class ItemsServiceImpl implements ItemsService {
         }
         return null;
     }
+
+    //通过人id和商品id查找商品信息  个人中心我的关注
+    @Override
+    public PageVo<Items> selectAllItemsByUid(int uid,int pageNow) {
+        PageVo<Items> vo = null;
+        try {
+            //总关注数
+            int count = dao.selectAllLikeItemsByUid(uid).intValue();
+            System.out.println(" 总关注数 count="+count);
+            //计算总页数
+            int myPages = (int)(count%2==0?count/2:Math.ceil(count/2.0));
+            System.out.println(" 计算总页数 myPages="+myPages);
+            //计算起始值
+            int begin = (pageNow-1)*2;
+            System.out.println(" 计算起始值 begin="+begin);
+            //所有关注的商品的信息
+            List<Items> list = dao.selectAllItemsByUid(uid,begin);
+            //封装
+            //vo = new PageVo<>(pageNow,count,myPages,null,list);
+            vo = new PageVo<>(pageNow,count,myPages,uid+"",list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return vo;
+    }
 }
