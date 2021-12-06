@@ -41,14 +41,18 @@ public class OrderServlet extends BasicServlet {
         //拿到商品id
         String id = request.getParameter("id");
         System.out.println("zhichi id=" + id);
+        //回报数量
+        String rcount = request.getParameter("rcount");
 
         //执行业务 拿到商品 设置请求属性
-        Items items = orderService.findProjectById(id);
+        Items items = itemsService.findItemsById(id);
         request.setAttribute("items", items);
 
         //执行业务 查询发起人姓名
         String name = orderService.findNameById(id);
         request.setAttribute("name", name);
+
+
 
         //查询回报内容
         ProjectReturn aReturn = projectReturnService.findReturn(Integer.parseInt(id));
@@ -60,6 +64,7 @@ public class OrderServlet extends BasicServlet {
         int total = aReturn.getFreight() + Integer.parseInt(count);
         request.setAttribute("total", total);
         request.setAttribute("count", count);
+        request.setAttribute("rcount", rcount);
         request.setAttribute("aReturn", aReturn);//回报内容
 
         System.out.println("count=" + count);
@@ -118,7 +123,6 @@ public class OrderServlet extends BasicServlet {
         }
 
     }
-
 
     //确认订单
     public void confirmOrder(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{

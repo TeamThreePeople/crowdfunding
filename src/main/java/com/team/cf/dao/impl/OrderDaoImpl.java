@@ -145,5 +145,17 @@ public class OrderDaoImpl extends BaseDao<Orders> implements OrderDao {
         return ordersList;
     }
 
+    //通过oid查询订单信息
+    @Override
+    public Orders selectFindOrder(String oid) throws SQLException {
+
+        String sql = "select * from t_order where ordernum = ?";
+        Orders orders = this.getBean(DataSourceUtils.getConnection(), sql, Orders.class, oid);
+        return orders;
+    }
+
+
+
+
 }
 

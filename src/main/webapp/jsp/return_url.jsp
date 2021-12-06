@@ -12,6 +12,10 @@
 <%@ page import="com.team.cf.utils.AlipayConfig" %>
 <%@ page import="com.team.cf.entity.Orders" %>
 <%@ page import="com.team.cf.service.impl.OrderServiceImpl" %>
+<%@ page import="com.team.cf.service.impl.ItemsServiceImpl" %>
+<%@ page import="com.team.cf.entity.Items" %>
+<%@ page import="com.team.cf.service.impl.ProjectReturnServiceImpl" %>
+<%@ page import="com.team.cf.entity.ProjectReturn" %>
 <%
 /* *
  * 功能：支付宝服务器同步通知页面
@@ -60,9 +64,24 @@
 		Orders orders = (Orders)session.getAttribute("orders");
 		if(orders!=null && orders.getOrdernum().equals(out_trade_no) && (orders.getMoney()==Double.valueOf(total_amount))){
 
-			//修改订单状态
+
 			OrderServiceImpl service = new OrderServiceImpl();
+			ItemsServiceImpl itemsService = new ItemsServiceImpl();
+			ProjectReturnServiceImpl returnService = new ProjectReturnServiceImpl();
+			//修改订单状态
 			boolean flag = service.updateOrdersState(out_trade_no);
+			//通过订单号查询到商品信息
+			Items items = itemsService.selectItemAndProductByOid(out_trade_no);
+			//通过订单号查询订单信息
+			Orders selectFindOrder = service.selectFindOrder(out_trade_no);
+			//通过pid查询邮费
+			ProjectReturn aReturn = returnService.findReturn(items.getId());
+			//总筹金额 现有支持金额+订单金额-邮费
+			int totalAmount = (int)(items.getSupportmoney()+selectFindOrder.getMoney()-aReturn.getFreight());
+			//支持人数
+			int supporterCount = items.getSupporter()+1;
+			//修改当前商品金额&支持人数
+			boolean b = itemsService.modifyItemsMoney(items.getId(), totalAmount, supporterCount);
 
 
 			//将会话中的购物车信息&订单信息移除掉

@@ -27,9 +27,9 @@ public class ProjectReturnImpl extends BaseDao<ProjectReturn> implements Project
 
     //查询回报内容
     @Override
-    public ProjectReturn findReturn(int cid) throws SQLException {
-        String sql = "select * from t_return r,t_project p where r.projectid=p.id and cid = ?";
-        ProjectReturn projectReturn = this.getBean(DataSourceUtils.getConnection(),sql, ProjectReturn.class, cid);
+    public ProjectReturn findReturn(int pid) throws SQLException {
+        String sql = "select * from t_return r,t_project p where r.projectid=p.id and p.id = ?";
+        ProjectReturn projectReturn = this.getBean(DataSourceUtils.getConnection(),sql, ProjectReturn.class, pid);
         return projectReturn;
     }
 }

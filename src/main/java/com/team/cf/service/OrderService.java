@@ -40,4 +40,7 @@ public interface OrderService {
     //查看订单状态
     public PageVo<Orders> selectOrderStatus(int uid,int status, int pageNow);
 
+    //通过oid查询订单信息
+    public Orders selectFindOrder(String oid);
+
 }

@@ -35,9 +35,9 @@ public class ProjectReturnServiceImpl implements ProjectReturnService {
     }
 
     //查询回报内容
-    public ProjectReturn findReturn(int cid){
+    public ProjectReturn findReturn(int pid){
         try {
-            ProjectReturn projectReturn = dao.findReturn(cid);
+            ProjectReturn projectReturn = dao.findReturn(pid);
             return projectReturn;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -40,4 +40,6 @@ public interface ItemsDao  {
     //通过人id和商品id查找商品信息  个人中心我的关注  总数
     public Long selectAllLikeItemsByUid(int uid) throws SQLException;
 
+    //通过订单号修改当前商品金额&支持人数
+    public int modifyItemsMoney(int pid, int money, int count) throws SQLException;
 }

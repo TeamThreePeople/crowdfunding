@@ -244,4 +244,23 @@ public class OrderServiceImpl implements OrderService {
         }
         return vo;
     }
+
+    //通过oid查询订单信息
+    @Override
+    public Orders selectFindOrder(String oid) {
+        System.out.println("通过oid查询订单信息:"+oid);
+        try {
+            Orders orders = dao.selectFindOrder(oid);
+            return orders;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

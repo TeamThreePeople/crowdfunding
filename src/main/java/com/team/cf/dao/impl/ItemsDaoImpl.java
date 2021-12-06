@@ -54,30 +54,30 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,pname,begin);
 
         } else if (cid!=null && status==null && sort_id==null){
-            sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
+            sql ="select p.* ,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? "+
                     "and p.name like concat('%',?,'%') limit ?,8";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,pname,begin);
         }else if (cid!=null && status!=null && sort_id==null){//众筹状态
             //and p.`status`=?"
-            sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
+            sql ="select p.*,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
                     "and p.name like concat('%',?,'%') limit ?,8";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
         }else if (cid!=null && status!=null && sort_id.equals("1")){//最新上线
-            sql ="select p.id,p.name,p.money ,p.pimgs ,p.deploydate,t.cname " +
+            sql ="select p.*,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
                     "and p.name like concat('%',?,'%') ORDER BY p.deploydate desc limit ?,8";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
 
         }else if (cid!=null && status!=null && sort_id.equals("2")){//金额最多
-            sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
+            sql ="select p.*,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
                     "and p.name like concat('%',?,'%') ORDER BY p.money desc limit ?,8";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
 
         }else if (cid!=null && status!=null && sort_id.equals("3")){//支持最多
-            sql ="select p.id,p.name,p.money ,p.pimgs ,p.supporter,t.cname " +
+            sql ="select p.*,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
                     "and p.name like concat('%',?,'%') ORDER BY p.supporter desc limit ?,8";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
@@ -133,6 +133,7 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
     //通过订单编号，查询订单明细及商品信息
     @Override
     public Items selectItemAndProductByOid(String oid) throws SQLException {
+        System.out.println("通过订单编号，查询订单明细及商品信息:"+oid);
         String sql = "select  * from t_order o,t_project p where o.projectid = p.id and o.ordernum = ?";
         Items items = this.getBean(DataSourceUtils.getConnection(),sql, Items.class, oid);
         return items;
@@ -152,5 +153,13 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         String sql = "select count(*) from great g ,t_project p , t_member m where g.uid =  m.id and g.aid = p.id and m.id = ? ";
         Long count = (Long) this.getSingleValue(DataSourceUtils.getConnection(),sql, uid);
         return count;
+    }
+
+    //通过pid修改当前商品金额&支持人数
+    @Override
+    public int modifyItemsMoney(int pid, int money, int count) throws SQLException {
+        String sql = "update t_project set supportmoney = ? ,supporter = ?  where id = ? ";
+        int i = this.update(DataSourceUtils.getConnection(), sql, money, count,pid);
+        return i;
     }
 }

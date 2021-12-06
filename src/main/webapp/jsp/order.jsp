@@ -72,10 +72,10 @@
 				 </tr>
 				 <tr >
 
-					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="itemsName" value="${items.name}"  hidden>${items.name}</td><%--活性富氧净水直饮机--%>
+					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="itemsName" value="${items.name}"  hidden> ${items.name}</td><%--活性富氧净水直饮机--%>
 					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="userName" value="${name}"  hidden> ${name}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="areturn" value="${aReturn.content}"  hidden>${aReturn.content}</td><%--每满1750人抽取一台活性富氧净水直饮机--%>
-					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="count" id="" value=""  style="width: 35px;" /></td>
+					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="count" id="count" value="${rcount}" hidden />${rcount}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="price" value="${count}"  hidden>￥${count}</td>
 					 <c:if test="${aReturn.freight==0}">
 						 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="freight" value="0"  hidden>免运费</td>

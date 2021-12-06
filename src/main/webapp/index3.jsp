@@ -195,8 +195,22 @@
 			<c:forEach items="${requestScope.productsView}" var="products">
 				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
 					<a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=${products.id}">
-						<img src="${pageContext.request.contextPath}/${products.pimgs}"  >
+						<img src="${pageContext.request.contextPath}/${products.pimgs}" style="width: 250px;height: 200px" >
 					</a>
+					<p>
+					<c:if test="${products.completion < 100}">
+						<div class="progress" style="width: 97%;height: 10px;">
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${products.completion}%">
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${products.completion >= 100}">
+						<div class="progress" style="width: 97%;height: 10px;">
+							<div class="progress-bar progress-bar-danger " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${products.completion}%">
+							</div>
+						</div>
+					</c:if>
+					</p>
 					<p style="color: #000000;">
 						<a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=${products.id}" style="text-align: left;"  >${products.name}</a>
 					</p>
