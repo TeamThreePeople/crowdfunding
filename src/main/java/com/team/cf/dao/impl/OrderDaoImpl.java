@@ -113,4 +113,37 @@ public class OrderDaoImpl extends BaseDao<Orders> implements OrderDao {
         int i = this.update(DataSourceUtils.getConnection(), sql, oid);
         return i;
     }
+
+    //查看订单状态数量
+    @Override
+    public Long selectOrderStatusCount(int uid,int status) throws SQLException {
+        String sql = "";
+        Object value = null;
+        if (status==3){
+               sql = "select count(*) from t_order where memberid=? ";
+               value = this.getSingleValue(DataSourceUtils.getConnection(), sql, uid);
+        }else {
+               sql = "select count(*) from t_order where memberid=? and status = ?";
+               value = this.getSingleValue(DataSourceUtils.getConnection(), sql, uid,status);
+        }
+        return Long.valueOf(value.toString());
+
+    }
+
+    //通过用户编号，查询所拥有的订单信息
+    @Override
+    public List<Orders> selectOrderStatus(int  uid,int status, int begin) throws SQLException {
+        String sql = "";
+        List<Orders> ordersList = null;
+        if (status==3) {
+            sql = "select * from t_order where memberid = ?  order by createdate desc limit ?,3";
+            ordersList = this.getBeanList(DataSourceUtils.getConnection(), sql, Orders.class, uid, begin);
+        }else {
+            sql = "select * from t_order where memberid = ? and status = ?  order by createdate desc limit ?,3";
+            ordersList = this.getBeanList(DataSourceUtils.getConnection(), sql, Orders.class, uid, status, begin);
+        }
+        return ordersList;
+    }
+
 }
+

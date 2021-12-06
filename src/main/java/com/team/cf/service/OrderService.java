@@ -37,4 +37,7 @@ public interface OrderService {
     //通过oid 删除订单
     public boolean delOrder(String oid);
 
+    //查看订单状态
+    public PageVo<Orders> selectOrderStatus(int uid,int status, int pageNow);
+
 }

@@ -234,19 +234,21 @@
 										  <div role="tabpanel" class="tab-pane fade in active" id="Section1">
 											  <!-- 选择按钮 -->
 											  <nav class="nav default" style="margin-left: 10px;margin-top: -5px;">
-												<ul>
-												  <li class="nav__item "><a href="#"><span style="color: #000000;">全部的众筹</span> </a> </li>
-												  <li class="nav__item active"><a href="#"><span style="color: #000000;">已经支持</span></a></li>
-												  <li class="nav__item"><a href="#"><span style="color: #000000;">未支付</span></a></li>
+												<ul id="l1">
+												  <li class="nav__item active" value="3"><a  id="orderAll"><span style="color: #000000;">全部的众筹</span> </a> </li>
+												  <li class="nav__item " value="1"><a  id="Paid"><span style="color: #000000;">已支付</span></a></li>
+												  <li class="nav__item" value="0"><a  id="unpaid"><span style="color: #000000;">未支付</span></a></li>
 												</ul>
 											  </nav>
 					                          
 											  <!-- 分页数据 -->
-											    <div class="row" id="support" style="width:850px;">
+											  <div class="row"  id="support" style="width:850px;">
 												<%--我支持的--%>
-													<%@ include file="supportdetails.jsp"%>
-
-
+														<%@ include file="supportdetails.jsp"%>
+											  </div>
+											  <div class="row"  id="supportStatus" style="width:850px;">
+												  <%--我支持的--%>
+												  <%@ include file="orderstatus.jsp"%>
 											  </div>
 
 											  <!-- Modal 删除-->
@@ -551,14 +553,17 @@
 	<script src="${pageContext.request.contextPath}/js/jquery.popconfirm.js"></script>
 
 
+	<script src="${pageContext.request.contextPath}/js/viewMyOrders.js"></script>
+	<script src="${pageContext.request.contextPath}/js/viewMyOrdersStatus.js"></script>
+
 	<script>
 
-			$.ajax({
-				url:"${path}/project?method=viewMyOrders",
-				success:function (data){
-					$("#support").html(data);
-				}
-			});
+		$.ajax({
+			url:"${path}/project?method=viewMyOrders",
+			success:function (data){
+				$("#support").html(data);
+			}
+		});
 
 		$("#supportbtn").click(function (){
 			$.ajax({
@@ -569,8 +574,10 @@
 			})
 		})
 
+
 		//订单详情
 		/*$('#myOrderModal').on('shown.bs.modal', function () {*/
+		$("#supportStatus").hide();
 			function showOrder(){
 				var oid = $("#uid").val();
 				$.ajax({
@@ -585,6 +592,33 @@
 		/*});*/
 
 
+		//订单支付状态
+		$(document).on('click','#l1 li',function (){
+			$("#support").hide();
+			$("#supportStatus").show();
+			$(this).addClass("active");
+			$(this).siblings().removeClass("active");
+			var status = $(this).val();
+			$.ajax({
+				url:"${path}/project?method=orderStatus&status="+status,
+				//data:{"cid":c_id},
+				success:function (data){
+					$("#supportStatus").html(data);
+				}
+			})
+
+		});
+
+		/*$("#orderAll").click(function (){
+			$("#supportStatus").hide();
+			$("#support").show();
+			$.ajax({
+				url:"${path}/project?method=viewMyOrders",
+				success:function (data){
+					$("#support").html(data);
+				}
+			})
+		});*/
 
 
 		//删除订单
@@ -613,38 +647,6 @@
 		}
 
 
-		//下一页
-		function next(pageNow,query1,query2,query3,query4) {
-			$.ajax({
-				type:"get",
-				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$("#support").html(content);
-				}
-			})
-		};
-		//上一页
-		function first(pageNow,query1,query2,query3,query4) {
-			$.ajax({
-				type:"get",
-				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$("#support").html(content);
-
-				}
-			})
-		};
-		//当前页
-		function curr(pageNow,query1,query2,query3,query4) {
-			$.ajax({
-				type:"get",
-				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$("#support").html(content);
-
-				}
-			})
-		};
 
 
 	</script>

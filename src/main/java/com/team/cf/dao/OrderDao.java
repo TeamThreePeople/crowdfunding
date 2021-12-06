@@ -34,4 +34,8 @@ public interface OrderDao {
     public List<Map<String,Object>> selectItemAndProductByOid(String oid) throws SQLException;
     //通过oid 删除订单
     public int delOrder(String oid) throws SQLException;
+    //查看订单状态数量
+    public Long selectOrderStatusCount(int uid ,int status) throws SQLException;
+    //查看订单状态
+    public List<Orders> selectOrderStatus(int uid,int status, int begin) throws SQLException;
 }
