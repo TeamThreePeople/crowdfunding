@@ -33,4 +33,11 @@ public interface ItemsDao  {
 
     //通过订单编号，查询订单明细及商品信息
     public Items selectItemAndProductByOid(String oid) throws SQLException;
+
+    //通过人id和商品id查找商品信息  个人中心我的关注
+    public List<Items> selectAllItemsByUid(int uid,int begin) throws SQLException;
+
+    //通过人id和商品id查找商品信息  个人中心我的关注  总数
+    public Long selectAllLikeItemsByUid(int uid) throws SQLException;
+
 }

@@ -114,6 +114,7 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         return items;
     }
 
+    //根据人id修改关注数量
     @Override
     public int modifyLikeNumerber(int id ,int count) throws SQLException {
         String sql = "update t_project set follower = ? where id = ?";
@@ -135,5 +136,21 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         String sql = "select  * from t_order o,t_project p where o.projectid = p.id and o.ordernum = ?";
         Items items = this.getBean(DataSourceUtils.getConnection(),sql, Items.class, oid);
         return items;
+    }
+
+    //通过人id和商品id查找商品信息  个人中心我的关注
+    @Override
+    public List<Items> selectAllItemsByUid(int uid,int begin) throws SQLException {
+        String sql = "select p.* from great g ,t_project p , t_member m where g.uid =  m.id and g.aid = p.id and m.id = ? limit ?,2";
+        List<Items> list = this.getBeanList(DataSourceUtils.getConnection(),sql, Items.class, uid,begin);
+        return list;
+    }
+
+    //通过人id和商品id查找商品信息  个人中心我的关注  总数
+    @Override
+    public Long selectAllLikeItemsByUid(int uid) throws SQLException {
+        String sql = "select count(*) from great g ,t_project p , t_member m where g.uid =  m.id and g.aid = p.id and m.id = ? ";
+        Long count = (Long) this.getSingleValue(DataSourceUtils.getConnection(),sql, uid);
+        return count;
     }
 }

@@ -1,5 +1,6 @@
 package com.team.cf.servlet;
 
+import com.google.gson.Gson;
 import com.team.cf.entity.Great;
 import com.team.cf.entity.Items;
 import com.team.cf.entity.Member;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -198,7 +200,6 @@ public class ItemsServlet extends BasicServlet {
             uid = member.getId();
         }
 
-
         //执行业务
         Items item = itemsService.findItemsById(aid);
         System.out.println("item = "+item);
@@ -247,4 +248,69 @@ public class ItemsServlet extends BasicServlet {
 
 
 
+    //通过人id和商品id查找商品信息  个人中心我的关注
+    protected void selectAllItemsByUid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("selectAllItemsByUid执行了");
+
+        int uid  = 0;
+        //获取会话信息
+        HttpSession session = request.getSession();
+        Member member = (Member)session.getAttribute("member");
+        if (member!=null){
+            System.out.println("此人已登录");
+            uid = member.getId();
+        }
+        System.out.println("uid = "+uid);
+        String page = request.getParameter("pageNow");
+        System.out.println("当前页 page = "+page);
+
+        //page 分页查询
+        int pageNow = 0;
+        if (page==null){
+            pageNow = 1; //默认查询第一页
+        }else {
+            pageNow = Integer.parseInt(page);
+        }
+
+        PageVo<Items> pageVo = itemsService.selectAllItemsByUid(uid, pageNow);
+        System.out.println("vo="+pageVo);
+        request.setAttribute("pageVo",pageVo);
+        request.getRequestDispatcher(request.getContextPath()+"/jsp/personLike.jsp").forward(request,response);
+    /*
+        //创建Gson对象
+        Gson gson = new Gson();
+        //将数据封装进Gson中
+        String str = gson.toJson(pageVo);
+        //将json数据，响应至客户端
+        PrintWriter out = response.getWriter();
+        out.write(str);
+        out.flush();
+        out.close();
+*/
+
+    }
+
+    //取消关注商品
+    protected void deleteLike(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //商品id
+        int aid = Integer.parseInt(request.getParameter("aid"));
+        System.out.println("商品id aid = "+aid);
+        int uid  = 0;
+        //获取会话信息
+        HttpSession session = request.getSession();
+        Member member = (Member)session.getAttribute("member");
+        if (member!=null){
+            System.out.println("此人已登录");
+            uid = member.getId();
+        }
+        System.out.println("人id uid = "+uid);
+
+        boolean flag = greatService.deleteGreat(aid, uid);
+        System.out.println("有没有删除成功 flag = "+flag);
+        if (flag) {
+            request.setAttribute("flag",flag);
+            response.sendRedirect(request.getContextPath()+"/jsp/personLike.jsp");
+        }
+
+    }
 }

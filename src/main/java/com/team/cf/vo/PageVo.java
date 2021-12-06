@@ -26,7 +26,15 @@ public class PageVo<T> {
     public PageVo() {
     }
 
-    public PageVo(Integer pageNow, Integer myPages,  Integer myCounts, String query1, String query2, String query3, String query4, List<T> list) {
+    public PageVo(Integer pageNow, Integer myCounts, Integer myPages, String query1, List<T> list) {
+        this.pageNow = pageNow;
+        this.myCounts = myCounts;
+        this.myPages = myPages;
+        this.query1 = query1;
+        this.list = list;
+    }
+
+    public PageVo(Integer pageNow, Integer myPages, Integer myCounts, String query1, String query2, String query3, String query4, List<T> list) {
         this.pageNow = pageNow;
         this.myCounts = myCounts;
         this.myPages = myPages;
