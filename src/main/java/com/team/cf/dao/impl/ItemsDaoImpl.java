@@ -3,6 +3,7 @@ package com.team.cf.dao.impl;
 import com.team.cf.dao.BaseDao;
 import com.team.cf.dao.ItemsDao;
 import com.team.cf.entity.Items;
+import com.team.cf.entity.View;
 import com.team.cf.utils.DataSourceUtils;
 
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
     @Override
     public List<Items> selectAllItems() throws SQLException {
         String sql = "select * from t_project limit 0,?";
-        List<Items> products = this.getBeanList(DataSourceUtils.getConnection(),sql, Items.class, 4);
+        List<Items> products = this.getBeanList(DataSourceUtils.getConnection(),sql, Items.class, 6);
         return products;
     }
 
@@ -153,4 +154,15 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         Long count = (Long) this.getSingleValue(DataSourceUtils.getConnection(),sql, uid);
         return count;
     }
+
+    //通过人id和商品id查找商品信息  浏览记录
+    @Override
+    public List<Items> selectViewItemsByUid(int uid) throws SQLException {
+        String sql = "SELECT p.* FROM t_member_project_view v , t_project p , t_member m " +
+                "WHERE v.projectid =  p.id and v.memberid = m.id AND m.id = ? ORDER BY v.id DESC limit 3";
+        List<Items> list = this.getBeanList(DataSourceUtils.getConnection(), sql,Items.class ,uid);
+        return list;
+    }
+
+
 }

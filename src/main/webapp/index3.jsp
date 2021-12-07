@@ -23,14 +23,86 @@
 		<!-- 轮播图 -->
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/normalize3.css" /><!--CSS RESET-->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style3.css">
-		<!-- 图片缩放 -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/picturechange.css">
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+		<%--图片变换--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">
 		<!--  设置网页的小图标logo  favicon.ico-->
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 	</head>
 	<body>
 
 		<%@ include file="jsp/connect/heard.jsp"%>
+
+		<%--浏览记录--%>
+		<%--<div class="menu-espanso" style="margin-top: 70px;">
+			<div id="menu" class="menu" ></div>
+			<span class="linee linea1" ></span>
+			<span class="linee linea2" ></span>
+			<span class="linee linea3" ></span>
+
+			<div class="voci-menu" style="left: 0px;width: 340px;">
+				<p style="margin-top: -50px;font-size: 28px;font-weight: 800;margin-left: 17px;width: 200px;">浏览记录</p>
+				<div style="border: black solid 1px;width: 340px;"></div>
+				<table style="margin-top: 10px;margin-bottom: 10px;">
+					<tr>
+						<td>
+							<div class="ih-item square effect1 left_and_right" style="margin-left: 15px;">
+								<a href="#">
+									<div class="img">
+										<img src="../picture/name2.png" style="width: 310px;height: 170px;" alt="img">
+									</div>
+									<div class="info">
+										<h3>净水器</h3>
+										<p>Description goes here</p>
+									</div>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<div style="border: black solid 1px;width: 340px;"></div>
+				<table style="margin-top: 10px;margin-bottom: 10px;">
+					<tr>
+						<td>
+							<div class="ih-item square effect1 left_and_right" style="margin-left: 15px;">
+								<a href="#">
+									<div class="img">
+										<img src="../picture/name2.png" style="width: 310px;height: 170px;" alt="img">
+									</div>
+									<div class="info">
+										<h3>净水器</h3>
+										<p>Description goes here</p>
+									</div>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</table >
+				<div style="border: black solid 1px;width: 340px;"></div>
+				<table style="margin-top: 10px;margin-bottom: 10px;">
+					<tr>
+						<td>
+							<div class="ih-item square effect1 left_and_right" style="margin-left: 15px;">
+								<a href="#">
+									<div class="img">
+										<img src="../picture/name2.png" style="width: 310px;height: 170px;" alt="img">
+									</div>
+									<div class="info">
+										<h3>净水器</h3>
+										<p>Description goes here</p>
+									</div>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<div style="border: black solid 1px;width: 340px;"></div>
+
+			</div>
+
+		</div>--%>
+
 		<!--导航部分-->
 		<%--<div class="container" style="width: 100%;height: 100px;">
 			<div class="row ">
@@ -147,27 +219,77 @@
 			</div>
 		
 		<!-- 热门项目 -->
-		<div class="container" style="margin-top: 140px;padding: 0px;">
+		<div class="container" style="margin-top: 150px;padding: 0px;">
 			<div class="row">
 				<!-- 文字 -->
 				<div class="col-md-2" style="font-size: 40px;">热门项目</div>
-				<!-- 图片 -->
-				<img src="${pageContext.request.contextPath}/picture/title2.jpg" style="margin-top: 30px;padding: 0px;"/>
+				<div style="margin-top: 30px;padding: 0px;">
+					<a href="jsp/more.jsp" >更多...</a>
+				</div>
+
 			</div>
+			<div style="border: #000000 solid 1px;"></div>
+			<table >
+				<tr>
+					<td style="width: 960px;">
+						<div style="color: white;background-color: #0186BA;width: 120px;font-size: 18px;">
+							幸福千万家
+						</div>
+					</td>
+					<td >
+						<!-- 图片 -->
+						<img src="${pageContext.request.contextPath}/picture/title2.jpg" />
+					</td>
+				</tr>
+			</table>
 			<div style="border: #000000 solid 1px;"></div>
 			<div class="row" style="margin-top: 50px;padding: 0px;">
 				<div class="col-md-4 col-sm-4 col-xs-6" align="center">
-					<img src="${pageContext.request.contextPath}/picture/jiqiren.png" >
+					<div class="ih-item circle effect15 left_to_right">
+						<a href="#">
+							<div class="img">
+								<img src="${pageContext.request.contextPath}/picture/jiqiren.png" alt="img">
+							</div>
+							<div class="info">
+								<h3>Heading here</h3>
+								<p>Description goes here</p>
+							</div>
+						</a>
+					</div>
 					<p></p>
 					<button ><a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=1" style="color: #000000;">项目详情&gt;&gt;</a></button>
 					</div>
 				<div class="col-md-4 col-sm-4 col-xs-6" align="center">
-					<img src="${pageContext.request.contextPath}/picture/shouhuan.png" >
+					<div class="ih-item circle effect6 scale_down_up">
+						<a href="#">
+							<div class="img">
+								<img src="${pageContext.request.contextPath}/picture/shouhuan.png" alt="img">
+							</div>
+							<div class="info">
+								<h3>Heading here</h3>
+								<p>Description goes here</p>
+							</div>
+						</a>
+					</div>
 					<p></p>
 					<button><a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=2" style="color: #000000;">项目详情&gt;&gt;</a></button>
 					</div>
 				<div class="col-md-4 col-sm-4 col-xs-6" align="center">
-					<img src="${pageContext.request.contextPath}/picture/quwenkou.png" >
+					<div class="ih-item circle effect8 top_to_bottom">
+						<a href="#">
+							<div class="img-container">
+								<div class="img">
+									<img src="${pageContext.request.contextPath}/picture/quwenkou.png" alt="img">
+								</div>
+							</div>
+							<div class="info-container">
+								<div class="info">
+									<h3>Heading here</h3>
+									<p>Description goes here</p>
+								</div>
+							</div>
+						</a>
+					</div>
 					<p></p>
 					<button><a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=3" style="color: #000000;">项目详情&gt;&gt;</a></button>
 					</div>
@@ -176,30 +298,53 @@
 		
 		<!-- 部分项目 -->
 		<div class="container" style="margin-top: 40px;padding: 0px;">
-			<table>
+			<div class="row">
+				<!-- 文字 -->
+				<div class="col-md-2" style="font-size: 40px;">部分项目</div>
+				<div style="margin-top: 30px;padding: 0px;">
+					<a href="jsp/more.jsp" >更多...</a>
+				</div>
+			</div>
+			<div style="border: #000000 solid 1px;"></div>
+			<table >
 				<tr>
-				<td style="width: 1100px;">
+				<td style="width: 960px;">
 					<div style="color: white;background-color: #0186BA;width: 120px;font-size: 18px;">
 					科技改变未来
 					</div>
 				</td>
 				<td >
-					<a href="jsp/more.jsp" >更多...</a>
+					<!-- 图片 -->
+					<img src="${pageContext.request.contextPath}/picture/title2.jpg" />
 				</td>
 				</tr>
 			</table>
-			<div style="border: #0186BA solid 1px;"></div>
+			<div style="border: #000000 solid 1px;"></div>
 			
 			<div class="row" style="margin-top: 40px;padding: 0px;">
 
 			<c:forEach items="${requestScope.productsView}" var="products">
-				<div class="col-md-3 col-sm-4 col-xs-6" align="center" >
+				<div class="col-md-4 col-sm-6 col-xs-12" align="center" >
 					<a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=${products.id}">
-						<img src="${pageContext.request.contextPath}/${products.pimgs}"  >
+						<div class="ih-item square effect4">
+							<a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=${products.id}" onclick="addView('${products.id}')">
+								<div class="img">
+									<img src="${pageContext.request.contextPath}/${products.pimgs}"  alt="img" >
+								</div>
+								<div class="mask1"></div>
+								<div class="mask2"></div>
+								<div class="info">
+									<h3>${products.name}</h3>
+									<p>Description goes here</p>
+								</div>
+							</a>
+						</div>
+						<br>
+						<br>
 					</a>
-					<p style="color: #000000;">
+					<%--<p style="color: #000000;">
 						<a href="${pageContext.request.contextPath}/product?method=findItemsById&aid=${products.id}" style="text-align: left;"  >${products.name}</a>
-					</p>
+					</p>--%>
 				</div>
 			</c:forEach>
 
@@ -392,5 +537,25 @@
 	<script src="${pageContext.request.contextPath}/js/lunbotu.js"></script>
 	<!-- 小火箭 -->
 	<script src="${pageContext.request.contextPath}/js/xiaohuojian.js"></script>
-	
+	<!-- 图片变换 -->
+	<script src="${pageContext.request.contextPath}/js/app33.js"></script>
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>
+
+	<script>
+		function addView(projectid) {
+			$.ajax({
+
+				url:"${path}/view?method=findView",
+				data:{"projectid":projectid},
+				type:"post",
+				success:function () {
+					console.log();
+				}
+			})
+		}
+	</script>
+
+
 </html>

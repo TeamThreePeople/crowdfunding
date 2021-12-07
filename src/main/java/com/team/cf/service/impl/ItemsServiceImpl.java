@@ -224,4 +224,24 @@ public class ItemsServiceImpl implements ItemsService {
         }
         return vo;
     }
+
+    //通过人id和商品id查找商品信息  浏览记录
+    @Override
+    public List<Items> selectViewItemsByUid(int uid) {
+        try {
+            List<Items> list = dao.selectViewItemsByUid(uid);
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
 }

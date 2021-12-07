@@ -14,15 +14,18 @@
     <div class="row" style="width:850px;" >
         <table class="table table-bordered" style="margin-left: 5px;" id="myLike">
             <tr align="center" >
-                <th style="text-align:center"><span style="color: #000000;">项目名称</span> </th>
+                <th style="text-align:center"><span style="color: #000000;">操作</span> </th>
                 <th style="text-align:center"><span style="color: #000000;">项目图片</span> </th>
                 <th style="text-align:center"><span style="color: #000000;">支持人数</span></th>
                 <th style="text-align:center"><span style="color: #000000;">关注人数</span></th>
-                <th style="text-align:center"><span style="color: #000000;">操作</span></th>
+                <th style="text-align:center"><span style="color: #000000;">项目名称</span></th>
             </tr>
 
             <c:forEach items="${pageVo.list}" var="like">
                 <tr class="data" align="center">
+                    <td>
+                        <a onclick="deleteLike('${like.id}')" class="btn btn-danger">取消关注</a>
+                    </td>
                     <td><span style="color: #000000;">${like.name}</span></td>                           <%--项目名称--%>
                     <td>
                         <c:if test="${like.pimgs!=null}">
@@ -31,9 +34,7 @@
                     </td>
                     <td><span style="color: #000000;">${like.supporter}</span></td>                      <%--支持人数--%>
                     <td><span style="color: #000000;">${like.follower}</span></td>                       <%--关注人数--%>
-                    <td>
-                        <a onclick="deleteLike('${like.id}')" class="btn btn-danger">取消关注</a>
-                    </td>
+
                 </tr>
             </c:forEach>
 

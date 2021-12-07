@@ -1,6 +1,7 @@
 package com.team.cf.dao;
 
 import com.team.cf.entity.Items;
+import com.team.cf.entity.View;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -39,5 +40,8 @@ public interface ItemsDao  {
 
     //通过人id和商品id查找商品信息  个人中心我的关注  总数
     public Long selectAllLikeItemsByUid(int uid) throws SQLException;
+
+    //通过人id和商品id查找商品信息  浏览记录
+    public List<Items> selectViewItemsByUid(int uid) throws SQLException;
 
 }

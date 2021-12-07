@@ -313,4 +313,24 @@ public class ItemsServlet extends BasicServlet {
         }
 
     }
+
+
+    //通过人id和商品id查找商品信息  浏览记录
+    protected void selectViewItemsByUid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("selectViewItemsByUid 执行了");
+        int uid  = 0;
+        //获取会话信息
+        HttpSession session = request.getSession();
+        Member member = (Member)session.getAttribute("member");
+        if (member!=null){
+            System.out.println("此人已登录");
+            uid = member.getId();
+        }
+        System.out.println("人id uid = "+uid);
+
+        List<Items> list = itemsService.selectViewItemsByUid(uid);
+        System.out.println("浏览记录 list = "+list);
+        request.setAttribute("list",list);
+        request.getRequestDispatcher(request.getContextPath()+"/jsp/connect/liiulanjilu.jsp").forward(request,response);
+    }
 }

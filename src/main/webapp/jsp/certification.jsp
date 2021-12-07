@@ -11,7 +11,10 @@
 	<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 	<link href="${pageContext.request.contextPath}/css/jquery.wizzy.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" >
-	
+	<%--浏览记录--%>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+	<%--图片变换--%>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">
     <style>
 		td{
 			font-style: italic;
@@ -150,10 +153,7 @@
 		
 		</div>
 	</div>
-	
-	
-	
-	
+
 	<!-- 实名认证-申请 -->
 	<div class="container" style="margin-top: 50px;">
 		<div class="row">
@@ -162,9 +162,7 @@
 			<hr >
 		</div>
 	</div>
-	
-	
-	
+
 	<div class="htmleaf-container" style="margin-left: 450px; width: 600px;">
 		<div class="wrapper">
             <!-- Start Wizzy -->
@@ -310,5 +308,11 @@
 			}
 		}
 	</script>
+
+	<!-- 图片变换 -->
+	<script src="${pageContext.request.contextPath}/js/app33.js"></script>
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>
 
 	<%@ include file="connect/foot.jsp"%>>

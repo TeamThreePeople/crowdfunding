@@ -10,12 +10,16 @@
 		
 		<!-- 引入Bootstrap核心样式文件 -->
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-		
+
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+
 		<!-- 先引入jQuery核心js文件 -->
 		<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
 		<!-- 引入BootStrap核心js文件 -->
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-		
+
+
 		
 		<style type="text/css">
 			table{
@@ -53,7 +57,7 @@
 		
 
 		<!-- 发起项目 -->
-		<div class="container" style="background-color: lightgoldenrodyellow;">
+		<div class="container" style="background-color: lightgoldenrodyellow;margin-top: 50px">
 			<div class="row" >
 				<div class="col-lg-3 " style="text-align: center;"><h3 ><span class="label label-success" >1.项目发起人信息</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >2.回报设置</span></h3></div>
@@ -217,3 +221,7 @@
 
 
 	<%@ include file="connect/foot.jsp"%>>
+
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>

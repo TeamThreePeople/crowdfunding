@@ -7,11 +7,15 @@
 
 		<meta charset="utf-8">
 		<title>项目详情</title>
-		<%--爱心关注--%>
-<%--		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style29.css"/>--%>
+
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 		<!--  设置网页的小图标logo  favicon.ico-->
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
+
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+		<%--图片变换--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">
 	</head>
 	<body>
 	<%@ include file="connect/heard.jsp"%>
@@ -51,9 +55,7 @@
 
 
 
-				<%--<div id="aixin">
-					<%@ include file="heart.jsp"%>
-				</div>--%>
+
 
 			</div>	
 		</div>
@@ -145,8 +147,11 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
 	<!-- 引入BootStrap核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<%--	爱心关注--%>
-<%--	<script src="${pageContext.request.contextPath}/js/heart.js"></script>--%>
+	<!-- 图片变换 -->
+	<script src="${pageContext.request.contextPath}/js/app33.js"></script>
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>
 
 	<script>
 

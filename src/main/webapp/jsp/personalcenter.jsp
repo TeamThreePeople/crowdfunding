@@ -20,11 +20,15 @@
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/touxiang.css" >
 			<!-- 横状table -->
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/henzhuangtable.css" >
+			<%--浏览记录--%>
+			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+			<%--图片变换--%>
+			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">
 			<!-- 旋转按钮 -->
-			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles17.css">
+<%--			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles17.css">--%>
 			<!--  设置网页的小图标logo  favicon.ico-->
 			<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
-			
+
 	</head>
 	<body>
 
@@ -210,7 +214,7 @@
 				<!-- 右边 -->
 				<div id="right-side">
 					<div id="first" class="active">
-					  <div class="icon big" style="margin-top: -160px;">
+					  <div class="icon big" style="margin-top: -120px;">
 						<svg viewBox="0 0 32 32">
 						  <g filter="">
 							<use xlink:href="#shopping-cart"></use>
@@ -224,7 +228,7 @@
 					                  <!-- Nav tabs -->
 					                  <ul class="nav nav-tabs" role="tablist" style="margin-left: 25px;">
 					                      <li role="presentation" class="active"><a href="#Section1" id="supportbtn" aria-controls="home" role="tab" data-toggle="tab">我支持的</a></li>
-					                      <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">我关注的</a></li>
+					                      <li role="presentation"><a href="#Section2" onclick="myfunction()"  aria-controls="profile" role="tab" data-toggle="tab">我关注的</a></li>
 					                      <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">我发起的</a></li>
 										  <button type="button"  style="width: 100px;height: 40px;margin-top: 2px;margin-left: 360px;border-radius: 4px;border: lightgrey solid 1px ;background-color: rgb(240,173,78);color: white;font-weight: 800;"><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起众筹</a></button>
 									  </ul>
@@ -244,7 +248,7 @@
 											  <!-- 分页数据 -->
 											  <div class="row"  id="support" style="width:850px;">
 												<%--我支持的--%>
-														<%@ include file="supportdetails.jsp"%>
+												  <%@ include file="supportdetails.jsp"%>
 											  </div>
 											  <div class="row"  id="supportStatus" style="width:850px;">
 												  <%--我支持的--%>
@@ -270,47 +274,13 @@
 												  </div>
 											  </div>
 
-
-									
 					                      </div>
 										  <!-- 我关注的 -->
-					                      <div role="tabpanel" class="tab-pane fade" id="Section2">
-					                         <div class="row" style="width:850px;">
-					                            	<table class="table table-bordered" style="margin-left: 5px;">
-					                            		<tr align="center" >
-					                            			<th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
-					                            			<th style="text-align:center"><span style="color: #000000;">支持人数</span></th>
-					                            			<th style="text-align:center"><span style="color: #000000;">关注人数</span></th>
-					                            			<th style="text-align:center"><span style="color: #000000;">操作</span></th>
-					                            		</tr>
-					                            		<tr class="data" align="center">
-					                            			<td class="id"><span style="color: #000000;">${items.id}</span></td>
-					                            			<td><span style="color: #000000;">${items.name}</span></td>
-					                            			<td><span style="color: #000000;">${items.detail}</span></td>
-					                            			<td>
-					                            				<a href="" class="btn btn-danger">取消关注</a>
-					                            			</td>
-					                            		</tr>
-					                            		
-					                            		<tr align="center">
-					                            			<td colspan="8">
-					                            				<input class="btn btn-success" type="button" value="首页"
-					                            					   onclick=""/>&nbsp;&nbsp;
-					                            				<input class="btn btn-success" type="button" id="pre" value="上一页"
-					                            					   onclick=""/>&nbsp;&nbsp;
-					                            				<!-- 当前页 -->
-					                            				<input type="text" id="pageNow" value="1" style="text-align:center"/>&nbsp;&nbsp;
-					                            				<input class="btn btn-success" type="button" value="跳转"
-					                            					   onclick=""/>&nbsp;&nbsp;
-					                            				<input class="btn btn-success" type="button" id="next" value="下一页"
-					                            					   onclick=""/>&nbsp;&nbsp;
-					                            				<input class="btn btn-success" type="button" value="末页"
-					                            					   onclick=""/>&nbsp;&nbsp;
-					                            			</td>
-					                            		</tr>
-					                            	</table>
-					                            </div>
-					                         </div>
+                                          <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                              <div class="myLike" style="height: 1000px">
+                                                  <%@ include file="personLike.jsp" %>
+                                              </div>
+                                          </div>
 										  <!-- 我发起的 -->
 					                      <div role="tabpanel" class="tab-pane fade" id="Section3">
 					                         <!-- 选择按钮 -->
@@ -513,7 +483,7 @@
 		</div>
 	
 		<!-- 旋转按钮 -->
-		<div id='ss_menu'>
+		<%--<div id='ss_menu'>
 		  <div>
 		    <i class="fa fa-qq"><a href="">首页</a></i>
 		  </div>
@@ -532,7 +502,7 @@
 		      <div class='bar'></div>
 		    </div>
 		  </div>
-		</div>
+		</div>--%>
 	</body>
 	<!-- <script src='../more/20/jquery-2.1.0.min.js'></script> -->
 	<!-- 先引入jQuery核心js文件 -->
@@ -543,7 +513,7 @@
 	<!-- 竖状table -->
 	<script src="${pageContext.request.contextPath}/js/shuzhuangtable.js"></script>
 	<!-- 旋转按钮 -->
-	<script src="${pageContext.request.contextPath}/js/xuanzhuanbutton.js"></script>
+<%--	<script src="${pageContext.request.contextPath}/js/xuanzhuanbutton.js"></script>--%>
 	<!-- 分类按钮 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/hoverSlippery.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/fenleibutton.js"></script>
@@ -555,6 +525,11 @@
 
 	<script src="${pageContext.request.contextPath}/js/viewMyOrders.js"></script>
 	<script src="${pageContext.request.contextPath}/js/viewMyOrdersStatus.js"></script>
+
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>
+
 
 	<script>
 
@@ -613,7 +588,7 @@
 			$("#supportStatus").hide();
 			$("#support").show();
 			$.ajax({
-				url:"${path}/project?method=viewMyOrders",
+				url:"/project?method=viewMyOrders"
 				success:function (data){
 					$("#support").html(data);
 				}
@@ -645,6 +620,112 @@
 				}
 			});
 		}
+
+
+		//下一页
+		function next(pageNow,query1,query2,query3,query4) {
+			$.ajax({
+				type:"get",
+				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+				success:function (content) {
+					$("#support").html(content);
+				}
+			})
+		};
+		//上一页
+		function first(pageNow,query1,query2,query3,query4) {
+			$.ajax({
+				type:"get",
+				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+				success:function (content) {
+					$("#support").html(content);
+
+				}
+			})
+		};
+		//当前页
+		function curr(pageNow,query1,query2,query3,query4) {
+			$.ajax({
+				type:"get",
+				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+				success:function (content) {
+					$("#support").html(content);
+
+				}
+			})
+		};
+
+
+
+			/*window.onload=myfunction;*/
+			//我的关注
+			function myfunction(){
+				$.ajax({
+					url:"${path}/product?method=selectAllItemsByUid",
+					success:function (data){
+						$(".myLike").html(data);
+					}
+				})
+			}
+
+			//下一页
+			function next1(pageNow,query1,query2,query3,query4) {
+				$.ajax({
+					type:"get",
+					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					success:function (content) {
+						$(".myLike").html(content);
+
+					}
+				})
+			}
+
+			//上一页
+			function first1(pageNow,query1,query2,query3,query4) {
+				$.ajax({
+					type:"get",
+					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					success:function (content) {
+						$(".myLike").html(content);
+
+					}
+				})
+			}
+
+			//当前页
+			function curr1(pageNow,query1,query2,query3,query4) {
+				$.ajax({
+					type:"get",
+					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					success:function (content) {
+						$(".myLike").html(content);
+
+					}
+				})
+			}
+
+			//点击取消关注
+			function deleteLike(aid) {
+				$.ajax({
+					url:"${path}/product?method=deleteLike",
+					data:{"aid":aid},
+					type:"post",
+					success:function (data) {
+						$(".myLike").html(data);
+						fulsh2();
+					}
+				})
+			}
+
+			function fulsh2() {
+				$.ajax({
+					url:"${path}/product?method=selectAllItemsByUid",
+					success:function (data) {
+						$(".myLike").html(data);
+					}
+				})
+			}
+
 
 
 

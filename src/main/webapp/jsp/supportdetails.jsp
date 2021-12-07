@@ -5,17 +5,22 @@
 <%--我支持的--%>
 <table class="table table-bordered" style="margin-left: 5px;">
     <tr align="center" >
-        <th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
+        <th style="text-align:center"><span style="color: #000000;">操作</span> </th>
         <th style="text-align:center"><span style="color: #000000;">支持日期</span></th>
         <th style="text-align:center"><span style="color: #000000;">支持金额(元)</span></th>
         <th style="text-align:center"><span style="color: #000000;">回报数量</span></th>
         <th style="text-align:center"><span style="color: #000000;">交易状态</span></th>
         <th style="text-align:center"><span style="color: #000000;">商品图片</span></th>
-        <th style="text-align:center"><span style="color: #000000;">操作</span></th>
+        <th style="text-align:center"><span style="color: #000000;">项目信息</span></th>
     </tr>
 
     <c:forEach items="${vo.list}" var="product">
     <tr class="data" align="center">
+        <td>
+            <a href="javascript:void(0)" class="btn btn-info"  onclick="showOrder()" data-toggle="modal" data-target="#myModal2"><input type="text" id="uid" value="${product.ordernum}" hidden>详情</a>
+            <br />
+            <a href="javascript:void(0)"   class="btn btn-danger"  data-toggle="modal" data-target="#myModal"><input type="text" id="oid" hidden value="${product.ordernum}">删除</a>
+        </td>
         <td class="id">${product.items.name}</td>
         <td>${product.createdate}</td>
         <td>${product.money}</td>
@@ -29,12 +34,7 @@
         <td><img src="${path}/${product.items.pimgs}" width="64px" height="auto"></td>
             <%--<img src="${item.pic}" width="64px" height="auto"/>--%>
 
-        <td>
-            <a href="javascript:void(0)" class="btn btn-info"  onclick="showOrder()" data-toggle="modal" data-target="#myModal2"><input type="text" id="uid" value="${product.ordernum}" hidden>详情</a>
-            <br />
-            <a href="javascript:void(0)"   class="btn btn-danger"  data-toggle="modal" data-target="#myModal"><input type="text" id="oid" hidden value="${product.ordernum}">删除</a>
 
-        </td>
     </tr>
     </c:forEach>
 </table>

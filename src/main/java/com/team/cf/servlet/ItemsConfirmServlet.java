@@ -3,6 +3,7 @@ package com.team.cf.servlet;
 import com.team.cf.entity.Member;
 import com.team.cf.service.MemberService;
 import com.team.cf.service.impl.MemberServiceImpl;
+import com.team.cf.utils.MD5Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +22,10 @@ public class ItemsConfirmServlet extends BasicServlet {
         String loginacct = request.getParameter("loginacct");
 
         if(userpswd!=null&& !userpswd.trim().equals("")&&loginacct!=null&& !loginacct.trim().equals("")){
+            String pwd = MD5Utils.md5(userpswd);
+
             //执行确认
-            Member member = service.confirm(loginacct, userpswd);
+            Member member = service.confirm(loginacct, pwd);
             if(member!=null){
                 //跳转到完成页面
                 request.getRequestDispatcher(request.getContextPath()+"/jsp/complete.jsp").forward(request,response);
