@@ -54,16 +54,16 @@
 			<div id="subMenu" class="subMenu">
 
 				<ul>
-					<li>  <%--${pageContext.request.contextPath}/product?method=index--%>
+					<li>
 						<a href="#" class="pos1">
 							<span class="menuPreview"></span>
 							<span class="menuImage"></span>
 						</a>
 						<div class="menuDescription">
-							<h2>￥9</h2>
+							<h2>￥1</h2>
 							<!-- <h3>The Preliminaries</h3> -->
 							<p class="p2">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${aReturn.content}*1
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
 							</p>
 							<p>
 							<ul class="subNav">
@@ -72,7 +72,7 @@
 								<li><span class="p1">目标金额：${items.money}元</span></li>
 								<li><span class="p1">筹资天数：${items.day}天</span></li>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=9&rcount=1">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=1">支持</a>
 							</ul>
 							</p>
 
@@ -84,10 +84,10 @@
 							<span class="menuImage"></span>
 						</a>
 						<div class="menuDescription">
-							<h2>￥19</h2>
+							<h2>￥149</h2>
 							<!-- <h3>The Fighting Men of 1870</h3> -->
 							<p class="p2">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${aReturn.content}*2
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
 							</p>
 							<p>
 							<ul class="subNav">
@@ -96,7 +96,7 @@
 							<li><span class="p1">目标金额：${items.money}元</span></li>
 							<li><span class="p1">筹资天数：${items.day}天</span></li>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=19&rcount=2">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=149">支持</a>
 							</ul>
 							</p>
 						</div>  <!-- end menuDescription div -->
@@ -107,10 +107,10 @@
 							<span class="menuImage"></span>
 						</a>
 						<div class="menuDescription">
-							<h2>￥29</h2>
+							<h2>￥249</h2>
 
 							<p class="p2">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${aReturn.content}*3
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
 							</p>
 							<p>
 							<ul class="subNav">
@@ -119,7 +119,7 @@
 							<li><span class="p1">目标金额：${items.money}元</span></li>
 							<li><span class="p1">筹资天数：${items.day}天</span></li>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=29&rcount=3">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=249">支持</a>
 							</ul>
 							</p>
 						</div>  <!-- end menuDescription div -->
@@ -130,10 +130,10 @@
 							<span class="menuImage"></span>
 						</a>
 						<div class="menuDescription">
-							<h2 >￥39</h2>
+							<h2 >￥549</h2>
 
 							<p class="p2">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${aReturn.content}*4
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
 							</p>
 							<p>
 							<ul class="subNav">
@@ -142,7 +142,7 @@
 							<li><span class="p1">目标金额：${items.money}元</span></li>
 							<li><span class="p1">筹资天数：${items.day}天</span></li>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=39&rcount=4">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=549">支持</a>
 							</ul>
 							</p>
 						</div>  <!-- end menuDescription div -->
@@ -153,10 +153,10 @@
 							<span class="menuImage"></span>
 						</a>
 						<div class="menuDescription">
-							<h2>￥49</h2>
+							<h2>￥1999</h2>
 							<!-- <h3>Battle Narratives of 1870-71</h3> -->
 							<p>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${aReturn.content}*5
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${items.remark}
 							</p>
 							<p>
 							<ul class="subNav">
@@ -165,7 +165,7 @@
 							<li><span class="p1">目标金额：${items.money}元</span></li>
 							<li><span class="p1">筹资天数：${items.day}天</span></li>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=49&rcount=5">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=1999">支持</a>
 							</ul>
 							</p>
 						</div>  <!-- end menuDescription div -->
@@ -204,5 +204,4 @@
 
 		} );
 	</script>
-
 </html>

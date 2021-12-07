@@ -1,19 +1,14 @@
 package com.team.cf.servlet;
 
-import com.google.gson.Gson;
 import com.team.cf.entity.Great;
 import com.team.cf.entity.Items;
 import com.team.cf.entity.Member;
 
-import com.team.cf.entity.ProjectReturn;
 import com.team.cf.service.GreatService;
 
-import com.team.cf.service.ProjectReturnService;
 import com.team.cf.service.impl.GreatServiceImpl;
 import com.team.cf.service.impl.ItemsServiceImpl;
 
-import com.team.cf.service.impl.MemberServiceImpl;
-import com.team.cf.service.impl.ProjectReturnServiceImpl;
 import com.team.cf.vo.PageVo;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -39,8 +33,6 @@ public class ItemsServlet extends BasicServlet {
 
     private ItemsServiceImpl itemsService = new ItemsServiceImpl();
     private GreatService greatService = new GreatServiceImpl();
-    private ProjectReturnService returnService = new ProjectReturnServiceImpl();
-    private MemberServiceImpl memberService = new MemberServiceImpl();
 
     //展示首页项目
     public void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,15 +41,6 @@ public class ItemsServlet extends BasicServlet {
         List<Items> productsView = itemsService.viewAllItems();
         System.out.println(1);
         System.out.println(productsView);
-        for (Items items : productsView) {
-            int percentage = (int) (items.getSupportmoney()/items.getMoney()*100);
-            if (percentage>=100){
-                items.setCompletion(100);
-                items.setStatus(1);
-            }else {
-                items.setCompletion(percentage);
-            }
-        }
         request.setAttribute("productsView",productsView);
 
         //跳转至首页
@@ -110,15 +93,6 @@ public class ItemsServlet extends BasicServlet {
 
         //执行分页的业务逻辑
         PageVo<Items> vo = itemsService.findAllProducts(cid, pname,status,sort_id, pageNow);
-        for (Items items : vo.getList()) {
-            int percentage = (int) (items.getSupportmoney()/items.getMoney()*100);
-            if (percentage>=100){
-                items.setCompletion(100);
-                items.setStatus(1);
-            }else {
-                items.setCompletion(percentage);
-            }
-        }
         System.out.println("vo="+vo);
         request.setAttribute("vo",vo);
         request.getRequestDispatcher(request.getContextPath() + "/jsp/moreItems.jsp").forward(request, response);
@@ -162,15 +136,6 @@ public class ItemsServlet extends BasicServlet {
         //执行分页的业务逻辑
         // PageVo<Items> vo = itemsService.findAllProducts(null, pname,null,null, pageNow);
         PageVo<Items> vo = itemsService.showAll(cid, pname,status,sort_id, pageNow);
-        for (Items items : vo.getList()) {
-            int percentage = (int) (items.getSupportmoney()/items.getMoney()*100);
-            if (percentage>=100){
-                items.setCompletion(100);
-                items.setStatus(1);
-            }else {
-                items.setCompletion(percentage);
-            }
-        }
 
         request.setAttribute("vo",vo);
         request.getRequestDispatcher(request.getContextPath()+"/jsp/more.jsp").forward(request,response);
@@ -196,13 +161,6 @@ public class ItemsServlet extends BasicServlet {
 
         //执行业务
         Items items = itemsService.findProductById(pid);
-        int percentage = (int) (items.getSupportmoney()/items.getMoney()*100);
-        if (percentage>=100){
-            items.setCompletion(100);
-            items.setStatus(1);
-        }else {
-            items.setCompletion(percentage);
-        }
         System.out.println("items="+items.toString());
         request.setAttribute("product",items);
         request.setAttribute("pname",pname);
@@ -240,20 +198,10 @@ public class ItemsServlet extends BasicServlet {
             uid = member.getId();
         }
 
+
         //执行业务
         Items item = itemsService.findItemsById(aid);
         System.out.println("item = "+item);
-        //查询发起人信息
-        Member memberById = memberService.findMemberById(item.getMemberid());
-
-        //百分比
-        int percentage = (int) (item.getSupportmoney()/item.getMoney()*100);
-        if (percentage>=100){
-            item.setCompletion(100);
-            item.setStatus(1);
-        }else {
-            item.setCompletion(percentage);
-        }
         Date now =new Date();
         Date deploydate = item.getDeploydate();
         long nowTime = now.getTime();
@@ -270,7 +218,8 @@ public class ItemsServlet extends BasicServlet {
 
         request.setAttribute("item",item);
         request.setAttribute("userLike",userLike);
-        request.setAttribute("memberById",memberById);
+
+
 
 
         //跳转至商品详情页
@@ -290,10 +239,7 @@ public class ItemsServlet extends BasicServlet {
 
         //执行业务
         Items items = itemsService.findProductById(id);
-        ProjectReturn aReturn = returnService.findReturn(items.getId());
-
         request.setAttribute("items",items);
-        request.setAttribute("aReturn",aReturn);
         request.setAttribute("name",name);
         System.out.println("lijizhichi items="+items);
         request.getRequestDispatcher("jsp/support.jsp").forward(request,response);
@@ -301,69 +247,4 @@ public class ItemsServlet extends BasicServlet {
 
 
 
-    //通过人id和商品id查找商品信息  个人中心我的关注
-    protected void selectAllItemsByUid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("selectAllItemsByUid执行了");
-
-        int uid  = 0;
-        //获取会话信息
-        HttpSession session = request.getSession();
-        Member member = (Member)session.getAttribute("member");
-        if (member!=null){
-            System.out.println("此人已登录");
-            uid = member.getId();
-        }
-        System.out.println("uid = "+uid);
-        String page = request.getParameter("pageNow");
-        System.out.println("当前页 page = "+page);
-
-        //page 分页查询
-        int pageNow = 0;
-        if (page==null){
-            pageNow = 1; //默认查询第一页
-        }else {
-            pageNow = Integer.parseInt(page);
-        }
-
-        PageVo<Items> pageVo = itemsService.selectAllItemsByUid(uid, pageNow);
-        System.out.println("vo="+pageVo);
-        request.setAttribute("pageVo",pageVo);
-        request.getRequestDispatcher(request.getContextPath()+"/jsp/personLike.jsp").forward(request,response);
-    /*
-        //创建Gson对象
-        Gson gson = new Gson();
-        //将数据封装进Gson中
-        String str = gson.toJson(pageVo);
-        //将json数据，响应至客户端
-        PrintWriter out = response.getWriter();
-        out.write(str);
-        out.flush();
-        out.close();
-*/
-
-    }
-
-    //取消关注商品
-    protected void deleteLike(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //商品id
-        int aid = Integer.parseInt(request.getParameter("aid"));
-        System.out.println("商品id aid = "+aid);
-        int uid  = 0;
-        //获取会话信息
-        HttpSession session = request.getSession();
-        Member member = (Member)session.getAttribute("member");
-        if (member!=null){
-            System.out.println("此人已登录");
-            uid = member.getId();
-        }
-        System.out.println("人id uid = "+uid);
-
-        boolean flag = greatService.deleteGreat(aid, uid);
-        System.out.println("有没有删除成功 flag = "+flag);
-        if (flag) {
-            request.setAttribute("flag",flag);
-            response.sendRedirect(request.getContextPath()+"/jsp/personLike.jsp");
-        }
-
-    }
 }

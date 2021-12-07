@@ -28,11 +28,7 @@ public class FormServiceImpl implements FormService {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                DataSourceUtils.closeConnection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            JDBCUtils.close();
         }
         return false;*/
         try {
@@ -85,11 +81,7 @@ public class FormServiceImpl implements FormService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                DataSourceUtils.closeConnection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            JDBCUtils.close();
         }
         return id;
     }*/
@@ -103,11 +95,7 @@ public class FormServiceImpl implements FormService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                DataSourceUtils.closeConnection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            JDBCUtils.close();
         }
         return realname;
     }
@@ -120,11 +108,7 @@ public class FormServiceImpl implements FormService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                DataSourceUtils.closeConnection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            JDBCUtils.close();
         }
         return id;
     }

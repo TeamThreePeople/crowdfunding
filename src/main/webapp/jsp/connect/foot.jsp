@@ -10,7 +10,7 @@
 <!-- 尾部 -->
 <div class="container" style="margin-top: 75px;padding: 0px;width: 1250px;height: auto;">
     <div class="row" >
-        <nav class="navbar navbar-inverse" style="position: absolute;height: 200px;width: 99%;color: pink;bottom: -273px;">
+        <nav class="navbar navbar-inverse" style="height: 200px;color: pink;">
             <div class="container-fluid">
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <!--友情链接-->

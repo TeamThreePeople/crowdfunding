@@ -5,7 +5,6 @@ import com.team.cf.entity.Member;
 
 import com.team.cf.service.MemberService;
 import com.team.cf.service.impl.MemberServiceImpl;
-import com.team.cf.utils.MD5Utils;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
@@ -41,9 +40,6 @@ public class MemberServlet extends BasicServlet {
 
 
         if(username!=null&&password!=null&& !username.equals("") && !password.equals("")){
-            //需要对密码MD5处理一下
-            password = MD5Utils.md5(password);
-
             Member member = service.login(username, password);
 
             if(member!=null){
@@ -113,10 +109,7 @@ public class MemberServlet extends BasicServlet {
         String email = request.getParameter("email");
         System.out.println("email = "+email);
 
-        //密码设置MD5处理
-        String newPassword = MD5Utils.md5(password);
-
-        Member member = new Member(name,newPassword,email);
+        Member member = new Member(name,password,email);
 
         //实例，MAP<实例名字>
         //BeanUtils.populate(member, parameterMap);

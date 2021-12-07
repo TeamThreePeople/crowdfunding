@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -223,8 +222,8 @@
 					              <div class="tab" role="tabpanel" style="position: absolute;">
 					                  <!-- Nav tabs -->
 					                  <ul class="nav nav-tabs" role="tablist" style="margin-left: 25px;">
-					                      <li role="presentation" class="active"><a href="#Section1" id="supportbtn" aria-controls="home" role="tab" data-toggle="tab">我支持的</a></li>
-					                      <li role="presentation"><a href="#Section2" onclick="myfunction()" aria-controls="profile" role="tab" data-toggle="tab">我关注的</a></li>
+					                      <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">我支持的</a></li>
+					                      <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">我关注的</a></li>
 					                      <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">我发起的</a></li>
 										  <button type="button"  style="width: 100px;height: 40px;margin-top: 2px;margin-left: 360px;border-radius: 4px;border: lightgrey solid 1px ;background-color: rgb(240,173,78);color: white;font-weight: 800;"><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起众筹</a></button>
 									  </ul>
@@ -234,55 +233,101 @@
 										  <div role="tabpanel" class="tab-pane fade in active" id="Section1">
 											  <!-- 选择按钮 -->
 											  <nav class="nav default" style="margin-left: 10px;margin-top: -5px;">
-												<ul id="l1">
-												  <li class="nav__item active" value="3"><a  id="orderAll"><span style="color: #000000;">全部的众筹</span> </a> </li>
-												  <li class="nav__item " value="1"><a  id="Paid"><span style="color: #000000;">已支付</span></a></li>
-												  <li class="nav__item" value="0"><a  id="unpaid"><span style="color: #000000;">未支付</span></a></li>
+												<ul>
+												  <li class="nav__item "><a href="#"><span style="color: #000000;">全部的众筹</span> </a> </li>
+												  <li class="nav__item active"><a href="#"><span style="color: #000000;">已经支持</span></a></li>
+												  <li class="nav__item"><a href="#"><span style="color: #000000;">未支付</span></a></li>
 												</ul>
 											  </nav>
 					                          
 											  <!-- 分页数据 -->
-											  <div class="row"  id="support" style="width:850px;">
-												<%--我支持的--%>
-														<%@ include file="supportdetails.jsp"%>
+											  
+											    <div class="row" style="width:850px;">
+											  	<table class="table table-bordered" style="margin-left: 5px;">
+											  		<tr align="center" >
+											  			<th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
+											  			<th style="text-align:center"><span style="color: #000000;">支持日期</span></th>
+											  			<th style="text-align:center"><span style="color: #000000;">支持金额(元)</span></th>
+											  			<th style="text-align:center"><span style="color: #000000;">回报数量</span></th>
+											  			<th style="text-align:center"><span style="color: #000000;">交易状态</span></th>
+											  			<th style="text-align:center"><span style="color: #000000;">商品图片</span></th>
+											  			<th style="text-align:center"><span style="color: #000000;">操作</span></th>
+											  		</tr>
+											  		<tr class="data" align="center">
+											  			<td class="id">信息</td>
+														<td>日期<%--<fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd"/>--%></td>
+														<td>金额</td>
+														<td>数量</td>
+														<td>状态</td>
+											  			<td>图片
+<%--											  				<img src="${item.pic}" width="64px" height="auto"/>--%>
+											  			</td>
+											  			<td>
+											  				<a href="javascript:void(0)" class="btn btn-info" onclick="${pageContext.request.contextPath}/product?method=findItemsById&id=${products.id}">详情</a>
+															<br />
+											  				<a href="${path}/cart?method=delCartItem&id=${item.id}" class="btn btn-danger">删除</a>
+											  			</td>
+											  		</tr>
+											  		
+											  		<tr align="center">
+											  			<td colspan="8">
+											  				<input class="btn btn-success" type="button" value="首页"
+											  					   onclick=""/>&nbsp;&nbsp;
+											  				<input class="btn btn-success" type="button" id="pre" value="上一页"
+											  					   onclick=""/>&nbsp;&nbsp;
+											  				<!-- 当前页 -->
+											  				<input type="text" id="pageNow" value="1" style="text-align:center"/>&nbsp;&nbsp;
+											  				<input class="btn btn-success" type="button" value="跳转"
+											  					   onclick=""/>&nbsp;&nbsp;
+											  				<input class="btn btn-success" type="button" id="next" value="下一页"
+											  					   onclick=""/>&nbsp;&nbsp;
+											  				<input class="btn btn-success" type="button" value="末页"
+											  					   onclick=""/>&nbsp;&nbsp;
+											  			</td>
+											  		</tr>
+											  	</table>
 											  </div>
-											  <div class="row"  id="supportStatus" style="width:850px;">
-												  <%--我支持的--%>
-												  <%@ include file="orderstatus.jsp"%>
-											  </div>
-
-											  <!-- Modal 删除-->
-											  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-												  <div class="modal-dialog modal-sm" role="document" >
-													  <div class="modal-content">
-														  <div class="modal-header">
-															  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-															  <h4 class="modal-title" id="myModalLabel">警告</h4>
-														  </div>
-														  <div class="modal-body">
-															  确认删除订单吗？
-														  </div>
-														  <div class="modal-footer">
-															  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-															  <button type="button" id="del" class="btn btn-primary"  data-dismiss="modal">确定</button>
-														  </div>
-													  </div>
-												  </div>
-											  </div>
-
-
+											  		
 									
 					                      </div>
 										  <!-- 我关注的 -->
-
-										  <div role="tabpanel" class="tab-pane fade" id="Section2">
-											  <div class="myLike" style="height: 1000px">
-												  <%@ include file="personLike.jsp" %>
-											  </div>
-										  </div>
-
-
-
+					                      <div role="tabpanel" class="tab-pane fade" id="Section2">
+					                         <div class="row" style="width:850px;">
+					                            	<table class="table table-bordered" style="margin-left: 5px;">
+					                            		<tr align="center" >
+					                            			<th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
+					                            			<th style="text-align:center"><span style="color: #000000;">支持人数</span></th>
+					                            			<th style="text-align:center"><span style="color: #000000;">关注人数</span></th>
+					                            			<th style="text-align:center"><span style="color: #000000;">操作</span></th>
+					                            		</tr>
+					                            		<tr class="data" align="center">
+					                            			<td class="id"><span style="color: #000000;">${items.id}</span></td>
+					                            			<td><span style="color: #000000;">${items.name}</span></td>
+					                            			<td><span style="color: #000000;">${items.detail}</span></td>
+					                            			<td>
+					                            				<a href="" class="btn btn-danger">取消关注</a>
+					                            			</td>
+					                            		</tr>
+					                            		
+					                            		<tr align="center">
+					                            			<td colspan="8">
+					                            				<input class="btn btn-success" type="button" value="首页"
+					                            					   onclick=""/>&nbsp;&nbsp;
+					                            				<input class="btn btn-success" type="button" id="pre" value="上一页"
+					                            					   onclick=""/>&nbsp;&nbsp;
+					                            				<!-- 当前页 -->
+					                            				<input type="text" id="pageNow" value="1" style="text-align:center"/>&nbsp;&nbsp;
+					                            				<input class="btn btn-success" type="button" value="跳转"
+					                            					   onclick=""/>&nbsp;&nbsp;
+					                            				<input class="btn btn-success" type="button" id="next" value="下一页"
+					                            					   onclick=""/>&nbsp;&nbsp;
+					                            				<input class="btn btn-success" type="button" value="末页"
+					                            					   onclick=""/>&nbsp;&nbsp;
+					                            			</td>
+					                            		</tr>
+					                            	</table>
+					                            </div>
+					                         </div>
 										  <!-- 我发起的 -->
 					                      <div role="tabpanel" class="tab-pane fade" id="Section3">
 					                         <!-- 选择按钮 -->
@@ -296,8 +341,15 @@
 					                         </nav>
 					                         
 					                         <!-- 分页数据 -->
-					                         
-					                           <div class="row" style="width:850px;">
+											  <div class="row"  id="mysupport" style="width:850px;">
+												  <%--我支持的--%>
+												  <%@ include file="mysupport.jsp"%>
+											  </div>
+											  <div class="row"  id="mysupports" style="width:850px;">
+												  <%--我支持的--%>
+												  <%@ include file="mysupports.jsp"%>
+											  </div>
+					                         <%--  <div class="row" style="width:850px;">
 					                         	<table class="table table-bordered" style="margin-left: 5px;">
 					                         		<tr align="center" >
 					                         			<th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
@@ -306,9 +358,9 @@
 					                         			<th style="text-align:center"><span style="color: #000000;">操作</span></th>
 					                         		</tr>
 					                         		<tr class="data" align="center">
-					                         			<td class="id"><span style="color: #000000;">111</span></td>
-					                         			<td><span style="color: #000000;">111</span></td>
-					                         			<td><span style="color: #000000;">111</span></td>
+					                         			<td class="id"><span style="color: #000000;">${items.id}</span></td>
+					                         			<td><span style="color: #000000;">${items.name}</span></td>
+					                         			<td><span style="color: #000000;">${items.detail}</span></td>
 					                         			<td>
 					                         				<a href="" class="btn btn-danger" style="background-color: deeppink;border: darkgray;">项目预览</a><br>
 					                         				<a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp" class="btn btn-danger" style="background-color: blue;border: darkgray;">修改项目</a><br>
@@ -334,22 +386,15 @@
 					                         			</td>
 					                         		</tr>
 					                         	</table>
-					                         </div>
+					                         </div>--%>
 					                      </div>
 					                  </div>
 					              </div>
 					          
 					      </div>
 					  </div>
-
+					  		
 					</div>
-
-
-					<div  id="details">
-				<%--	<%@ include file="modaldetails.jsp"%>--%>
-					</div>
-
-
 					<div id="second">
 						<div class="icon big" style="margin-top: 300px;">
 							<svg viewBox="0 0 32 32">
@@ -399,7 +444,7 @@
 		</div>
 		
 		<!-- 尾部 -->
-		<div class="container" style="margin-top: 800px;padding: 0px;width: 1250px;height: auto;">
+		<div class="container" style="margin-top: 800px;padding: 0px;width: auto;height: auto;">
 			<div class="row" >
 				<nav class="navbar  navbar-inverse" style="height: 200px;color: pink;">
 				  <div class="container-fluid">
@@ -522,171 +567,7 @@
 	<!-- 折线图 -->
 	<script src="${pageContext.request.contextPath}/js/Chart.js"></script>
 	<script src="${pageContext.request.contextPath}/js/zhexiantu.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.popconfirm.js"></script>
-
-
-	<script src="${pageContext.request.contextPath}/js/viewMyOrders.js"></script>
-	<script src="${pageContext.request.contextPath}/js/viewMyOrdersStatus.js"></script>
-
-	<script>
-
-		$.ajax({
-			url:"${path}/project?method=viewMyOrders",
-			success:function (data){
-				$("#support").html(data);
-			}
-		});
-
-		$("#supportbtn").click(function (){
-			$.ajax({
-				url:"${path}/project?method=viewMyOrders",
-				success:function (data){
-					$("#support").html(data);
-				}
-			})
-		})
-
-
-		//订单详情
-		/*$('#myOrderModal').on('shown.bs.modal', function () {*/
-		$("#supportStatus").hide();
-			function showOrder(){
-				var oid = $("#uid").val();
-				$.ajax({
-					url:"${path}/project?method=orderDetails",
-					data:{"oid":oid},
-					success:function (data){
-						$("#details").html(data);
-						$("#myOrderModal").modal('show');
-					}
-				})
-			};
-		/*});*/
-
-
-		//订单支付状态
-		$(document).on('click','#l1 li',function (){
-			$("#support").hide();
-			$("#supportStatus").show();
-			$(this).addClass("active");
-			$(this).siblings().removeClass("active");
-			var status = $(this).val();
-			$.ajax({
-				url:"${path}/project?method=orderStatus&status="+status,
-				//data:{"cid":c_id},
-				success:function (data){
-					$("#supportStatus").html(data);
-				}
-			})
-
-		});
-
-		/*$("#orderAll").click(function (){
-			$("#supportStatus").hide();
-			$("#support").show();
-			$.ajax({
-				url:"${path}/project?method=viewMyOrders",
-				success:function (data){
-					$("#support").html(data);
-				}
-			})
-		});*/
-
-
-		//删除订单
-		$('#myModal').on('shown.bs.modal', function () {
-			$(document).on('click','#del',function (){
-				var oid = $("#oid").val();
-				$.ajax({
-					url:"${path}/project?method=delOrderItem",
-					data:{"oid":oid},
-					success:function (data){
-						$("#support").html(data);
-						flursh();
-					}
-				})
-			})
-		});
-
-		//刷新
-		function flursh(){
-			$.ajax({
-				url:"${path}/project?method=viewMyOrders",
-				success:function (data){
-					$("#support").html(data);
-				}
-			});
-		}
-
-		//我的关注
-		function myfunction(){
-			$.ajax({
-				url:"${path}/product?method=selectAllItemsByUid",
-				success:function (data){
-					$(".myLike").html(data);
-				}
-			})
-		}
-
-		//下一页
-		function next1(pageNow,query1,query2,query3,query4) {
-			$.ajax({
-				type:"get",
-				url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$(".myLike").html(content);
-
-				}
-			})
-		}
-
-		//上一页
-		function first1(pageNow,query1,query2,query3,query4) {
-			$.ajax({
-				type:"get",
-				url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$(".myLike").html(content);
-
-				}
-			})
-		}
-
-		//当前页
-		function curr1(pageNow,query1,query2,query3,query4) {
-			$.ajax({
-				type:"get",
-				url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$(".myLike").html(content);
-
-				}
-			})
-		}
-
-		//点击取消关注
-		function deleteLike(aid) {
-			$.ajax({
-				url:"${path}/product?method=deleteLike",
-				data:{"aid":aid},
-				type:"post",
-				success:function (data) {
-					$(".myLike").html(data);
-					fulsh2();
-				}
-			})
-		}
-
-		function fulsh2() {
-			$.ajax({
-				url:"${path}/product?method=selectAllItemsByUid",
-				success:function (data) {
-					$(".myLike").html(data);
-				}
-			})
-		}
-
-
-	</script>
-
 </html>
+<script>
+
+</script>

@@ -3,8 +3,9 @@ package com.team.cf.dao.impl;
 import com.team.cf.dao.BaseDao;
 import com.team.cf.dao.MemberDao;
 import com.team.cf.entity.Member;
-import com.team.cf.utils.DataSourceUtils;
+import com.team.cf.utils.JDBCUtils;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
         }else if(params.length==2){
             sql = "select * from t_member where loginacct = ? and userpswd = ?";
         }
-        Member member = this.getBean(DataSourceUtils.getConnection(),sql, Member.class, params);
+        Member member = this.getBean(sql, Member.class, params);
 
         System.out.println("member = "+ member);
         return member;
@@ -37,7 +38,7 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
     public Member selectOneById(Integer id) throws Exception {
         System.out.println("MemberDaoImpl selectOneById 查询");
         String sql = "select *from t_member where id = ?";
-        Member member = this.getBean(DataSourceUtils.getConnection(),sql, Member.class, id);
+        Member member = this.getBean(sql, Member.class, id);
         System.out.println("member = "+ member);
         return member;
     }
@@ -46,7 +47,7 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
     public Member ConfirmOne(Object... params) throws Exception {
         System.out.println("MemberDaoImpl 查询");
         String sql = "select * from t_member where loginacct = ? and userpswd = ?";
-        Member member = this.getBean(DataSourceUtils.getConnection(),sql, Member.class, params);
+        Member member = this.getBean(sql, Member.class, params);
         System.out.println("member = "+ member);
         return member;
     }
@@ -56,7 +57,7 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
     public int insertMember(Member member) throws Exception {
         System.out.println("MemberDaoImpl 插入");
         String sql = "insert into t_member values(default,?,?,?,?,0,?,?,?,?)";
-        int i = this.update(DataSourceUtils.getConnection(),sql,
+        int i = this.update(sql,
                 member.getLoginacct(), member.getUserpswd(), member.getUsername(), member.getEmail(),
                 member.getUsertype(), member.getRealname(), member.getCardnum(), member.getAccttype());
         System.out.println("MemberDaoImpl 中 insertMember 的 i = "+i);

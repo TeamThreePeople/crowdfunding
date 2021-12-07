@@ -12,16 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
-
-
 //使当前servlet支持文件上传功能
 @MultipartConfig
 @WebServlet(name = "ProjectReturnServlet",urlPatterns = "/projectReturn")
 public class ProjectReturnServlet extends BasicServlet {
     ProjectReturnService service=new ProjectReturnServiceImpl();
-
-    //发起项目
     protected void ProjectReturnForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //回报类型
         String type = request.getParameter("type");

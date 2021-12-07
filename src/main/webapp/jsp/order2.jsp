@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -129,8 +127,7 @@
 				</div>
 			</div>	
 		</div>
-
-
+		
 		<!-- 收货地址 -->
 		<div class="container" >
 			<div class="row">
@@ -138,12 +135,11 @@
 				<div  style="height:30px;left: 200px; border-left:solid orange 4px;"><span style="font-size: 20px;font-weight: bold;  color: orange; padding: 10px; text-align: center;">收货地址</span></div>
 			</div>
 		</div>
-
-	<form action="${path}/project?method=confirmOrder" method="post" id="validation-form">
+		
+		
 		<!-- 地址信息 -->
 		<div class="container" style="margin-top: 40px;">
 			<div class="row">
-
 				<table class="tb" >
 					
 					<!-- 收货人 -->
@@ -152,7 +148,7 @@
 						<td>
 							<div class="input-group" style="text-align: center;">
 								<span class="input-group-addon" id="sizing-addon2" ><span class="glyphicon glyphicon-user"></span></span>
-								<input type="text" name="username"  class="form-control" placeholder="Username" aria-describedby="sizing-addon2" style="width: 350px;">
+								<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2" style="width: 350px;">
 							</div>
 						</td>
 					</tr>
@@ -164,7 +160,7 @@
 						<td>
 							<div class="input-group" style="text-align: center;">
 								<span class="input-group-addon" id="sizing-addon2" ><span class="glyphicon glyphicon-earphone"></span></span>
-								<input type="text" name="phone" class="form-control" placeholder="Phone" aria-describedby="sizing-addon2" style="width: 350px;">
+								<input type="text" class="form-control" placeholder="Phone" aria-describedby="sizing-addon2" style="width: 350px;">
 							</div>
 						</td>
 					</tr>
@@ -175,7 +171,7 @@
 						<td>
 							<div class="input-group" style="text-align: center;">
 								<span class="input-group-addon" id="sizing-addon2" ><span class="glyphicon glyphicon-home"></span></span>
-								<input type="text"  name="address" class="form-control" placeholder="Address" aria-describedby="sizing-addon2" style="width: 600px;">
+								<input type="text" class="form-control" placeholder="Address" aria-describedby="sizing-addon2" style="width: 600px;">
 							</div>
 						</td>
 					</tr>
@@ -183,21 +179,20 @@
 					<tr>
 						<td colspan="2" align="center">
 							<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-						<%--	<button type="button" id="ad" class="btn btn-primary" >确认配送信息</button>--%>
+							<button type="button" class="btn btn-primary">确认配送信息</button>
 						</td>
 					</tr>
 				
-				</table>
-
+				</table>	
 			</div>
 		</div>
-
-
+		
+		
 		<!-- 发票信息 -->
 		<div class="container">
 			<div class="row">
 				<!-- 提示线、发票信息 -->
-				<div  style="height:30px;left: 200px; border-left:solid orange 4px;"><span style="font-size: 20px;font-weight: bold;  color: orange; padding: 10px; text-align: center;">发票信息</span></div>
+				<div  style="height:30px;left: 200px; border-left:solid orange 4px;"><span style="font-size: 20px;font-weight: bold;  color: orange; padding: 10px; text-align: center;">收货地址</span></div>
 			</div>
 		</div>
 		
@@ -225,7 +220,7 @@
 								<td>
 									<div class="input-group" style="text-align: center;">
 										<span class="input-group-addon" id="sizing-addon2" ><span class="glyphicon glyphicon-print"></span></span>
-										<input type="text" name="fapiaodetails" class="form-control" placeholder="Address" aria-describedby="sizing-addon2" style="width: 600px;">
+										<input type="text" class="form-control" placeholder="Address" aria-describedby="sizing-addon2" style="width: 600px;">
 									</div>
 								</td>
 							</tr>			
@@ -235,10 +230,9 @@
 				</div>
 			
 		</div>
-
-		<%--<button type="button" id="ad" class="btn btn-primary" >确认配送信息</button>--%>
-
-
+		
+		
+		
 		
 		
 		
@@ -265,19 +259,16 @@
 					 <th>配送费用</th>
 				 </tr>
 				 <tr >
-					 <td style="border: 1px solid #ddd; height: 100px;">${itemsName}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${userName}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${areturn}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${count}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">￥${price}</td>
-					 <c:if test="${freight eq 0}">
+					 <td style="border: 1px solid #ddd; height: 100px;">活性富氧净水直饮机</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">佘家涛</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">每满1750人抽取一台活性富氧净水直饮机</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">1</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">￥1.00</td>
 					 <td style="border: 1px solid #ddd; height: 100px;">免运费</td>
-					 </c:if>
-					 <c:if test="${freight ne 0}">
-						 <td style="border: 1px solid #ddd; height: 100px;">￥${freight}</td>
-					 </c:if>
 				 </tr>
 				</table>
+				
+				
 			</div>
 		</div>
 		
@@ -293,34 +284,28 @@
 			<div class="row">
 				<div class="" style="background-color: rgb(252,248,227); width: auto; height: 350px;">
 					
-					<span class="span_right" >支付金额：￥${price}</span><br>
-
-					<c:if test="${freight == 0}">
-					<span class="span_right">配送费用：免运费</span><br>
-					</c:if>
-					<c:if test="${freight != 0}">
-						<span class="span_right">配送费用：￥${freight}</span><br>
-					</c:if>
-
-					<h2><span >支付总金额：￥${total}</span></h2><br>
+					<span class="span_right" >支付金额：￥1.00</span><br>
+					<span class="span_right">配送费用：￥0.00</span><br>
+					<h2><span >支付总金额：￥1.00</span></h2><br>
 					<span class="span_right">请在下单后15分钟内付款，否则您的订单会被自动关闭。</span><br>
 					
 					<!-- 结算按钮 -->
 				<div class="row" style="text-align: right; margin: 5px; ">
 					<!-- Indicates caution should be taken with this action -->
-					<button type="submit"  id="" class="btn btn-warning"><span class="glyphicon glyphicon-credit-card"></span>立即付款</button>
+					<button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-credit-card"></span>立即付款</button>
 				</div>
 				
 				<span  class="">
 					<input type="checkbox" name="" id="" value="" style="font-size: 5px;"/>我已了解风险和规则
 				</span>
-
+				
+					
 				</div>
 				
 			</div>
 		</div>
 
-	</form>
+
 
 	<%@ include file="connect/foot.jsp" %>
 
@@ -332,20 +317,6 @@
 	
 	
 	<script >
-		$("#ad").click(function (){
-			//var formData = new FormData($('#validation-form')[0]);
-			$.ajax({
-				type:"post",
-				url:"${path}/project?method=confirmOrder",
-				data:$("#validation-form").serialize(),
-				sussess:function(){
-					alert("信息已保存");
-				}
-			})
-		});
-
-
-
 		$("#show").hide();
 		$('input:radio[name="fapiao"]').change(function(){
 			if($("#yes").is(":checked")){
@@ -357,7 +328,5 @@
 			}
 			
 		})
-
-
 	</script>
 

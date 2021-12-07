@@ -21,6 +21,8 @@ public interface MemberService {
 
     //登陆
 
+
+
     //用户名与密码是否匹配
     public Member confirm(String loginacct,String userpswd);
 
