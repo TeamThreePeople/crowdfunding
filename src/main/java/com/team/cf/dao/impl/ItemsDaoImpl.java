@@ -3,6 +3,7 @@ package com.team.cf.dao.impl;
 import com.team.cf.dao.BaseDao;
 import com.team.cf.dao.ItemsDao;
 import com.team.cf.entity.Items;
+import com.team.cf.utils.DataSourceUtils;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,7 +19,7 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
     @Override
     public List<Items> selectAllItems() throws SQLException {
         String sql = "select * from t_project limit 0,?";
-        List<Items> products = this.getBeanList(sql, Items.class, 4);
+        List<Items> products = this.getBeanList(DataSourceUtils.getConnection(),sql, Items.class, 4);
         return products;
     }
 
@@ -29,13 +30,13 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         Long value = 0L;
         if (cid == null && status==null && sort_id==null){//没有就查全部
             sql = "select count(*) from t_project where name like concat('%',?,'%')";
-            value = (Long)this.getSingleValue(sql,pname);
+            value = (Long)this.getSingleValue(DataSourceUtils.getConnection(),sql,pname);
         }else if (cid!=null && status==null ){//查id
             sql = "select count(*) from t_project where cid = ? and name like concat('%',?,'%')";
-            value = (Long)this.getSingleValue(sql,cid,pname);
+            value = (Long)this.getSingleValue(DataSourceUtils.getConnection(),sql,cid,pname);
         }else if (cid!=null && status!=null ){//查id和状态
             sql = "select count(*) from t_project where cid = ? and  status = ?  and  name like concat('%',?,'%')";
-            value = (Long)this.getSingleValue(sql,cid,status,pname);
+            value = (Long)this.getSingleValue(DataSourceUtils.getConnection(),sql,cid,status,pname);
         }
         return value;
     }
@@ -47,39 +48,39 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         List<Items> list = null;
         if (cid == null){
             sql = "select * from t_project where name like concat('%',?,'%') limit ?,8";
-            list = this.getBeanList(sql,Items.class,pname,begin);
+            list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,pname,begin);
         } else if (cid == null && pname==null){
             sql = "select * from t_project where name like concat('%',?,'%') limit ?,8";
-            list = this.getBeanList(sql,Items.class,pname,begin);
+            list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,pname,begin);
 
         } else if (cid!=null && status==null && sort_id==null){
-            sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
+            sql ="select p.* ,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? "+
                     "and p.name like concat('%',?,'%') limit ?,8";
-            list = this.getBeanList(sql,Items.class,cid,pname,begin);
+            list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,pname,begin);
         }else if (cid!=null && status!=null && sort_id==null){//众筹状态
             //and p.`status`=?"
-            sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
+            sql ="select p.*,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
                     "and p.name like concat('%',?,'%') limit ?,8";
-            list = this.getBeanList(sql,Items.class,cid,status,pname,begin);
+            list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
         }else if (cid!=null && status!=null && sort_id.equals("1")){//最新上线
-            sql ="select p.id,p.name,p.money ,p.pimgs ,p.deploydate,t.cname " +
+            sql ="select p.*,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
                     "and p.name like concat('%',?,'%') ORDER BY p.deploydate desc limit ?,8";
-            list = this.getBeanList(sql,Items.class,cid,status,pname,begin);
+            list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
 
         }else if (cid!=null && status!=null && sort_id.equals("2")){//金额最多
-            sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
+            sql ="select p.*,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
                     "and p.name like concat('%',?,'%') ORDER BY p.money desc limit ?,8";
-            list = this.getBeanList(sql,Items.class,cid,status,pname,begin);
+            list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
 
         }else if (cid!=null && status!=null && sort_id.equals("3")){//支持最多
-            sql ="select p.id,p.name,p.money ,p.pimgs ,p.supporter,t.cname " +
+            sql ="select p.*,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
                     "and p.name like concat('%',?,'%') ORDER BY p.supporter desc limit ?,8";
-            list = this.getBeanList(sql,Items.class,cid,status,pname,begin);
+            list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
         }
 
 
@@ -100,7 +101,7 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         String sql ="";
         List<Items> list = null;
             sql = "select * from t_project where name like concat('%',?,'%') limit ?,8";
-            list = this.getBeanList(sql,Items.class,pname,begin);
+            list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,pname,begin);
         return list;
     }
 
@@ -109,22 +110,56 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
     @Override
     public Items selectOneItems(String id) throws SQLException {
         String sql = "select * from t_project where id = ? ";
-        Items items = this.getBean(sql, Items.class, id);
+        Items items = this.getBean(DataSourceUtils.getConnection(),sql, Items.class, id);
         return items;
     }
 
+    //根据人id修改关注数量
     @Override
     public int modifyLikeNumerber(int id ,int count) throws SQLException {
         String sql = "update t_project set follower = ? where id = ?";
-        int i = this.update(sql,count,id);
+        int i = this.update(DataSourceUtils.getConnection(),sql,count,id);
         return i;
     }
 
     @Override
     public int selectLikeCount(int id) throws SQLException {
         String sql = "select follower from t_project where id = ?";
-        int i = (int)this.getSingleValue(sql, id);
+        int i = (int)this.getSingleValue(DataSourceUtils.getConnection(),sql, id);
         return i;
 
+    }
+
+    //通过订单编号，查询订单明细及商品信息
+    @Override
+    public Items selectItemAndProductByOid(String oid) throws SQLException {
+        System.out.println("通过订单编号，查询订单明细及商品信息:"+oid);
+        String sql = "select  * from t_order o,t_project p where o.projectid = p.id and o.ordernum = ?";
+        Items items = this.getBean(DataSourceUtils.getConnection(),sql, Items.class, oid);
+        return items;
+    }
+
+    //通过人id和商品id查找商品信息  个人中心我的关注
+    @Override
+    public List<Items> selectAllItemsByUid(int uid,int begin) throws SQLException {
+        String sql = "select p.* from great g ,t_project p , t_member m where g.uid =  m.id and g.aid = p.id and m.id = ? limit ?,2";
+        List<Items> list = this.getBeanList(DataSourceUtils.getConnection(),sql, Items.class, uid,begin);
+        return list;
+    }
+
+    //通过人id和商品id查找商品信息  个人中心我的关注  总数
+    @Override
+    public Long selectAllLikeItemsByUid(int uid) throws SQLException {
+        String sql = "select count(*) from great g ,t_project p , t_member m where g.uid =  m.id and g.aid = p.id and m.id = ? ";
+        Long count = (Long) this.getSingleValue(DataSourceUtils.getConnection(),sql, uid);
+        return count;
+    }
+
+    //通过pid修改当前商品金额&支持人数
+    @Override
+    public int modifyItemsMoney(int pid, int money, int count) throws SQLException {
+        String sql = "update t_project set supportmoney = ? ,supporter = ?  where id = ? ";
+        int i = this.update(DataSourceUtils.getConnection(), sql, money, count,pid);
+        return i;
     }
 }

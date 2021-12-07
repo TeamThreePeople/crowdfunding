@@ -11,11 +11,25 @@
 
 
 <!-- 分页产品 -->
-<div class="container" align="center" style="border: lightgray solid 1px;height: 500px;margin-top: 15px;">
+<div class="container" align="center" style="border: lightgray solid 1px;height: 555px;margin-top: 15px;">
     <div class="row" style="margin-top: 18px;padding: 0px;">
         <c:forEach items="${vo.list}" var="product">
             <div class="col-md-3" align="center" >
+                <a href="${path}/product?method=findItemsById&aid=${product.id}">
                 <img src="${path}/${product.pimgs}" style="width: 250px;height: 200px">
+                </a>
+                <p>
+                    <c:if test="${product.completion < 100}">
+                    <div class="progress" style="width: 97%;height: 10px;">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${product.completion}%"></div>
+                    </div>
+                    </c:if>
+                    <c:if test="${product.completion >= 100}">
+                    <div class="progress" style="width: 97%;height: 10px;">
+                        <div class="progress-bar progress-bar-danger " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${product.completion}%"></div>
+                    </div>
+                    </c:if>
+                </p>
                 <p style="color: #000000;">
                     <a href="${path}/product?method=findItemsById&aid=${product.id}" style="text-align: left;">${product.name}</a>
                 </p>
@@ -39,7 +53,7 @@
     <c:if test="${vo.list.size() ne 0}">
 
         <div class="col-md-12" style="text-align: center">
-            <ul class="pagination" style="position: absolute;top: -70px;left: 578px;">
+            <ul class="pagination" style="position: absolute;top: 208px;left: 578px;">
 
                     <%-- 若当前页码是第一页，则上一页按钮失效 --%>
                 <c:if test="${vo.pageNow eq 1}">
@@ -52,7 +66,7 @@
                 </c:if>
 --%>
                         <c:if test="${vo.pageNow ne 1}">
-                            <li ><a class="page-link" onclick="first('${vo.pageNow-1}','${vo.query1}','${vo.query2}','${vo.query3}','${vo.query4}')" aria-label='Previous' ><span aria-hidden="true">&laquo;</span></a></li>
+                            <li ><a class="page-link" onclick="first('${vo.pageNow-1}','${vo.query1}','${vo.query2}','${vo.query3}','${vo.query4}')" aria-label='Previous' ><span aria-hidden="true" style="cursor: pointer;">&laquo;</span></a></li>
                         </c:if>
 
                         <%--onclick="next('${vo.pageNow+1}','${vo.query1}','${vo.query2}','${vo.query3}','${vo.query4}')"--%>
@@ -67,7 +81,7 @@
                     </c:if>--%>
 
                     <c:if test="${vo.pageNow ne page}">
-                        <li ><a class="page-link" onclick="curr('${page}','${vo.query1}','${vo.query2}','${vo.query3}','${vo.query4}')" >${page}</a></li>
+                        <li ><a class="page-link" onclick="curr('${page}','${vo.query1}','${vo.query2}','${vo.query3}','${vo.query4}')" style="cursor: pointer;">${page}</a></li>
                     </c:if>
 
                 </c:forEach>
@@ -83,10 +97,8 @@
                 </c:if>--%>
                             <%-- 若当前页码不是最后一页，则可以点击下一页 --%>
                         <c:if test="${vo.pageNow ne vo.myPages}">
-                            <li ><a class="page-link" onclick="next('${vo.pageNow+1}','${vo.query1}','${vo.query2}','${vo.query3}','${vo.query4}')" ><span aria-hidden="true">&raquo;</span></a></li>
+                            <li ><a class="page-link" onclick="next('${vo.pageNow+1}','${vo.query1}','${vo.query2}','${vo.query3}','${vo.query4}')" ><span aria-hidden="true" style="cursor: pointer;">&raquo;</span></a></li>
                         </c:if>
-
-
 
             </ul>
         </div>

@@ -5,7 +5,7 @@
      <property name="driverClass">com.mysql.jdbc.Driver</property>
      <property name="jdbcUrl">jdbc:mysql://localhost:3306/crowdfunding?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai&amp;useSSL=false</property>
      <property name="user">root</property>
-     <property name="password">root</property>
+     <property name="password">123456</property>
       <!--当池中的连接不够时，一次创建多少个连接-->
       <property name="acquireIncrement">5</property>
       <!--初始时池中的连接-->
