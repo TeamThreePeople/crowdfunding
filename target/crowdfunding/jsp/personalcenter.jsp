@@ -356,7 +356,7 @@
 					                         			<td><span style="color: #000000;">${items.detail}</span></td>
 					                         			<td>
 					                         				<a href="" class="btn btn-danger" style="background-color: deeppink;border: darkgray;">项目预览</a><br>
-					                         				<a href="" class="btn btn-danger" style="background-color: blue;border: darkgray;">修改项目</a><br>
+					                         				<a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp" class="btn btn-danger" style="background-color: blue;border: darkgray;">修改项目</a><br>
 					                         				<a href="" class="btn btn-danger" style="background-color: purple;border: darkgray;">删除项目</a><br>
 					                         				<a href="" class="btn btn-danger" style="background-color: hotpink;border: darkgray;">问题管理</a><br>
 					                         			</td>

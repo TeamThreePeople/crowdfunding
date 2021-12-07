@@ -84,7 +84,7 @@ public class FormServlet extends BasicServlet {
                     }
                 }
 
-                session.setAttribute("type",type);
+               /* session.setAttribute("type",type);
                 session.setAttribute("itemsname",itemsname);
                 session.setAttribute("money",money);
                 session.setAttribute("moneyday",moneyday);
@@ -94,8 +94,7 @@ public class FormServlet extends BasicServlet {
                 session.setAttribute("email",email);
                 session.setAttribute("items",items);
 
-                request.getRequestDispatcher("jsp/itemsreturn.jsp").forward(request,response);
-                /*
+                request.getRequestDispatcher("jsp/itemsreturn.jsp").forward(request,response);*/
                 boolean flag = service.registerProjectForm(items);
                 System.out.println("flag = "+ flag);
 
@@ -121,7 +120,7 @@ public class FormServlet extends BasicServlet {
                 }else {
                     request.setAttribute("msg","发起失败");
                     request.getRequestDispatcher("jsp/notexist.jsp").forward(request,response);
-                }*/
+                }
                 //从数据库查不到名字叫。。的人
             }else{
                 request.setAttribute("msg","账户或邮箱错误，无法发起项目！！！");

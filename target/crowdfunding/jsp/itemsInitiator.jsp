@@ -55,7 +55,7 @@
 		<!-- 发起项目 -->
 		<div class="container" style="background-color: lightgoldenrodyellow;">
 			<div class="row" >
-				<div class="col-lg-3 " style="text-align: center;"><h3 ><span class="label label-success" >1.项目发起人信息</span></h3></div>
+				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-success" >1.项目发起人信息</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >2.回报设置</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >3.确认信息</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >4.完成</span></h3></div>

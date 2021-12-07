@@ -17,6 +17,15 @@ public class Member {
     private String cardnum;     // 身份证号码
     private String accttype;    //账户类型:0-企业，1-个体，2-个人，3-政府
 
+    private Items items;
+
+    public Items getItems() {
+        return items;
+    }
+
+    public void setItems(Items items) {
+        this.items = items;
+    }
 
     public Member() {
     }
