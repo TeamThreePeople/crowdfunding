@@ -1,5 +1,6 @@
+<%@ page import="com.team.cf.entity.Items" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8" isELIgnored="false" %>
+         pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -42,7 +43,7 @@
 	<body>
 
 
-	<%@ include file="connect/heard.jsp"%>>
+	<%@ include file="connect/heard.jsp"%>
 		
 		
 				
@@ -64,25 +65,25 @@
 			<div class="row">
 				<table class="table table-striped" >
 				 <tr style="text-align: center;">
-					 <th>序号</th>
-					 <th>支付金额</th>
+					 <th>项目名称</th>
+					 <th>支付金额/元</th>
 					 <th>名额限制</th>
 					 <th>单笔限购</th>
 					 <th>回报内容</th>
-					 <th>回报时间</th>
-					 <th>运费</th>
+					 <th>回报时间/项目结束X天后，向支持者发送回报</th>
+					 <th>运费/元</th>
 					 <th>操作</th>
 				 </tr>
 				 <tr >
-					 <td style="border: 1px solid #ddd; height: 100px;">1</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">￥1.00</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">无限制</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">1</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">1</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">项目结束后的30天</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">包邮</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${itemsname}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${pr.supportmoney}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${pr.count}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${pr.purchase}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${pr.content}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${pr.rtndate}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">${pr.freight}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;">
-						 <a href="#">修改</a>|<a href="#">删除</a>
+						 <a href="${pageContext.request.contextPath}/jsp/modifyreturn.jsp">修改</a><%--|<a href="#">删除</a>--%>
 					 </td>
 				 </tr>
 				</table>
@@ -103,7 +104,14 @@
 				<div id="show">
 				<form action="${pageContext.request.contextPath}/projectReturn?method=ProjectReturnForm&itemsid=${itemsid}" method="post" enctype="multipart/form-data">
 					<table class="tb" >
-						
+						<%
+							Object o = request.getAttribute("msg");
+							if(o!=null){
+						%>
+						<h2 style="color: red; text-align: center" ><%=o%></h2>
+						<%
+							}
+						%>
 						<!-- 回报类型 -->
 						<tr>
 							<td style="width: 300px;text-align: right;">回报类型</td>
@@ -162,7 +170,7 @@
 									<input type="radio" name="xiangou" id="yes" value="0" checked="checked" style="margin-left: 50px;"/>不限购
 									<input type="radio" name="xiangou" id="no" value="1"  style="margin-left: 50px;"/>限购
 									
-									<input type="text" id="show2" name="money" aria-describedby="sizing-addon2" style="width: 100px;">
+									<input type="text" id="show2" name="shuliang" aria-describedby="sizing-addon2" style="width: 100px;">
 									
 							</td>
 							
@@ -218,6 +226,7 @@
 				</div>
 				
 					<div class="row" style="margin-top: 50px;text-align: center;">
+						<button type="button" class="btn btn-warning"><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp<%--?key=update--%>">上一步</a></button>
 						<button type="button" class="btn btn-warning"><a href="${pageContext.request.contextPath}/jsp/itemsconfirm.jsp">下一步</a></button>
 					</div>
 				
@@ -228,6 +237,7 @@
 	
 	<!-- 先引入jQuery核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
+
 	<!-- 引入BootStrap核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script >

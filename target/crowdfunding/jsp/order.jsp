@@ -69,9 +69,9 @@
 					 <th>配送费用</th>
 				 </tr>
 				 <tr >
-					 <td style="border: 1px solid #ddd; height: 100px;">${items.name}</td><%--活性富氧净水直饮机--%>
+					 <td style="border: 1px solid #ddd; height: 100px;">${items.name}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;">${name}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${items.remark}</td><%--每满1750人抽取一台活性富氧净水直饮机--%>
+					 <td style="border: 1px solid #ddd; height: 100px;">${items.remark}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;"><input type="text" name="" id="" value=""  style="width: 35px;" /></td>
 					 <td style="border: 1px solid #ddd; height: 100px;">￥${count}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;">免运费</td>
@@ -83,7 +83,7 @@
 		<div class="container">
 
 			<!-- 总价 -->
-			<div class="row" style="text-align: right;"><%--拿到不同的项目对应的钱数--%>
+			<div class="row" style="text-align: right;">
 				<span >总价(含运费):￥${count}</span>
 			</div>
 			<!-- 结算按钮 -->

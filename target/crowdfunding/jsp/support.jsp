@@ -54,7 +54,7 @@
 			<div id="subMenu" class="subMenu">
 
 				<ul>
-					<li>  <%--${pageContext.request.contextPath}/product?method=index--%>
+					<li>
 						<a href="#" class="pos1">
 							<span class="menuPreview"></span>
 							<span class="menuImage"></span>
@@ -72,7 +72,7 @@
 								<li><span class="p1">目标金额：${items.money}元</span></li>
 								<li><span class="p1">筹资天数：${items.day}天</span></li>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=1">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=1">支持</a>
 							</ul>
 							</p>
 
@@ -96,7 +96,7 @@
 							<li><span class="p1">目标金额：${items.money}元</span></li>
 							<li><span class="p1">筹资天数：${items.day}天</span></li>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=149">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=149">支持</a>
 							</ul>
 							</p>
 						</div>  <!-- end menuDescription div -->
@@ -119,7 +119,7 @@
 							<li><span class="p1">目标金额：${items.money}元</span></li>
 							<li><span class="p1">筹资天数：${items.day}天</span></li>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=249">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=249">支持</a>
 							</ul>
 							</p>
 						</div>  <!-- end menuDescription div -->
@@ -142,7 +142,7 @@
 							<li><span class="p1">目标金额：${items.money}元</span></li>
 							<li><span class="p1">筹资天数：${items.day}天</span></li>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=549">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=549">支持</a>
 							</ul>
 							</p>
 						</div>  <!-- end menuDescription div -->
@@ -165,16 +165,16 @@
 							<li><span class="p1">目标金额：${items.money}元</span></li>
 							<li><span class="p1">筹资天数：${items.day}天</span></li>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--count表示当前项目的支持单价--%>
-								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=1&count=1999">支持</a>
+								<a class="support" href="${pageContext.request.contextPath}/project?method=findProjectById&id=${items.id}&count=1999">支持</a>
 							</ul>
 							</p>
 						</div>  <!-- end menuDescription div -->
 					</li>
---%>
+
 				</ul>
 			</div>  <!-- end subMenu div -->
 
-		<!-- end subMenu div -->--%>
+		<!-- end subMenu div -->
 		
 		<div class="shadowPic"></div>
 		

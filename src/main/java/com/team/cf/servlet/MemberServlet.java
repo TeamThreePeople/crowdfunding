@@ -41,9 +41,14 @@ public class MemberServlet extends BasicServlet {
 
         if(username!=null&&password!=null&& !username.equals("") && !password.equals("")){
             Member member = service.login(username, password);
+
             if(member!=null){
+
                 HttpSession session = request.getSession();
                 session.setAttribute("member",member);
+
+
+
                 //记住用户名
                 String remember = request.getParameter("remember");
                 if(remember!=null&&remember.trim().equals("remember")){

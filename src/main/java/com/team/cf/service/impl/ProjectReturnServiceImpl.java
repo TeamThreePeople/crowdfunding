@@ -29,4 +29,17 @@ public class ProjectReturnServiceImpl implements ProjectReturnService {
         }
         return false;
     }
+    //更新回报
+    @Override
+    public Boolean updateReturn(ProjectReturn pr) {
+        int i=0;
+        try {
+            i = prs.updateReturn(pr);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.close();
+        }
+        return i>0;
+    }
 }

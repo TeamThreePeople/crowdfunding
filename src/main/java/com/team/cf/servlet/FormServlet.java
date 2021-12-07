@@ -2,16 +2,15 @@ package com.team.cf.servlet;
 
 import com.team.cf.entity.Items;
 import com.team.cf.entity.Member;
+import com.team.cf.service.FormService;
 import com.team.cf.service.impl.FormServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,24 +18,31 @@ import java.util.UUID;
 @MultipartConfig
 @WebServlet(name = "FormServlet",urlPatterns = "/form")
 public class FormServlet extends BasicServlet {
-    FormServiceImpl service=new FormServiceImpl();
+    FormService service=new FormServiceImpl();
     protected void registerForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String name = request.getParameter("name");
+        System.out.println("registerForm执行了");
+        String loginacct = request.getParameter("loginacct");
         String email = request.getParameter("email");
 
-        Object memberid = service.selectIdByEmail(email);
-        String realname = service.selectRealNameByEmail(email);
+        //String realname = service.selectRealNameByEmail(email);
 
         System.out.println("email="+email);
-        System.out.println("realname="+realname);
-        System.out.println("name="+name);
-        System.out.println("memberid="+memberid);
-        System.out.println(Objects.equals(name,realname));
-        //用户id存在且真实姓名存在 说明发起人存在 允许发起众筹
-        if(memberid!=null && memberid!="" && realname!=null && !realname.equals("")){
+        //System.out.println("realname="+realname);
+        System.out.println("loginacct="+loginacct);
 
+       //账户邮箱不能为空
+        if(loginacct!=null&& !loginacct.equals("") &&email!=null&& !email.equals("")) {
+            Member member = service.selectOneByEmailAndLoginAcct(email, loginacct);
+            //发起人存在 允许发起众筹
+            if(member!=null){
+                //用户id
+                /*Object memberid = service.selectIdByLoginAcct(loginacct);
                 int id = Integer.parseInt(memberid.toString());
+                System.out.println("memberid="+memberid);
+                */
+                HttpSession session = request.getSession();
+                Member user = (Member)session.getAttribute("member");
+
                 //项目分类信息
                 String type = request.getParameter("type");
                 System.out.println("type = "+type);
@@ -52,9 +58,11 @@ public class FormServlet extends BasicServlet {
                 //项目详情
                 String itemsremark = request.getParameter("itemsremark");
                 System.out.println("itemsremark = "+itemsremark);
+
                 Items items=new Items(itemsname,itemsremark,(double)Integer.parseInt(money),Integer.parseInt(moneyday),Integer.parseInt(type));
                 //获取表单中上传的文件信息（先获取普通域，再获取文件上传的信息）
                 Part part = request.getPart("itemspicture");
+                String newName=null;
                 if(part!=null){
                     String oldName = part.getHeader("content-disposition");
                     //oldName = form-data; name="photo"; filename="car1.png"
@@ -63,17 +71,31 @@ public class FormServlet extends BasicServlet {
                     //实际有上传图片
                     if(oldName!=null && oldName.lastIndexOf(".")>0){
                         //制作新的名字 = 随机数 + 原图片的后缀名 .png
-                        String newName = UUID.randomUUID()+oldName.substring(oldName.lastIndexOf("."),oldName.length()-1);
+                        newName = UUID.randomUUID()+oldName.substring(oldName.lastIndexOf("."),oldName.length()-1);
 
                         //项目图片设置
                         items.setPimgs("itemsimgs/"+newName);
                         //发起人id
-                        items.setMemberid(id);
+                        items.setMemberid(user.getId());
+
                         //写出上传的图片，至图片服务器路径
                         part.write(request.getContextPath()+"\\itemsimgs"+newName);
                         System.out.println(request.getContextPath()+"\\itemsimgs"+newName);
                     }
                 }
+
+                session.setAttribute("type",type);
+                session.setAttribute("itemsname",itemsname);
+                session.setAttribute("money",money);
+                session.setAttribute("moneyday",moneyday);
+                session.setAttribute("picture",(request.getContextPath()+"\\itemsimgs"+newName));
+                session.setAttribute("itemsremark",itemsremark);
+                session.setAttribute("loginacct",loginacct);
+                session.setAttribute("email",email);
+                session.setAttribute("items",items);
+
+                request.getRequestDispatcher("jsp/itemsreturn.jsp").forward(request,response);
+                /*
                 boolean flag = service.registerProjectForm(items);
                 System.out.println("flag = "+ flag);
 
@@ -82,17 +104,49 @@ public class FormServlet extends BasicServlet {
                     int itemsid = service.selectIdByProjectName(itemsname);
                     System.out.println("itemsid="+itemsid);
                     request.setAttribute("itemsid",itemsid);
+                    request.getSession().setAttribute("itemsid",itemsid);
                     System.out.println("Items = " + items);
+
+                    session.setAttribute("type",type);
+                    session.setAttribute("itemsname",itemsname);
+                    session.setAttribute("money",money);
+                    session.setAttribute("moneyday",moneyday);
+                    session.setAttribute("picture",(request.getContextPath()+"\\itemsimgs"+newName));
+                    session.setAttribute("itemsremark",itemsremark);
+                    session.setAttribute("loginacct",loginacct);
+                    session.setAttribute("email",email);
+                    session.setAttribute("items",items);
+
                     request.getRequestDispatcher("jsp/itemsreturn.jsp").forward(request,response);
                 }else {
                     request.setAttribute("msg","发起失败");
                     request.getRequestDispatcher("jsp/notexist.jsp").forward(request,response);
-                }
-
-            //从数据库查不到名字叫。。的人
+                }*/
+                //从数据库查不到名字叫。。的人
+            }else{
+                request.setAttribute("msg","账户或邮箱错误，无法发起项目！！！");
+                request.getRequestDispatcher(request.getContextPath()+"/jsp/notexist.jsp").forward(request,response);
+            }
         }else{
-            request.setAttribute("msg","用户不存在，无法发起项目！！！");
+            request.setAttribute("msg","账户或邮箱为空，无法发起项目");
             request.getRequestDispatcher(request.getContextPath()+"/jsp/notexist.jsp").forward(request,response);
         }
+    }
+    //校验项目是否存在
+    public void validateName(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+
+        System.out.println("validatename执行了");
+        String itemsname = request.getParameter("itemsname");
+
+        System.out.println("itemsname = "+itemsname);
+        //true不可用  false可用
+        boolean flag = service.validateProjectName(itemsname);
+        System.out.println("flag = "+flag);
+        String msg = "{\"flag\":"+flag+"}";
+        PrintWriter out = response.getWriter();
+        out.write(msg);
+        out.flush();
+        out.close();
     }
 }
