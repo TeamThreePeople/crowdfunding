@@ -17,12 +17,13 @@ public class ProjectReturn {
     private Integer freight;//运费
     private String invoice;//0 -不开发票，1 -开发票
     private Integer rtndate;//回报时间,众筹成功后多少天进行回报
-
+    //一对一关联项目
+    private Items items;
 
     public ProjectReturn() {
     }
 
-    public ProjectReturn(Integer projectid, String type, Integer supportmoney, String content, Integer count, Integer signalpurchase, Integer freight, String invoice, Integer rtndate) {
+    public ProjectReturn(Integer projectid, String type, Integer supportmoney, String content, Integer count, Integer signalpurchase, Integer purchase, Integer freight, String invoice, Integer rtndate) {
 
         this.projectid = projectid;
         this.type = type;
@@ -31,6 +32,7 @@ public class ProjectReturn {
         this.content = content;
         this.count = count;
         this.signalpurchase = signalpurchase;
+        this.purchase = purchase;
 
         this.freight = freight;
         this.invoice = invoice;

@@ -45,9 +45,14 @@ public class MemberServlet extends BasicServlet {
             password = MD5Utils.md5(password);
 
             Member member = service.login(username, password);
+
             if(member!=null){
+
                 HttpSession session = request.getSession();
                 session.setAttribute("member",member);
+
+
+
                 //记住用户名
                 String remember = request.getParameter("remember");
                 if(remember!=null&&remember.trim().equals("remember")){
