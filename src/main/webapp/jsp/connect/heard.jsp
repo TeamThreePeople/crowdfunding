@@ -96,14 +96,14 @@
         })
     }
 
-    /*$(".menu-espanso").hide();
+    /*$(".menu-espanso").css("visibility","hidden");
     var flag = true;
     $(".liulan").click(function(){
         if(flag){
-            $(".menu-espanso").show();
+            $(".menu-espanso").css("visibility","visible");
             flag = false;
         }else{
-            $(".menu-espanso").hide();
+            $(".menu-espanso").css("visibility","hidden");
             flag = true;
         }
 

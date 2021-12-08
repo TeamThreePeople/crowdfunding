@@ -6,7 +6,6 @@
 			  top: 0px;
 			  right: 0px;
 			  overflow: hidden !important;
-			  z-index: 5;
 			}
 			
 			.menu,
@@ -23,12 +22,14 @@
 			  background-color: antiquewhite;
 			  border: none;
 			  transition: all 0.40s ease-out;
+				/*z-index: -5;*/
 			}
 			
 			.over {
 			  transform: scale(100);
 			  transition: all 0.350s ease-in;
 			  cursor: default;
+				/*z-index: 5;*/
 			}
 			
 			.linea1 {

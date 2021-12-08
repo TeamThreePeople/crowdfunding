@@ -504,7 +504,6 @@
 		  </div>
 		</div>--%>
 	</body>
-	<!-- <script src='../more/20/jquery-2.1.0.min.js'></script> -->
 	<!-- 先引入jQuery核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
 	
