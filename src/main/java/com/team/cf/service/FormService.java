@@ -10,10 +10,11 @@ import java.sql.SQLException;
 public interface FormService {
     //项目信息注册
     public boolean registerProjectForm(Items items);
+    //删除项目
+    public boolean delProjectForm(int pid);
     //通过账户查询id（关联项目）
     public Object selectIdByLoginAcct(String loginacct);
     //public boolean insertProjectReturn(ProjectReturn projectreturn);
-
     //通过email查询发起人真实姓名
     public String selectRealNameByEmail(String email);
 

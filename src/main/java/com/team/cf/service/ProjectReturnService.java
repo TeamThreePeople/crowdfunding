@@ -7,4 +7,7 @@ public interface ProjectReturnService  {
     public Boolean insertReturn(ProjectReturn pr);
     //更新信息
     public Boolean updateReturn(ProjectReturn pr);
+    //查询回报内容
+    public ProjectReturn findReturn(int pid);
+
 }

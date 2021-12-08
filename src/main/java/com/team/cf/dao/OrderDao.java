@@ -40,5 +40,6 @@ public interface OrderDao {
     public List<Orders> selectOrderStatus(int uid,int status, int begin) throws SQLException;
     //通过oid查询订单信息
     public Orders selectFindOrder(String oid) throws SQLException;
-
+    //通过uid，获取订全部单信息
+    public List<Orders> selectAllOrders(String uid) throws SQLException;
 }

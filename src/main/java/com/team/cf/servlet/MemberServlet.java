@@ -7,6 +7,7 @@ import com.team.cf.service.MemberService;
 import com.team.cf.service.impl.MemberServiceImpl;
 import com.team.cf.utils.MD5Utils;
 import org.apache.commons.beanutils.BeanUtils;
+import org.junit.jupiter.api.Test;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -78,7 +79,6 @@ public class MemberServlet extends BasicServlet {
 
     }
 
-
     //登出
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //销毁会话
@@ -93,8 +93,6 @@ public class MemberServlet extends BasicServlet {
         response.addCookie(passwordCookie);
         response.sendRedirect(request.getContextPath() + "/product?method=index");
     }
-
-
 
     //注册
     protected void register(HttpServletRequest request, HttpServletResponse response) throws InvocationTargetException, IllegalAccessException, IOException, ServletException {
@@ -169,4 +167,10 @@ public class MemberServlet extends BasicServlet {
 
         request.getRequestDispatcher("personalcenter.jsp").forward(request,response);
     }
+
+
+
+
+
+
 }

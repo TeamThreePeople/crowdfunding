@@ -97,6 +97,14 @@ public class OrderDaoImpl extends BaseDao<Orders> implements OrderDao {
         return Long.valueOf(value.toString());
     }
 
+    //通过uid，获取订全部单信息
+    @Override
+    public List<Orders> selectAllOrders(String uid) throws SQLException {
+        String sql = "select * from t_order where memberid = ?";
+        List<Orders> ordersList = this.getBeanList(DataSourceUtils.getConnection(), sql, Orders.class,uid);
+        return ordersList;
+    }
+
     //通过订单编号，查询订单明细及商品信息
     @Override
     public List<Map<String, Object>> selectItemAndProductByOid(String oid) throws SQLException {

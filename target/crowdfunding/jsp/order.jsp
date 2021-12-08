@@ -57,8 +57,10 @@
 		</div>
 		
 		<!-- 表格 -->
+		<form action="${path}/project?method=submitOrder" method="post" id="#validation-form" >
 		<div class="container">
 			<div class="row">
+
 				<table class="table table-striped" >
 				 <tr style="text-align: center;">
 					 <th>项目名称</th>
@@ -69,12 +71,18 @@
 					 <th>配送费用</th>
 				 </tr>
 				 <tr >
-					 <td style="border: 1px solid #ddd; height: 100px;">${items.name}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${name}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${items.remark}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;"><input type="text" name="" id="" value=""  style="width: 35px;" /></td>
-					 <td style="border: 1px solid #ddd; height: 100px;">￥${count}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">免运费</td>
+
+					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="itemsName" value="${items.name}"  hidden> ${items.name}</td><%--活性富氧净水直饮机--%>
+					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="userName" value="${name}"  hidden> ${name}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="areturn" value="${aReturn.content}"  hidden>${aReturn.content}</td><%--每满1750人抽取一台活性富氧净水直饮机--%>
+					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="count" id="count" value="${rcount}" hidden />${rcount}</td>
+					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="price" value="${count}"  hidden>￥${count}</td>
+					 <c:if test="${aReturn.freight==0}">
+						 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="freight" value="0"  hidden>免运费</td>
+					 </c:if>
+					 <c:if test="${aReturn.freight!=0}">
+						 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text"  name="freight" value="${aReturn.freight}"  hidden>￥${aReturn.freight}</td>
+					 </c:if>
 				 </tr>
 				</table>
 			</div>
@@ -83,22 +91,21 @@
 		<div class="container">
 
 			<!-- 总价 -->
-			<div class="row" style="text-align: right;">
-				<span >总价(含运费):￥${count}</span>
+			<div class="row" style="text-align: right;"><%--拿到不同的项目对应的钱数--%>
+				<span ><input type="text" name="total" value="${total}"  hidden>总价(含运费):￥${total}</span>
 			</div>
 			<!-- 结算按钮 -->
 			<div class="row" style="text-align: right;">
 				<!-- Indicates caution should be taken with this action -->
-				<button type="button" class="btn btn-warning"><a href="jsp/order2.jsp"><span class="glyphicon glyphicon-credit-card"></span>去支付</a></button>
+				<button type="submit" class="btn btn-warning"  ><input type="text" value="${items.id}" name="pid" hidden><span class="glyphicon glyphicon-credit-card"></span>去支付</button>
 			</div>
 		</div>
-
+		</form>
 
 		<!-- 提示 -->
 		<div class="container">
 			<div class="row">
 				<span class="glyphicon glyphicon-info-sign" style="color: blueviolet; font-size: 20px;"> 提示</span>
-				
 				<!-- 提示线 -->
 				<div   style="height:300px;left: 200px; border-left:solid gainsboro 1px;">
 					<br>
@@ -113,12 +120,11 @@
 						<p >5.众筹成功后由发起人统进行发货,售后服务由发起人统一提供;如果发生发起人无法发放回报、延迟发放回报、不提供回报后续服务等情况,您需要直接和发起人协商解决。</p>
 						<p >6.如您不同意上述风险提示内容您有权选择不支持 ;一旦选择支持 ,视为您已确认并同意以 上提示内容。</p>
 					</div>
-					
-					
+
 				</div>
-				
-				
+
 			</div>
 		</div>
+
 
 <%@ include file="connect/foot.jsp" %>

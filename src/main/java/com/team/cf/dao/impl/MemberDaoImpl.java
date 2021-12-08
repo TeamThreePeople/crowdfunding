@@ -43,10 +43,10 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
     }
 
     @Override
-    public Member ConfirmOne(Object... params) throws Exception {
+    public Member ConfirmOne(String loginacct, String userpswd) throws Exception {
         System.out.println("MemberDaoImpl 查询");
         String sql = "select * from t_member where loginacct = ? and userpswd = ?";
-        Member member = this.getBean(DataSourceUtils.getConnection(),sql, Member.class, params);
+        Member member = this.getBean(DataSourceUtils.getConnection(),sql, Member.class, loginacct,userpswd);
         System.out.println("member = "+ member);
         return member;
     }

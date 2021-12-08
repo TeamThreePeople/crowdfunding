@@ -4,7 +4,8 @@ import com.team.cf.dao.ProjectReturnDao;
 import com.team.cf.dao.impl.ProjectReturnImpl;
 import com.team.cf.entity.ProjectReturn;
 import com.team.cf.service.ProjectReturnService;
-import com.team.cf.service.ProjectService;
+
+import com.team.cf.utils.DataSourceUtils;
 import com.team.cf.utils.JDBCUtils;
 
 import java.sql.SQLException;
@@ -25,7 +26,11 @@ public class ProjectReturnServiceImpl implements ProjectReturnService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -38,8 +43,29 @@ public class ProjectReturnServiceImpl implements ProjectReturnService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return i>0;
+    }
+
+    //查询回报内容
+    public ProjectReturn findReturn(int pid){
+        try {
+            ProjectReturn projectReturn = prs.findReturn(pid);
+            return projectReturn;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }

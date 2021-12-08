@@ -134,7 +134,7 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
     @Override
     public Items selectItemAndProductByOid(String oid) throws SQLException {
         System.out.println("通过订单编号，查询订单明细及商品信息:"+oid);
-        String sql = "select  * from t_order o,t_project p where o.projectid = p.id and o.ordernum = ?";
+        String sql = "select  p.* from t_order o,t_project p where o.projectid = p.id and o.ordernum = ?";
         Items items = this.getBean(DataSourceUtils.getConnection(),sql, Items.class, oid);
         return items;
     }

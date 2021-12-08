@@ -5,6 +5,7 @@ import com.team.cf.dao.FormDao;
 import com.team.cf.entity.Items;
 import com.team.cf.entity.Member;
 import com.team.cf.entity.ProjectReturn;
+import com.team.cf.utils.DataSourceUtils;
 
 import java.sql.SQLException;
 
@@ -18,21 +19,21 @@ public class FormDaoImpl extends BaseDao implements FormDao {
     @Override
     public Object selectIdByLoginAcct(String loginacct) throws SQLException {
         String sql="select id from t_member where loginacct=?";
-        Object id = this.getSingleValue(sql, loginacct);
+        Object id = this.getSingleValue(DataSourceUtils.getConnection(),sql, loginacct);
         return id;
     }
     //通过email查询发起人真实姓名
     @Override
     public String selectRealNameByEmail(String email) throws SQLException {
         String sql="select realname from t_member where email=?";
-        String realname = (String) this.getSingleValue(sql, email);
+        String realname = (String) this.getSingleValue(DataSourceUtils.getConnection(),sql, email);
         return realname;
     }
     //是否有此人
     @Override
     public Member selectOneByEmailAndLoginAcct(String email, String loginacct) throws SQLException {
         String sql="select * from t_member where email=? and loginacct=?";
-        Member member = (Member) this.getBean(sql, Member.class, email, loginacct);
+        Member member = (Member) this.getBean(DataSourceUtils.getConnection(),sql, Member.class, email, loginacct);
         return member;
     }
 
@@ -40,7 +41,15 @@ public class FormDaoImpl extends BaseDao implements FormDao {
     @Override
     public int insertProject(Items items) throws Exception {
         String sql="insert into t_project values(default,?,?,?,?,'0',CURRENT_DATE(),0,0,0,?,CURRENT_DATE(),?,null,?)";//第四个0发起人
-        int i = this.update(sql, items.getName(), items.getRemark(), items.getMoney(), items.getDay(),items.getMemberid(), items.getPimgs(), items.getCid());
+        int i = this.update(DataSourceUtils.getConnection(),sql, items.getName(), items.getRemark(), items.getMoney(), items.getDay(),items.getMemberid(), items.getPimgs(), items.getCid());
+        return i;
+    }
+
+    //删除项目(上一步)
+    @Override
+    public int delProjectForm(int pid) throws SQLException {
+        String sql = "delete from t_project where id = ?";
+        int i = this.update(DataSourceUtils.getConnection(), sql, pid);
         return i;
     }
 
@@ -55,14 +64,14 @@ public class FormDaoImpl extends BaseDao implements FormDao {
     @Override
     public Integer selectIdByProjectName(String projectName) throws SQLException {
         String sql="select id from t_project where name = ?";
-        Integer id = (Integer) this.getSingleValue(sql, projectName);
+        Integer id = (Integer) this.getSingleValue(DataSourceUtils.getConnection(),sql, projectName);
         return id;
     }
     //用于校验项目名是否冲突
     @Override
     public Items selectOne(Object... params) throws Exception {
         String sql="select * from t_project where name=?";
-        Items items = (Items)this.getBean(sql, Items.class, params);
+        Items items = (Items)this.getBean(DataSourceUtils.getConnection(),sql, Items.class, params);
         return items;
     }
 

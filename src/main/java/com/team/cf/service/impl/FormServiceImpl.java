@@ -22,9 +22,10 @@ public class FormServiceImpl implements FormService {
     //注册项目信息
     @Override
     public boolean registerProjectForm(Items items) {
-        /*try {
+        try {
             int i = dao.insertProject(items);
-            return i > 0;
+            //dao.selectIdByProjectName(items.getName());
+            return i>0?true:false;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -34,34 +35,10 @@ public class FormServiceImpl implements FormService {
                 e.printStackTrace();
             }
         }
-        return false;*/
-        try {
-            //关闭自动提交事务
-            dao.insertProject(items);
-            dao.selectIdByProjectName(items.getName());
-            //成功
-            return true;
-            //dao.insertProjectReturn(pr)
-        } catch (Exception e) {
-            //回滚事务
-            try {
-                DataSourceUtils.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            e.printStackTrace();
-            //失败
-            return false;
-        } finally {
-            //提交事务，并释放资源，归还连接对象
-            try {
-                DataSourceUtils.commitAndRelease();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        return false;
 
     }
+
     //通过账户查询用户id（关联项目）
     @Override
     public Object selectIdByLoginAcct(String loginacct) {
@@ -71,7 +48,11 @@ public class FormServiceImpl implements FormService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return id;
     }
@@ -111,6 +92,26 @@ public class FormServiceImpl implements FormService {
         }
         return realname;
     }
+
+    //删除项目
+    @Override
+    public boolean delProjectForm(int pid) {
+        try {
+            int i = dao.delProjectForm(pid);
+            return i>0?true:false;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
     //通过项目名字查询项目id(关联回报)
     @Override
     public int selectIdByProjectName(String name) {
@@ -137,7 +138,11 @@ public class FormServiceImpl implements FormService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return member;
     }
@@ -150,7 +155,11 @@ public class FormServiceImpl implements FormService {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close();
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }

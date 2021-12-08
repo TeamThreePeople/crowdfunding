@@ -216,6 +216,24 @@ public class OrderServiceImpl implements OrderService {
         return false;
     }
 
+    //通过uid，获取订全部单信息
+    @Override
+    public List<Orders> selectAllOrders(String uid) {
+        try {
+            List<Orders> ordersList = dao.selectAllOrders(uid);
+            return ordersList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     //查看订单状态
     @Override
     public PageVo<Orders> selectOrderStatus(int uid,int status, int pageNow) {

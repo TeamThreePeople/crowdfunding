@@ -15,7 +15,7 @@ public interface MemberDao {
 
 
     //查单个
-    public Member ConfirmOne(Object... params) throws Exception;
+    public Member ConfirmOne(String loginacct, String userpswd) throws Exception;
 
     //查单个 by id
     public Member selectOneById(Integer id) throws Exception;
@@ -31,4 +31,5 @@ public interface MemberDao {
 
     //改实名认证状态
     public int updateMemberAuthStatus(Member member) throws Exception;
+
 }

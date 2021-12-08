@@ -13,7 +13,8 @@ public interface FormDao {
     //通过email 账户查询有没有这个人
     public Member selectOneByEmailAndLoginAcct(String email,String loginacct) throws SQLException;
 
-
+    //删除项目
+    public int delProjectForm(int pid) throws SQLException;
 
     //通过email查询发起人真实姓名
     public String selectRealNameByEmail(String email) throws SQLException;

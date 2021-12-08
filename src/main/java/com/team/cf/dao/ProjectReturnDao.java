@@ -9,6 +9,7 @@ public interface ProjectReturnDao {
     public int insertReturn(ProjectReturn projectReturn) throws SQLException;
     //更新回报信息
     public int updateReturn(ProjectReturn projectReturn) throws SQLException;
-
+    //查询回报内容
+    public ProjectReturn findReturn(int pid) throws SQLException;
 
 }

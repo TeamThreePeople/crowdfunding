@@ -204,7 +204,9 @@ public class OrderServlet extends BasicServlet {
         boolean flag = orderService.delOrder(oid);
         if (flag){
             System.out.println("删除成功");
-            request.getRequestDispatcher(request.getContextPath()+"/jsp/supportdetails.jsp").forward(request,response);
+            //request.getRequestDispatcher(request.getContextPath()+"/jsp/supportdetails.jsp").forward(request,response);
+            response.sendRedirect(request.getContextPath()+"/jsp/supportdetails.jsp");
+
         }
     }
 
@@ -215,15 +217,13 @@ public class OrderServlet extends BasicServlet {
 
         //根据订单编号，查询订单明细及商品信息
         Items items = itemsService.selectItemAndProductByOid(oid);
-        System.out.println("items="+items);
+        System.out.println("oid查出来的商品items="+items);
         if (items!=null){
-
             ProjectReturn areturn = projectReturnService.findReturn(items.getId());
             System.out.println("我进来了，aReturn="+areturn);
             request.setAttribute("areturn",areturn);
             request.setAttribute("oid",oid);
             request.setAttribute("product",items);
-
             request.getRequestDispatcher(request.getContextPath()+"/jsp/modaldetails.jsp").forward(request,response);
         }
     }
