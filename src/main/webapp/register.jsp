@@ -56,6 +56,8 @@
 	<body class="style-3">
 		<c:set value="${pageContext.request.contextPath}" var="path" scope="application"></c:set>
 
+		<%@ include file="jsp/connect/heard.jsp" %>
+
 		<div class="container">
 			
 			<div class="row">

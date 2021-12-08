@@ -10,12 +10,16 @@
 		
 		<!-- 引入Bootstrap核心样式文件 -->
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-		
+
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+
 		<!-- 先引入jQuery核心js文件 -->
 		<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
 		<!-- 引入BootStrap核心js文件 -->
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-		
+
+
 		
 		<style type="text/css">
 			table{
@@ -53,9 +57,9 @@
 		
 
 		<!-- 发起项目 -->
-		<div class="container" style="background-color: lightgoldenrodyellow;">
+		<div class="container" style="background-color: lightgoldenrodyellow;margin-top: 50px">
 			<div class="row" >
-				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-success" >1.项目发起人信息</span></h3></div>
+				<div class="col-lg-3 " style="text-align: center;"><h3 ><span class="label label-success" >1.项目发起人信息</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >2.回报设置</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >3.确认信息</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >4.完成</span></h3></div>
@@ -75,7 +79,7 @@
 		<div class="container" style="margin-top: 50px;">
 			<div class="row" >
 				<%--当前表单支持文件上传功能 enctype="multipart/form-data"--%>
-				<form action="${pageContext.request.contextPath}/form?method=registerForm" method="post" id="itemsForm" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath}/form?method=registerForm" method="post" enctype="multipart/form-data">
 					<h2>项目信息</h2>
 
 					<hr >
@@ -84,29 +88,22 @@
 						
 						<!-- 分类信息 -->
 						<tr >
-                            <%--<% String key = request.getParameter("key");%>
-                            <%=key%>--%>
 							<td style="width: 300px;text-align: right;">分类信息</td>
 							<td style="text-align: left;">
-									<input type="radio" name="type" id="" value="1" style="margin-left: 50px;"/>科技<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-								</span>
-									<input type="radio" name="type" id="" value="2" style="margin-left: 10px;"/>设计<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-								</span>
-									<input type="radio" name="type" id="" value="3" style="margin-left: 10px;"/>公益<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-								</span>
+									<input type="radio" name="type" id="" value="1" style="margin-left: 50px;"/>科技
+									<input type="radio" name="type" id="" value="2" style="margin-left: 10px;"/>设计
+									<input type="radio" name="type" id="" value="3" style="margin-left: 10px;"/>公益
 									<input type="radio" name="type" id="" value="4" style="margin-left: 10px;"/>农业
-								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-								</span>
+							
 							</td>
 						</tr>
 						
 						<!-- 项目名称 -->
 						<tr >
 							<td style="width: 300px;text-align: right;">项目名称</td>
-							<td style="text-align: left;">
-									<input type="text" class="form-control" name="itemsname" value="${itemsname}" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
-								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-								</span>
+							<td >
+									<input type="text" class="form-control" name="itemsname" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
+									
 							</td>
 						</tr>
 						
@@ -115,7 +112,7 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">筹资金额(元)</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="money" value="${money}" required aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<input type="text" class="form-control" name="money" required aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 									筹资金额不能低于100元，不能高于1000000000元
 								</span>
@@ -127,7 +124,7 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">筹资天数(天)</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="moneyday" value="${moneyday}" required aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
+								<input type="text" class="form-control" name="moneyday" required aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 									一般10-90天，建议30天
 								</span>
@@ -150,7 +147,7 @@
 						<tr >
 							<td style="width: 300px;text-align: right;">项目详情</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="itemsremark" value="${itemsremark}" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
+								<input type="text" class="form-control" name="itemsremark" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
 								</span>
 							</td>
@@ -166,21 +163,27 @@
 						
 						<!-- 自我介绍 -->
 						<tr >
-							<td style="width: 300px;text-align: right;">登录账户</td>
-							<td style="text-align: left;" >
-									<input type="text" class="form-control" name="loginacct" value="${loginacct}" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
-								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-								</span>
+							<td style="width: 300px;text-align: right;">真实姓名</td>
+							<td >
+									<input type="text" class="form-control" name="name" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 							</td>
 						</tr>
 						
-						<!-- 电子邮箱 -->
+						
+						<!-- 详细自我介绍 -->
+						<%--<tr >
+							<td style="width: 300px;text-align: right;">身份证号</td>
+							<td >
+									&lt;%&ndash;<textarea  class="form-control"  rows="4" cols="60" style="margin-left: 50px;"></textarea>&ndash;%&gt;
+								<input type="text" class="form-control" name="itemsname" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
+							</td>
+						</tr>--%>
+						
+						<!-- 联系电话 -->
 						<tr >
 							<td style="width: 300px;text-align: right;">电子邮箱</td>
-							<td style="text-align: left;">
-									<input type="text" class="form-control" name="email" value="${email}" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
-								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
-								</span>
+							<td >
+									<input type="text" class="form-control" name="email" required aria-describedby="sizing-addon2" style="width: 600px;margin-left: 50px;">
 									
 							</td>
 						</tr>
@@ -194,16 +197,11 @@
 					
 					</div>
 
-					<input type="submit" name="" value="下一步";  style=" width: 70px;height: 40px; margin-top: 10px;margin-left: 50%;background-color: orange;"/>
+					<input type="submit" name="" value="提交";  style=" width: 70px;height: 40px; margin-top: 10px;margin-left: 50%;background-color: orange;"/>
 
 				</form> <%--onclick="window.location.href='itemsreturn.jsp'"--%>
 			</div>
 		</div>
-
-    <%--<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/validateProjectName.js"></script>--%>
-
 	<script type="text/javascript">
 		//将文件流以url形式读取，实现图片实时显示：
 		function showPreview(source){
@@ -217,77 +215,13 @@
 			}
 		}
 	</script>
-	<%--尾部--%>
-	<div class="container" style="margin-top: 75px;padding: 0px;width: 1250px;height: auto;">
-		<div class="row" >
-			<nav class="navbar navbar-inverse" style="position: absolute;height: 200px;width: 99%;color: pink;bottom: -800px;">
-				<div class="container-fluid">
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<!--友情链接-->
-					<div align="center" style="margin-top: 10px;">
-
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">关于我们</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima1.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">联系我们</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima2.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">招贤纳士</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima3.png" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">友情链接</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima9.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">法律声明</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima5.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">支付方式</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima6.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<p></p>
-						<table align="center" style="text-align: center;" >
-							<p></p>
-							<tr>
-								<td colspan="17" style="font-weight: 800;font-size: 18px;">扫描二维码，你想要的这里都有！！！</td>
-							</tr>
-						</table>
-					</div>
-
-				</div><!-- /.container-fluid -->
-			</nav>
-		</div>
-	</div>
 
 
-	</body>
-</html>
+
+
+
+	<%@ include file="connect/foot.jsp"%>>
+
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>

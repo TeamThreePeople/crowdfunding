@@ -10,7 +10,11 @@
 		
 		<!-- 引入Bootstrap核心样式文件 -->
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-		
+
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+		<%--图片变换--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">
 		<style type="text/css">
 			table{
 				text-align: center;
@@ -89,3 +93,9 @@
 
 
 <%@ include file="connect/foot.jsp" %>
+
+	<!-- 图片变换 -->
+	<script src="${pageContext.request.contextPath}/js/app33.js"></script>
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>

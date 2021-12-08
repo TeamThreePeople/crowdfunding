@@ -2,11 +2,11 @@
 			#gotop1 {
 			    width: 80px;
 			    position: fixed;
-			    bottom: 90px;
+			    bottom: 40px;
 			    cursor: pointer;
 			    z-index: 99998;
 			    right: 50%;
-			    margin-right: -650px;
+			    margin-right: -700px;
 			}
 			/* 小火箭悬停特效 */
 			#gotop1:hover {

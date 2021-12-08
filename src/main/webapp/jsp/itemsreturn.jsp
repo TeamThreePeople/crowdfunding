@@ -1,6 +1,5 @@
-<%@ page import="com.team.cf.entity.Items" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" isELIgnored="false" %>
+		 pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +10,10 @@
 		
 		<!-- 引入Bootstrap核心样式文件 -->
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-		
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+		<%--图片变换--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">
 		<style type="text/css">
 			table{
 				text-align: center;
@@ -43,7 +45,7 @@
 	<body>
 
 
-	<%@ include file="connect/heard.jsp"%>
+	<%@ include file="connect/heard.jsp"%>>
 		
 		
 				
@@ -65,30 +67,25 @@
 			<div class="row">
 				<table class="table table-striped" >
 				 <tr style="text-align: center;">
-					 <th>项目名称</th>
-					 <th>支付金额/元</th>
-					<%-- <th>名额限制</th>--%>
-					<%-- <th>单笔限购</th>--%>
+					 <th>序号</th>
+					 <th>支付金额</th>
+					 <th>名额限制</th>
+					 <th>单笔限购</th>
 					 <th>回报内容</th>
-					 <th>回报时间/项目结束X天后，向支持者发送回报</th>
-					 <th>运费/元</th>
+					 <th>回报时间</th>
+					 <th>运费</th>
 					 <th>操作</th>
 				 </tr>
 				 <tr >
-					 <td style="border: 1px solid #ddd; height: 100px;">${itemsname}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${pr.supportmoney}</td>
-					<%-- <td style="border: 1px solid #ddd; height: 100px;">${pr.count}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${pr.purchase}</td>--%>
-					 <td style="border: 1px solid #ddd; height: 100px;">${pr.content}</td>
-					 <td style="border: 1px solid #ddd; height: 100px;">${pr.rtndate}</td>
-					 <c:if test="${pr.freight eq 0}">
-					 <td style="border: 1px solid #ddd; height: 100px;">免运费</td>
-					 </c:if>
-					 <c:if test="${pr.freight ne 0}">
-						 <td style="border: 1px solid #ddd; height: 100px;">${pr.freight}</td>
-					 </c:if>
+					 <td style="border: 1px solid #ddd; height: 100px;">1</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">￥1.00</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">无限制</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">1</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">1</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">项目结束后的30天</td>
+					 <td style="border: 1px solid #ddd; height: 100px;">包邮</td>
 					 <td style="border: 1px solid #ddd; height: 100px;">
-						 <a href="${pageContext.request.contextPath}/jsp/modifyreturn.jsp">修改</a><%--|<a href="#">删除</a>--%>
+						 <a href="#">修改</a>|<a href="#">删除</a>
 					 </td>
 				 </tr>
 				</table>
@@ -107,30 +104,22 @@
 		<div class="container" style="margin-top: 30px;">
 			<div class="row">
 				<div id="show">
-				<%--添加回报--%>
-				<form action="${pageContext.request.contextPath}/projectReturn?method=ProjectReturnForm&pid=${pid}" method="post" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath}/projectReturn?method=ProjectReturnForm&itemsid=${itemsid}" method="post" enctype="multipart/form-data">
 					<table class="tb" >
-						<%
-							Object o = request.getAttribute("msg");
-							if(o!=null){
-						%>
-						<h2 style="color: red; text-align: center" ><%=o%></h2>
-						<%
-							}
-						%>
-						<%--<!-- 回报类型 -->
+						
+						<!-- 回报类型 -->
 						<tr>
 							<td style="width: 300px;text-align: right;">回报类型</td>
 							<td style="text-align: left;">
 									<input type="radio" name="type" id="" value="0"  checked="checked" style="margin-left: 50px;"/>实物回报
 									<input type="radio" name="type" id="" value="1" style="margin-left: 10px;"/>虚拟物品回报
-							</td>
-						</tr>--%>
+								</td>
+						</tr>
 						<!-- 支持金额(元) -->
 						<tr >
 							<td style="width: 300px;text-align: right;">支持金额(元)</td>
 							<td style="text-align: left;">
-								<input type="text" class="form-control" name="supportmoney" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">起
+								<input type="text" class="form-control" name="supportmoney" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								
 							</td>
 						</tr>
@@ -144,7 +133,7 @@
 							</td>
 						</tr>
 						<!-- 说明图片 -->
-						<%--<tr >
+						<tr >
 							<td style="width: 300px;text-align: right;">说明图片</td>
 							<td style="text-align: left;">
 								<img id="picture" style="margin-left: 50px;" name="picture" width="120" height="120" />
@@ -153,7 +142,7 @@
 									支持jpg、jpeg、png、gif格式，大小不超过2M，建议尺寸：740*457px
 								</span>
 							</td>
-						</tr>--%>
+						</tr>
 						
 						<!-- 回报数量(名) -->
 						<tr >
@@ -161,6 +150,7 @@
 							<td style="text-align: left;">
 								<input type="text" class="form-control" name="count" aria-describedby="sizing-addon2" style="width: 100px;margin-left: 50px;">
 								<span id="" style="text-align: left;margin-left: 50px;font-size: 5px;font-weight: bold;">
+									"0"为不限回报数量
 								</span>
 							</td>
 						</tr>
@@ -168,18 +158,18 @@
 						
 						
 						<!-- 单笔限购 -->
-						<%--<tr >
+						<tr >
 							<td style="width: 300px;text-align: right;">单笔限购</td>
 							
 							<td style="text-align: left;">
 									<input type="radio" name="xiangou" id="yes" value="0" checked="checked" style="margin-left: 50px;"/>不限购
 									<input type="radio" name="xiangou" id="no" value="1"  style="margin-left: 50px;"/>限购
 									
-									<input type="text" id="show2" name="shuliang" aria-describedby="sizing-addon2" style="width: 100px;">
-
+									<input type="text" id="show2" name="money" aria-describedby="sizing-addon2" style="width: 100px;">
+									
 							</td>
 							
-						</tr>--%>
+						</tr>
 						
 						
 						<!-- 运费(元) -->
@@ -229,19 +219,22 @@
 					</form>
 
 				</div>
+				
 					<div class="row" style="margin-top: 50px;text-align: center;">
-						<button type="button" class="btn btn-warning"><a href="${pageContext.request.contextPath}/projectReturn?method=PreviousReturnForm&pid=${pid}">上一步</a></button>
 						<button type="button" class="btn btn-warning"><a href="${pageContext.request.contextPath}/jsp/itemsconfirm.jsp">下一步</a></button>
 					</div>
+				
+				
 			</div>
 		</div>
 
 	
 	<!-- 先引入jQuery核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
-
 	<!-- 引入BootStrap核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+
 	<script >
 
 
@@ -285,73 +278,13 @@
 
 	</script>
 
-	<%--尾部--%>
-	<div class="container" style="margin-top: 75px;padding: 0px;width: 1250px;height: auto;">
-		<div class="row" >
-			<nav class="navbar navbar-inverse" style="position: absolute;height: 200px;width: 99%;color: pink;bottom: -800px;">
-				<div class="container-fluid">
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<!--友情链接-->
-					<div align="center" style="margin-top: 10px;">
+	<%@ include file="connect/foot.jsp"%>
+	</body>
 
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">关于我们</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima1.jpg" style="width: 100px;"/>
-							<p></p>
+	<!-- 图片变换 -->
+	<script src="${pageContext.request.contextPath}/js/app33.js"></script>
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>
 
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">联系我们</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima2.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">招贤纳士</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima3.png" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">友情链接</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima9.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">法律声明</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima5.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">支付方式</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima6.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<p></p>
-						<table align="center" style="text-align: center;" >
-							<p></p>
-							<tr>
-								<td colspan="17" style="font-weight: 800;font-size: 18px;">扫描二维码，你想要的这里都有！！！</td>
-							</tr>
-						</table>
-					</div>
-
-				</div><!-- /.container-fluid -->
-			</nav>
-		</div>
-	</div>
+</html>

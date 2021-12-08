@@ -9,9 +9,13 @@
 	<title>实名认证</title>
 	<!--  设置网页的小图标logo  favicon.ico-->
 	<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
+
 	<link href="${pageContext.request.contextPath}/css/jquery.wizzy.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" >
-	
+	<%--浏览记录--%>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+	<%--图片变换--%>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">
     <style>
 		td{
 			font-style: italic;
@@ -75,7 +79,7 @@
 				text-align: center;
 				width: 480px;
 				height: 300px;
-				margin-top: 90px;
+				margin-top: -15px;
 				border: 1px solid silver;
 				border-radius: 10px;
 			}
@@ -102,37 +106,29 @@
 	</style>
 </head>
 <body>
-	
-	<%@ include file="connect/heard.jsp"%>>
-	
-	
+	<%@ include file="connect/heard.jsp"%>
 	<!-- 实名认证-账户类型选择 -->
-	<div class="container" >
+	<%--<div class="container" >
 		<div class="row">
 			<!-- 提示线、实名认证-账户类型选择 -->
 			<div  style="height:30px;left: 200px; border-left:solid orange 4px;"><span style="font-size: 20px;font-weight: bold;  color: orange; padding: 10px; text-align: center;">实名认证-账户类型选择</span></div>
 			<hr >
 		</div>
 	</div>
-	
-	
-	
-	
 	<!-- 实名认证-账户类型选择 -->
 	<div id="div1" style="margin-left: 450px;width: 600px;">
 		<div id="row" >
 			<h3>实名认证-账户类型选择</h3><hr />
 		<form>
 			<table class="tb"  style="text-align: center;">
-			<tr class="choose" >
-				<td >
-						<input type="radio" name="choose" style="margin-left: 10px;"/>商业公司
-						<input type="radio" name="choose" style="margin-left: 10px;"/>个体工商业
-						<input type="radio" name="choose" />个人经营
-						<input type="radio" name="choose" />政府及非营利组织
-				</td >
+			<tr class="choose">
+				<td>
+					<input type="radio" name="choose" value="0" style="margin-left: 10px;cursor: pointer" checked/>商业公司
+					<input type="radio" name="choose" value="1" style="margin-left: 10px;cursor: pointer"/>个体工商业
+					<input type="radio" name="choose" value="2" style="margin-left: 10px;cursor: pointer"/>个人经营
+					<input type="radio" name="choose" value="3" style="margin-left: 10px;cursor: pointer"/>政府及非营利组织
+				</td>
 			</tr>
-			
 			<tr>
 				<td >
 					<div class="" style="margin-left: -10px;" >
@@ -149,31 +145,29 @@
 		</form>
 		
 		</div>
-	</div>
-	
-	
-	
-	
+	</div>--%>
+
 	<!-- 实名认证-申请 -->
-	<div class="container" style="margin-top: 50px;">
+	<div class="container" style="margin-top: 30px;">
 		<div class="row">
 			<!-- 提示线、实名认证-实名认证-申请 -->
-			<div  style="height:30px;left: 200px; border-left:solid orange 4px;"><span style="font-size: 20px;font-weight: bold;  color: orange; padding: 10px; text-align: center;">实名认证-申请</span></div>
+			<div  style="height:30px;left: 200px; border-left:solid orange 4px;">
+				<span style="font-size: 20px;font-weight: bold;  color: orange; padding: 10px; text-align: center;">实名认证-申请</span>
+			</div>
 			<hr >
 		</div>
 	</div>
-	
-	
-	
-	<div class="htmleaf-container" style="margin-left: 450px; width: 600px;">
-		<div class="wrapper">
+
+	<div class="htmleaf-container" style="margin-left: 450px; width: 580px;">
+		<div class="wrapper" style="margin-top: -90px">
             <!-- Start Wizzy -->
             <div class="wz-wrapper wizzy">
-                <div class="wz-inner">
+                <div class="wz-inner" style="width: 630px;">
 					<!--四个填写步骤的标题-->
                     <div class="wz-header">
                         <nav>
-                            <a href="#">基本信息</a>
+							<a href="#">账户类型选择</a>
+							<a href="#">基本信息</a>
                             <a href="#">资质文件上传</a>
                             <a href="#">邮箱确认</a>
                             <a href="#">申请确认</a>
@@ -182,6 +176,37 @@
 					 <!--四个填写步骤 -->
                     <div class="wz-body">
 						<form id="realNameForm">
+						<%--账户类型选择--%>
+						<div class="wz-step">
+							<div id="row" >
+								<h3>实名认证-账户类型选择</h3><hr />
+								<form>
+									<table class="tb"  style="text-align: center;">
+										<tr class="choose">
+											<td>
+												<input type="radio" name="choose" value="0" style="margin-left: 10px;cursor: pointer" checked/>商业公司
+												<input type="radio" name="choose" value="1" style="margin-left: 10px;cursor: pointer"/>个体工商业
+												<input type="radio" name="choose" value="2" style="margin-left: 10px;cursor: pointer"/>个人经营
+												<input type="radio" name="choose" value="3" style="margin-left: 10px;cursor: pointer"/>政府及非营利组织
+											</td>
+										</tr>
+										<tr>
+											<td >
+												<div class="" style="margin-left: -10px;" >
+													<img src="${pageContext.request.contextPath}/img/20211126192346.png">
+													<img style="margin-left: 30px;" src="${pageContext.request.contextPath}/img/20211126192412.png">
+													<img style="margin-left: 30px;" src="${pageContext.request.contextPath}/img/20211126192430.png">
+													<img style="margin-left: 30px;" src="${pageContext.request.contextPath}/img/20211126192450.png">
+												</div>
+
+											</td>
+										</tr>
+
+									</table>
+								</form>
+
+							</div>
+						</div>
 						<!-- 基本信息 -->
                         <div class="wz-step">
                             <p>
@@ -192,23 +217,23 @@
 										</tr>
 										<tr><td></td></tr>
 										<tr>
-											<td><input type="text" required="required" name="username" id="input" placeholder="请输入真实姓名"><br></td>
+											<td><input type="text" required name="username" id="username" placeholder="请输入真实姓名"><br></td>
 										</tr>
 										<tr><td></td></tr>
 										<tr>
 											<td align="left">身份证号码</td>
 										</tr>
 										<tr>
-											<td><input type="text" required="required" name="personId" id="input" placeholder="请输入身份证号码"/></td>
+											<td><input type="text" required name="personId" id="personId" placeholder="请输入身份证号码"/></td>
 										</tr>
-										<tr><td></td></tr>
+										<%--<tr><td></td></tr>
 										<tr>
 											<td align="left">电话号码</td>
 										</tr>
 										<tr><td></td></tr>
 										<tr>
-											<td><input type="text" required="required" name="phoneNumber" id="input" placeholder="请输入电话号码"/></td>
-										</tr>
+											<td><input type="text" required name="phoneNumber" id="phoneNumber" placeholder="请输入电话号码"/></td>
+										</tr>--%>
 									</table>
 							</p>
                         </div>
@@ -228,7 +253,7 @@
 										</tr>
 										<tr>
 											<td>
-												<img id="pic" name="pic" width="100" height="100" src=""/>
+												<img id="pic" name="pic" width="100" height="100" src="${pageContext.request.contextPath}/picture/empty.jpg"/>
 											</td>
 										</tr>
 									</table>
@@ -246,7 +271,7 @@
 									</tr>
 									<tr><td></td></tr>
 									<tr>
-										<td><input type="email" id="input" name="email" placeholder="请输入您的邮箱"></td>
+										<td><input type="email" id="email" name="email" required placeholder="请输入您的邮箱"></td>
 									</tr>
 								</table>	
 								<!-- </form> -->
@@ -268,7 +293,7 @@
 									<tr><td></td></tr><tr><td></td></tr>
 									<tr>
 										<td><input type="button" style="font-size:15px; background-color:#993333; color: #D4D4D4" value="重新发送验证码" name="reSecurityCode"></td>
-										<td><input type="submit" style="font-size:15px; background-color:#CC0033; color: #D4D4D4" value="申请完成" onclick="window.location.href='${pageContext.request.contextPath}/jsp/personalcenter.jsp'"></td>   <!-- #C7254E #DF6659 indianred darksalmon-->
+										<td><input type="submit" style="font-size:15px; background-color:#CC0033; color: #D4D4D4" value="申请完成" onclick="window.location.href='${pageContext.request.contextPath}/jsp/personalcenter.jsp'"></td>
 									</tr>
 								</table>	
 							</p>
@@ -311,4 +336,10 @@
 		}
 	</script>
 
-	<%@ include file="connect/foot.jsp"%>>
+	<!-- 图片变换 -->
+	<script src="${pageContext.request.contextPath}/js/app33.js"></script>
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>
+
+<%--	<%@ include file="connect/foot.jsp"%>--%>

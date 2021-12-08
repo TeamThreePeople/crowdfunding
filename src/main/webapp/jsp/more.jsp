@@ -28,6 +28,8 @@
 		<link href="${pageContext.request.contextPath}/css/gundongBackground.css" rel="stylesheet">
 		<%--<!-- 分类按钮 -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style24.css"/>--%>
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
 	</head>
 	<body style="background: #f8f8f9">
 
@@ -127,6 +129,10 @@
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<!-- 背景滚动 -->
 	<script src="${pageContext.request.contextPath}/js/gundongBackground.js"></script>
+
+	<%--浏览记录--%>
+	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
+	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>
 
 
 	<script>

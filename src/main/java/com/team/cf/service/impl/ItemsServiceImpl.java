@@ -121,7 +121,7 @@ public class ItemsServiceImpl implements ItemsService {
 
 
 
-    //通过商品编号，查询商品信息
+    //通过商品编号，插入商品信息
     @Override
     public Items findProductById(String id) {
         try {
@@ -179,7 +179,6 @@ public class ItemsServiceImpl implements ItemsService {
     //通过订单编号，查询订单明细及商品信息
     @Override
     public Items selectItemAndProductByOid(String oid) {
-        System.out.println("通过订单编号，查询订单明细及商品信息:"+oid);
         try {
             Items items = dao.selectItemAndProductByOid(oid);
             return items;
@@ -226,15 +225,14 @@ public class ItemsServiceImpl implements ItemsService {
         return vo;
     }
 
-    //通过订单号修改当前商品金额&支持人数
+    //通过人id和商品id查找商品信息  浏览记录
     @Override
-    public boolean modifyItemsMoney(int pid, int money, int count) {
-        System.out.println("pid="+pid+",money="+money+",count="+count);
+    public List<Items> selectViewItemsByUid(int uid) {
         try {
-            int i = dao.modifyItemsMoney(pid, money, count);
-            return i>0?true:false;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            List<Items> list = dao.selectViewItemsByUid(uid);
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 DataSourceUtils.closeConnection();
@@ -242,6 +240,8 @@ public class ItemsServiceImpl implements ItemsService {
                 e.printStackTrace();
             }
         }
-        return false;
+
+        return null;
     }
+
 }

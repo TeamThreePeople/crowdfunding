@@ -30,10 +30,8 @@ public interface ItemsService {
     //通过人id和商品id查找商品信息  个人中心我的关注
     public PageVo<Items> selectAllItemsByUid(int uid,int pageNow);
 
-    //通过pid修改当前商品金额&支持人数
-    public boolean modifyItemsMoney(int pid ,int money ,int count);
-
-
+    //通过人id和商品id查找商品信息  浏览记录
+    public List<Items> selectViewItemsByUid(int uid);
 
 
 }
