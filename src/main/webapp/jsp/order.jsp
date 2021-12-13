@@ -24,6 +24,9 @@
 		<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
 		<!-- 引入BootStrap核心js文件 -->
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+
 		<style type="text/css">
 			table{
 				text-align: center;
@@ -44,11 +47,16 @@
 	</head>
 	
 	<body>
-	<%@ include file="connect/heard.jsp" %>
+	<div class="container">
+	<div class="row">
+		<%@ include file="connect/heard.jsp" %>
+	</div>
+	</div>
+
 		<!-- 订单支付 -->
-		<div class="container" style="background-color: lightgoldenrodyellow;">
+		<div class="container" style="background-color: lightgoldenrodyellow; margin-top: 16px;">
 			<div class="row" >
-				
+
 				<div class="col-lg-3 " style="text-align: center;"><h3 ><span class="label label-success" >1.确认回报内容</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >2.确认订单</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >3.付款</span></h3></div>
@@ -72,10 +80,10 @@
 				 </tr>
 				 <tr >
 
-					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="itemsName" value="${items.name}"  hidden>${items.name}</td><%--活性富氧净水直饮机--%>
+					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="itemsName" value="${items.name}"  hidden> ${items.name}</td><%--活性富氧净水直饮机--%>
 					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="userName" value="${name}"  hidden> ${name}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="areturn" value="${aReturn.content}"  hidden>${aReturn.content}</td><%--每满1750人抽取一台活性富氧净水直饮机--%>
-					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="count" id="" value=""  style="width: 35px;" /></td>
+					 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="count" id="count" value="${rcount}" hidden />${rcount}</td>
 					 <td style="border: 1px solid #ddd; height: 100px;"  ><input type="text" name="price" value="${count}"  hidden>￥${count}</td>
 					 <c:if test="${aReturn.freight==0}">
 						 <td style="border: 1px solid #ddd; height: 100px;" ><input type="text" name="freight" value="0"  hidden>免运费</td>
@@ -126,5 +134,7 @@
 			</div>
 		</div>
 
+	<div class="row">
+		<%@ include file="connect/foot.jsp" %>
+	</div>
 
-<%@ include file="connect/foot.jsp" %>

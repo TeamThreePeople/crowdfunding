@@ -45,10 +45,10 @@ public class GreatServlet extends BasicServlet{
         //获取会话信息
         HttpSession session = request.getSession();
         Member member = (Member)session.getAttribute("member");
+
         if (member!=null){
             System.out.println("此人已登录");
             uid = member.getId();
-        }
 
 
         //接收前端数
@@ -89,6 +89,10 @@ public class GreatServlet extends BasicServlet{
             out.flush();
             out.close();
 
+
+        }
+
+        Great great = service.findGreatByAidAndUid(aid, uid);
         }
 
 
@@ -98,7 +102,6 @@ public class GreatServlet extends BasicServlet{
 
         boolean b = itemsService.modifyLikeNumerber(aid, count);*/
 
-        Great great = service.findGreatByAidAndUid(aid, uid);
 
         /*if (b){
 

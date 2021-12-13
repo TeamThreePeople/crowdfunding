@@ -101,18 +101,6 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
-    //修改实名认证 信息
-    @Override
-    public boolean memberTrue(String realname, String accttype, String cardnum,String code, int memberid) {
-        try {
-            int i = dao.memberTrue(realname, accttype, cardnum,code, memberid);
-            return i>0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     //校验账户与密码是否匹配
     @Override
     public Member confirm(String loginacct, String userpswd) {
@@ -131,6 +119,60 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
+    //通过oid查询商品发起人
+    @Override
+    public Member findConsignorByOid(String oid) {
+        try {
+            Member consignor = dao.findConsignorByOid(oid);
+            return consignor;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    //通过oid查询收货人
+    @Override
+    public Member findConsigneeByOid(String oid) {
+        try {
+            Member consignee = dao.findConsigneeByOid(oid);
+            return consignee;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    //修改实名认证 信息
+    @Override
+    public boolean memberTrue(String realname, String accttype, String cardnum,String code, int memberid) {
+        try {
+            int i = dao.memberTrue(realname, accttype, cardnum,code, memberid);
+            return i>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean updateMemberAuthStatus(String code) {
         try {
@@ -147,4 +189,5 @@ public class MemberServiceImpl implements MemberService {
         }
         return false;
     }
+
 }

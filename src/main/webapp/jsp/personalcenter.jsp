@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
 		<title>个人中心</title>
 		<!-- <link rel="stylesheet" type="text/css" href="css/normalize.css" /> -->
 			<!-- <link rel="stylesheet" type="text/css" href="css/default.css"> -->
@@ -20,19 +21,37 @@
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/touxiang.css" >
 			<!-- 横状table -->
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/henzhuangtable.css" >
+			<!-- 旋转按钮 -->
+			<%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles17.css">--%>
+			<!--  设置网页的小图标logo  favicon.ico-->
+			<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 			<%--浏览记录--%>
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
 			<%--图片变换--%>
-			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">
-			<!-- 旋转按钮 -->
-<%--			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles17.css">--%>
-			<!--  设置网页的小图标logo  favicon.ico-->
-			<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
+			<%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main33.css">--%>
+			<style type="text/css">
+				table{
+					text-align: center;
+				}
+
+				.table th, .table td {
+					text-align: center;
+					vertical-align: middle!important;
+				}
+
+				.tb td{
+					border-spacing: 0;
+					border-collapse: collapse;
+					padding: 8px;
+					line-height: 1.42857143;
+					vertical-align: top;
+					font-size: 21px;
+
+				}
+			</style>
 
 	</head>
 	<body>
-
-
 
 		<%@ include file="connect/heard.jsp" %>
 
@@ -118,21 +137,21 @@
 								<td align="center">
 										<c:if test="${member.authstatus==0}">
 											<div style="background-color: red;width: 90px;border-radius: 4px;margin-left: 85px;">
-											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp" style="color: white">未实名认证</a></span>
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">未实名认证</a></span>
 											</div>
 										</c:if>
 
 										<c:if test="${member.authstatus==1}">
 											<div style="background-color: deepskyblue;width: 120px;border-radius: 4px;margin-left: 70px;">
-											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp" style="color: white">实名认证申请中</a></span>
+											<span style="color: white;"><a <%--href="${pageContext.request.contextPath}/jsp/certification.jsp"--%>>已实名认证</a></span>
 											</div>
 										</c:if>
-
+<%--
 										<c:if test="${member.authstatus==2}">
 											<div style="background-color: forestgreen;width: 90px;border-radius: 4px;margin-left: 85px;">
-											<span style="color: white;"><a style="color: white">已实名认证</a></span>
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">已实名认证</a></span>
 											</div>
-										</c:if>
+										</c:if>--%>
 
 										<c:if test="${member.authstatus eq null}">
 											<div style="background-color: red;width: 100px;border-radius: 4px;margin-left: 75px;">
@@ -155,7 +174,7 @@
 							</tr>
 							<tr>
 								<td>
-									<ul>
+									<ul id="showli">
 										  <li class="choose active">
 											  <!-- 图标 -->
 											<div class="icon active">
@@ -167,7 +186,7 @@
 											</div>
 											我的众筹
 										  </li>
-										  <li class="pay">
+										  <li class="pay" onclick="echartsShow()">
 											<div class="icon">
 											  <svg viewBox="0 0 32 32">
 												<g filter="">
@@ -177,17 +196,8 @@
 											</div>
 											资产总览
 										  </li>
-										  <li class="wrap">
-											<div class="icon">
-											  <svg viewBox="0 0 32 32">
-												<g filter="">
-												  <use xlink:href="#gift"></use>
-												</g>
-											  </svg>
-											</div>
-											礼物中心
-										  </li>
-										  <li class="ship">
+
+										  <li class="ship" onclick="mypackge()">
 											<div class="icon">
 											  <svg viewBox="0 0 32 32">
 												<g filter="">
@@ -214,7 +224,7 @@
 				<!-- 右边 -->
 				<div id="right-side">
 					<div id="first" class="active">
-					  <div class="icon big" style="margin-top: -120px;">
+					  <div class="icon big" style="margin-top: -160px;">
 						<svg viewBox="0 0 32 32">
 						  <g filter="">
 							<use xlink:href="#shopping-cart"></use>
@@ -222,14 +232,15 @@
 						</svg>
 					  </div>
 					  <h1>我的众筹</h1>
+
 					  <div class="container" >
 					      <div class="row" >
 					              <div class="tab" role="tabpanel" style="position: absolute;">
 					                  <!-- Nav tabs -->
 					                  <ul class="nav nav-tabs" role="tablist" style="margin-left: 25px;">
 					                      <li role="presentation" class="active"><a href="#Section1" id="supportbtn" aria-controls="home" role="tab" data-toggle="tab">我支持的</a></li>
-					                      <li role="presentation"><a href="#Section2" onclick="myfunction()"  aria-controls="profile" role="tab" data-toggle="tab">我关注的</a></li>
-					                      <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">我发起的</a></li>
+					                      <li role="presentation"><a href="#Section2" onclick="myfunction()" aria-controls="profile" role="tab" data-toggle="tab">我关注的</a></li>
+					                      <li role="presentation"><a href="#Section3" onclick="MyInitiated()" aria-controls="messages" role="tab" data-toggle="tab">我发起的</a></li>
 										  <button type="button"  style="width: 100px;height: 40px;margin-top: 2px;margin-left: 360px;border-radius: 4px;border: lightgrey solid 1px ;background-color: rgb(240,173,78);color: white;font-weight: 800;"><a href="${pageContext.request.contextPath}/jsp/itemsInitiator.jsp">发起众筹</a></button>
 									  </ul>
 					                  <!-- Tab panes -->
@@ -246,10 +257,10 @@
 											  </nav>
 					                          
 											  <!-- 分页数据 -->
-											  <div class="row"  id="support" style="width:850px;">
-												<%--我支持的--%>
+											 <%-- <div class="row"  id="support" style="width:850px;">
+												&lt;%&ndash;我支持的&ndash;%&gt;
 												  <%@ include file="supportdetails.jsp"%>
-											  </div>
+											  </div>--%>
 											  <div class="row"  id="supportStatus" style="width:850px;">
 												  <%--我支持的--%>
 												  <%@ include file="orderstatus.jsp"%>
@@ -273,67 +284,58 @@
 													  </div>
 												  </div>
 											  </div>
-
 					                      </div>
+
 										  <!-- 我关注的 -->
-                                          <div role="tabpanel" class="tab-pane fade" id="Section2">
-                                              <div class="myLike" style="height: 1000px">
-                                                  <%@ include file="personLike.jsp" %>
-                                              </div>
-                                          </div>
+										  <div id="itemss">
+										  <!-- Modal 删除-->
+										  <div class="modal fade" id="items" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+											  <div class="modal-dialog modal-sm" role="document" >
+												  <div class="modal-content">
+													  <div class="modal-header">
+														  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+														  <h4 class="modal-title" id="myModalLabel2">警告</h4>
+													  </div>
+													  <div class="modal-body">
+														  确认下架项目吗？
+													  </div>
+													  <div class="modal-footer">
+														  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+														  <button type="button" id="delitems" class="btn btn-primary"  data-dismiss="modal">确定</button>
+													  </div>
+												  </div>
+											  </div>
+										  </div>
+										  </div>
+
+
+										  <div role="tabpanel" class="tab-pane fade" id="Section2">
+											  <div class="myLike" style="height: 1000px">
+												  <%@ include file="personLike.jsp" %>
+											  </div>
+										  </div>
+
+
+
 										  <!-- 我发起的 -->
 					                      <div role="tabpanel" class="tab-pane fade" id="Section3">
 					                         <!-- 选择按钮 -->
 					                         <nav class="nav default" style="margin-left: 10px;margin-top: -5px;">
-													<ul>
-													  <li class="nav__item "><a href="#"><span style="color: #000000;">全部的众筹</span> </a> </li>
-													  <li class="nav__item active"><a href="#"><span style="color: #000000;">众筹中</span></a></li>
-													  <li class="nav__item"><a href="#"><span style="color: #000000;">众筹成功</span></a></li>
-													  <li class="nav__item"><a href="#"><span style="color: #000000;">众筹失败</span></a></li>
+													<ul id="l2">
+													  <li class="nav__item active" value="3"><a ><span style="color: #000000;">全部的众筹</span> </a> </li>
+													  <li class="nav__item " value="0"><a ><span style="color: #000000;">众筹中</span></a></li>
+													  <li class="nav__item" value="1"><a><span style="color: #000000;">众筹成功</span></a></li>
+													<%--  <li class="nav__item"><a href="#"><span style="color: #000000;">众筹失败</span></a></li>--%>
 													</ul>
 					                         </nav>
-					                         
 					                         <!-- 分页数据 -->
-					                         
-					                           <div class="row" style="width:850px;">
-					                         	<table class="table table-bordered" style="margin-left: 5px;">
-					                         		<tr align="center" >
-					                         			<th style="text-align:center"><span style="color: #000000;">项目信息</span> </th>
-					                         			<th style="text-align:center"><span style="color: #000000;">募集金额(元)</span></th>
-					                         			<th style="text-align:center"><span style="color: #000000;">当前状态</span></th>
-					                         			<th style="text-align:center"><span style="color: #000000;">操作</span></th>
-					                         		</tr>
-					                         		<tr class="data" align="center">
-					                         			<td class="id"><span style="color: #000000;">111</span></td>
-					                         			<td><span style="color: #000000;">111</span></td>
-					                         			<td><span style="color: #000000;">111</span></td>
-					                         			<td>
-					                         				<a href="" class="btn btn-danger" style="background-color: deeppink;border: darkgray;">项目预览</a><br>
-					                         				<a href="" class="btn btn-danger" style="background-color: blue;border: darkgray;">修改项目</a><br>
-					                         				<a href="" class="btn btn-danger" style="background-color: purple;border: darkgray;">删除项目</a><br>
-					                         				<a href="" class="btn btn-danger" style="background-color: hotpink;border: darkgray;">问题管理</a><br>
-					                         			</td>
-					                         		</tr>
-					                         		
-					                         		<tr align="center">
-					                         			<td colspan="8">
-					                         				<input class="btn btn-success" type="button" value="首页"
-					                         					   onclick=""/>&nbsp;&nbsp;
-					                         				<input class="btn btn-success" type="button" id="pre" value="上一页"
-					                         					   onclick=""/>&nbsp;&nbsp;
-					                         				<!-- 当前页 -->
-					                         				<input type="text" id="pageNow" value="1" style="text-align:center"/>&nbsp;&nbsp;
-					                         				<input class="btn btn-success" type="button" value="跳转"
-					                         					   onclick=""/>&nbsp;&nbsp;
-					                         				<input class="btn btn-success" type="button" id="next" value="下一页"
-					                         					   onclick=""/>&nbsp;&nbsp;
-					                         				<input class="btn btn-success" type="button" value="末页"
-					                         					   onclick=""/>&nbsp;&nbsp;
-					                         			</td>
-					                         		</tr>
-					                         	</table>
-					                         </div>
+					                         <div id="initiated" >
+												 <%@ include file="myinitiated.jsp" %>
+											 </div>
+
+
 					                      </div>
+
 					                  </div>
 					              </div>
 					          
@@ -342,11 +344,10 @@
 
 					</div>
 
-
+					<%--模态框--%>
 					<div  id="details">
-				<%--	<%@ include file="modaldetails.jsp"%>--%>
-					</div>
 
+					</div>
 
 					<div id="second">
 						<div class="icon big" style="margin-top: 300px;">
@@ -358,218 +359,182 @@
 						</div>
 						<h1>资产总览</h1>
 						<div style="height: 40px;border:rgb(255,102,0) solid 3px;margin-left: -850px;margin-top: 10px;"></div>
-						<span class="money" style="color: #000000;margin-top: -13px;margin-left: -750px;">我的钱包 </span>
+						<span class="money" style="color: #000000;margin-top: -13px;margin-left: -750px;">资产分析 </span>
+
 						<!-- 折线图 -->
-						<div style="width:700px;height: 400px; margin:0 auto;margin-top: 20px;">
-							<div>
-								<canvas id="canvas" height="400" width="900"></canvas>
-							</div>
+						<div style="width:700px;height: 400px; margin:0 auto;margin-top: 55px;">
+							<div id="piechart" style="width: 600px;height:400px;"></div>
+							<div id="sum"></div>
 						</div>
-						<div style="height: 40px;border:rgb(255,102,0) solid 3px;margin-left: -850px;margin-top: 40px;"></div>
-						<span class="money" style="color: #000000;margin-top: -15px;margin-left: -750px;">理财 </span>
+
+
+						<%--<div style="height: 40px;border:rgb(255,102,0) solid 3px;margin-left: -850px;margin-top: 40px;"></div>
+						<span class="money" style="color: #000000;margin-top: -15px;margin-left: -750px;">理财 </span>--%>
 					</div>
-					<div id="third">
+
+					<div id="fourth">
 					  <div class="icon big">
 						<svg viewBox="0 0 32 32">
 						  <g filter="">
-							<use xlink:href="#gift"></use>
+							<use xlink:href="#package"></use>
 						  </g>
 						</svg>
+
 					  </div>
-					  <!-- 内容 -->
-					  <h1>礼物中心</h1>
-					  <p>抱歉，您暂时还未收到礼物</p>
+							<h1>我的包裹</h1>
+						<div class="container" >
+							<div class="row" id="mypackge" style="width:850px;">
+								<%@ include file="mypackge.jsp"%>
+							</div>
+						</div>
+
 					</div>
-					<div id="fourth">
-			      <div class="icon big">
-			        <svg viewBox="0 0 32 32">
-			          <g filter="">
-			            <use xlink:href="#package"></use>
-			          </g>
-			        </svg>
-			      </div>
-			      <h1>我的包裹</h1>
-			      <p>抱歉，您还未收到任何包裹</p>
-			    </div>
+
+					<%--模态框--%>
+					<div  id="address">
+
+					</div>
+
+
 				</div>
 			
 			</div>
 		</div>
-		
-		<!-- 尾部 -->
-		<div class="container" style="margin-top: 800px;padding: 0px;width: 1250px;height: auto;">
-			<div class="row" >
-				<nav class="navbar  navbar-inverse" style="height: 200px;color: pink;">
-				  <div class="container-fluid">
-				    <!-- Collect the nav links, forms, and other content for toggling -->
-					<!--友情链接-->
-					<div align="center" style="margin-top: 10px;">
 
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">关于我们</a>
-							<p></p>
-							<img src="../picture/erweima1.jpg" style="width: 100px;"/>
-							<p></p>
-
-							</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">联系我们</a>
-							<p></p>
-							<img src="../picture/erweima2.jpg" style="width: 100px;"/>
-							<p></p>
-
-							</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">招贤纳士</a>
-							<p></p>
-							<img src="../picture/erweima3.png" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">友情链接</a>
-							<p></p>
-							<img src="../picture/erweima9.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">法律声明</a>
-							<p></p>
-							<img src="../picture/erweima5.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">支付方式</a>
-							<p></p>
-							<img src="../picture/erweima6.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<p></p>
-						<table align="center" style="text-align: center;" >
-							<p></p>
-							<tr>
-								<td colspan="17" style="font-weight: 900;font-size: 18px;color: pink;">扫描二维码，你想要的这里都有！！！</td>
-							</tr>
-						</table>
-					</div>
-
-				  </div><!-- /.container-fluid -->
-				</nav>
-			</div>
+		<div class="row" style="margin-top:750px">
+			<%@ include file="connect/foot.jsp"%>
 		</div>
-		<div class="container" style="margin-top: 0px;text-align: center;width: auto;">
-			<div class="row" style="background-color: gray;">
-				<p></p>
-				<p style="font-weight: 800;font-size: 16px;">
-					本众筹系统最终解释权归涛哥所有
-				</p>
-				<p style="font-weight: 800;font-size: 16px;">
-					涛哥牛逼!
-				</p>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
-			</div>
-		</div>
+
 	
-		<!-- 旋转按钮 -->
-		<%--<div id='ss_menu'>
-		  <div>
-		    <i class="fa fa-qq"><a href="">首页</a></i>
-		  </div>
-		  <div>
-		    <i class="fa fa-weibo"><a href="../代码/首页.html">QQ</a></i>
-		  </div>
-		  <div>
-		    <i class="fa fa-weixin"><a href="../代码/首页.html">微信</a></i>
-		  </div>
-		  <div>
-		    <i class="fa fa-renren"><a href="../代码/首页.html">投诉</a></i>
-		  </div>
-		  <div class='menu'>
-		    <div class='share' id='ss_toggle' data-rot='180'>
-		      <div class='circle'></div>
-		      <div class='bar'></div>
-		    </div>
-		  </div>
-		</div>--%>
+
 	</body>
+	<!-- <script src='../more/20/jquery-2.1.0.min.js'></script> -->
 	<!-- 先引入jQuery核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
-	
 	<!-- 引入BootStrap核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<!-- 竖状table -->
 	<script src="${pageContext.request.contextPath}/js/shuzhuangtable.js"></script>
 	<!-- 旋转按钮 -->
-<%--	<script src="${pageContext.request.contextPath}/js/xuanzhuanbutton.js"></script>--%>
+	<%--<script src="${pageContext.request.contextPath}/js/xuanzhuanbutton.js"></script>--%>
 	<!-- 分类按钮 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/hoverSlippery.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/fenleibutton.js"></script>
-	<!-- 折线图 -->
-	<script src="${pageContext.request.contextPath}/js/Chart.js"></script>
-	<script src="${pageContext.request.contextPath}/js/zhexiantu.js"></script>
+	<!-- 饼图 -->
+	<%--<script src="${pageContext.request.contextPath}/js/pie-echarts.js"></script>--%>
 	<script src="${pageContext.request.contextPath}/js/jquery.popconfirm.js"></script>
-
-
+	<%--订单--%>
 	<script src="${pageContext.request.contextPath}/js/viewMyOrders.js"></script>
 	<script src="${pageContext.request.contextPath}/js/viewMyOrdersStatus.js"></script>
-
+	<!-- 图片变换 -->
+	<%--<script src="${pageContext.request.contextPath}/js/app33.js"></script>--%>
 	<%--浏览记录--%>
 	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>
 	<script src="${pageContext.request.contextPath}/js/liulanjilu.js"></script>
 
+	<script src="${pageContext.request.contextPath}/js/myinitiated.js"></script>
+	<script src="${pageContext.request.contextPath}/js/mypackge.js"></script>
+	<script src="${pageContext.request.contextPath}/js/personlike.js"></script>
 
 	<script>
 
 		$.ajax({
-			url:"${path}/project?method=viewMyOrders",
+			url:"${path}/project?method=orderStatus",
 			success:function (data){
-				$("#support").html(data);
+				$("#supportStatus").html(data);
 			}
 		});
 
-		$("#supportbtn").click(function (){
+		//我的包裹
+		function mypackge(){
 			$.ajax({
-				url:"${path}/project?method=viewMyOrders",
+				url:"${path}/personal?method=personalPackage",
 				success:function (data){
-					$("#support").html(data);
+					$("#mypackge").html(data);
+
 				}
 			})
-		})
+		}
+		//地址查看
+		function myaddress(oid){
+			$.ajax({
+				url:"${path}/personal?method=findAddress",
+				data:{"oid":oid},
+				success:function (data){
+					$("#address").html(data);
+					$("#myaddress").modal('show');
+				}
+			})
+		}
+
+		//我发起的
+		function MyInitiated(){
+			$.ajax({
+				url:"${path}/product?method=itemsStatus",
+				success:function (data){
+					$("#initiated").html(data);
+				}
+			})
+		};
+
+		//项目状态
+		$(document).on('click','#l2 li',function (){
+			$(this).addClass("active");
+			$(this).siblings().removeClass("active");
+			var status = $(this).val();
+			$.ajax({
+				url:"${path}/product?method=itemsStatus&status="+status,
+				success:function (data){
+					$("#initiated").html(data);
+				}
+			})
+		});
+
+		//下架商品
+		function delitems(pid){
+			$('#itemss').on('shown.bs.modal', function () {
+				$(document).on('click','#delitems',function (){
+					$.ajax({
+						url:"${path}/product?method=deleteItems",
+						data:{"pid":pid},
+						success:function (data){
+							$("#initiated").html(data);
+							flurshitems();
+						}
+					})
+				})
+			})
+		};
+
+		//刷新
+		function flurshitems(){
+			$.ajax({
+				url:"${path}/product?method=itemsStatus",
+				success:function (data){
+					$("#initiated").html(data);
+				}
+			});
+		}
+
 
 
 		//订单详情
-		/*$('#myOrderModal').on('shown.bs.modal', function () {*/
-		$("#supportStatus").hide();
-			function showOrder(){
-				var oid = $("#uid").val();
+		//$("#supportStatus").hide();
+		function showdetails(oid){
 				$.ajax({
-					url:"${path}/project?method=orderDetails",
-					data:{"oid":oid},
+					url:"${path}/project?method=orderDetails&oid="+oid,
+					/*data:{"oid":oid},*/
 					success:function (data){
 						$("#details").html(data);
 						$("#myOrderModal").modal('show');
+
 					}
 				})
-			};
-		/*});*/
-
+		};
 
 		//订单支付状态
 		$(document).on('click','#l1 li',function (){
-			$("#support").hide();
-			$("#supportStatus").show();
+
 			$(this).addClass("active");
 			$(this).siblings().removeClass("active");
 			var status = $(this).val();
@@ -580,35 +545,26 @@
 					$("#supportStatus").html(data);
 				}
 			})
-
 		});
 
-		/*$("#orderAll").click(function (){
-			$("#supportStatus").hide();
-			$("#support").show();
-			$.ajax({
-				url:"/project?method=viewMyOrders"
-				success:function (data){
-					$("#support").html(data);
-				}
-			})
-		});*/
 
 
 		//删除订单
-		$('#myModal').on('shown.bs.modal', function () {
-			$(document).on('click','#del',function (){
-				var oid = $("#oid").val();
+		function deloredr(oid){
+			$('#myModal').on('shown.bs.modal', function () {
+				$(document).on('click','#del',function (){
+
 				$.ajax({
 					url:"${path}/project?method=delOrderItem",
 					data:{"oid":oid},
 					success:function (data){
 						$("#support").html(data);
 						flursh();
-					}
+						}
+					})
 				})
 			})
-		});
+		};
 
 		//刷新
 		function flursh(){
@@ -620,115 +576,114 @@
 			});
 		}
 
-
-		//下一页
-		function next(pageNow,query1,query2,query3,query4) {
+		//我的关注
+		function myfunction(){
 			$.ajax({
-				type:"get",
-				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$("#support").html(content);
+				url:"${path}/product?method=selectAllItemsByUid",
+				success:function (data){
+					$(".myLike").html(data);
 				}
 			})
-		};
-		//上一页
-		function first(pageNow,query1,query2,query3,query4) {
-			$.ajax({
-				type:"get",
-				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$("#support").html(content);
+		}
 
+
+		//点击取消关注
+		function deleteLike(aid) {
+			$.ajax({
+				url:"${path}/product?method=deleteLike",
+				data:{"aid":aid},
+				type:"post",
+				success:function (data) {
+					$(".myLike").html(data);
+					fulsh2();
 				}
 			})
-		};
-		//当前页
-		function curr(pageNow,query1,query2,query3,query4) {
-			$.ajax({
-				type:"get",
-				url:"${path}/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-				success:function (content) {
-					$("#support").html(content);
+		}
 
+		function fulsh2() {
+			$.ajax({
+				url:"${path}/product?method=selectAllItemsByUid",
+				success:function (data) {
+					$(".myLike").html(data);
 				}
 			})
-		};
-
-
-
-			/*window.onload=myfunction;*/
-			//我的关注
-			function myfunction(){
-				$.ajax({
-					url:"${path}/product?method=selectAllItemsByUid",
-					success:function (data){
-						$(".myLike").html(data);
-					}
-				})
-			}
-
-			//下一页
-			function next1(pageNow,query1,query2,query3,query4) {
-				$.ajax({
-					type:"get",
-					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-					success:function (content) {
-						$(".myLike").html(content);
-
-					}
-				})
-			}
-
-			//上一页
-			function first1(pageNow,query1,query2,query3,query4) {
-				$.ajax({
-					type:"get",
-					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-					success:function (content) {
-						$(".myLike").html(content);
-
-					}
-				})
-			}
-
-			//当前页
-			function curr1(pageNow,query1,query2,query3,query4) {
-				$.ajax({
-					type:"get",
-					url:"${path}/product?method=selectAllItemsByUid&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
-					success:function (content) {
-						$(".myLike").html(content);
-
-					}
-				})
-			}
-
-			//点击取消关注
-			function deleteLike(aid) {
-				$.ajax({
-					url:"${path}/product?method=deleteLike",
-					data:{"aid":aid},
-					type:"post",
-					success:function (data) {
-						$(".myLike").html(data);
-						fulsh2();
-					}
-				})
-			}
-
-			function fulsh2() {
-				$.ajax({
-					url:"${path}/product?method=selectAllItemsByUid",
-					success:function (data) {
-						$(".myLike").html(data);
-					}
-				})
-			}
-
-
+		}
 
 
 
 	</script>
+	<%--饼图--%>
+	<script >
+		var myChart = echarts.init(document.getElementById('piechart'));
+		var option = {
+			title: {
+				text: 'Asset analysis',
+				subtext: '',
+				left: 'center'
+			},
+			tooltip: {
+				trigger: 'item'
+			},
+			legend: {
+				orient: 'vertical',
+				left: 'left'
+			},
+			series: [
+				{
+					name: '消费',
+					type: 'pie',
+					radius: '50%',
+					data:null,
+					emphasis: {
+						itemStyle: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+				}
+			]
+		};
+		myChart.setOption(option);
 
+		function echartsShow(){
+			$.post("/personal?method=personalProperty",function(datas){
+						var data= $.parseJSON(datas);
+						var servicedata=[];
+						for(var i=0 ; i<data.name.length ; i++){
+							var obj=new Object();
+							obj.name=data.name[i];
+							obj.value=data.value[i];
+							servicedata[i]=obj;
+						}
+						myChart.setOption({
+							series:
+									{
+										name: '消费',
+										type: 'pie',
+										radius: '50%',
+										data: servicedata
+									}
+						});
+						/*total();*/
+					}
+			)
+		};
+
+		/*function total(){
+			$.ajax({
+				url:"${path}/personal?method=sumProperty",
+				success:function (data){
+					$("#sum").append("<span>"+'总消费:'+data+"元</span>");
+				}
+			})
+		}
+*/
+
+	</script>
+
+
+<script>
+
+</script>
 </html>

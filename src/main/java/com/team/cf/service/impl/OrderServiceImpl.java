@@ -158,9 +158,9 @@ public class OrderServiceImpl implements OrderService {
             //获取总记录数
             int myCounts = dao.selectOrdersCountByUid(uid).intValue();//15
             //计算总页数
-            int myPages = (int)(myCounts%3==0?myCounts/3:Math.ceil(myCounts/3.0));//8
+            int myPages = (int)(myCounts%2==0?myCounts/2:Math.ceil(myCounts/2.0));//8
             //计算起始值
-            int begin = (pageNow-1)*3;
+            int begin = (pageNow-1)*2;
             //查询数据
             List<Orders> ordersList = dao.selectOrdersByUid(uid, begin);
             //封装VO
@@ -216,6 +216,24 @@ public class OrderServiceImpl implements OrderService {
         return false;
     }
 
+    //通过uid，获取订全部单信息
+    @Override
+    public List<Orders> selectAllOrders(String uid) {
+        try {
+            List<Orders> ordersList = dao.selectAllOrders(uid);
+            return ordersList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     //查看订单状态
     @Override
     public PageVo<Orders> selectOrderStatus(int uid,int status, int pageNow) {
@@ -224,9 +242,9 @@ public class OrderServiceImpl implements OrderService {
             //获取总记录数(状态)
             int myCounts = dao.selectOrderStatusCount(uid,status).intValue();//15
             //计算总页数
-            int myPages = (int)(myCounts%3==0?myCounts/3:Math.ceil(myCounts/3.0));//8
+            int myPages = (int)(myCounts%2==0?myCounts/2:Math.ceil(myCounts/2.0));//8
             //计算起始值
-            int begin = (pageNow-1)*3;
+            int begin = (pageNow-1)*2;
             //查询数据
             List<Orders> ordersList = dao.selectOrderStatus(uid,status, begin);
             //封装VO
@@ -243,5 +261,43 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         return vo;
+    }
+
+    //通过oid查询订单信息
+    @Override
+    public Orders selectFindOrder(String oid) {
+        System.out.println("通过oid查询订单信息:"+oid);
+        try {
+            Orders orders = dao.selectFindOrder(oid);
+            return orders;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    //查看收货地址
+    @Override
+    public Orders selectAddress(String oid) {
+        try {
+            Orders orders = dao.selectAddress(oid);
+            return orders;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 }

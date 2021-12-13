@@ -29,14 +29,12 @@
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<%--	<link rel="shortcut icon" href="favicon.ico">--%>
-
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
 	<%--文字--%>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style4.css" />
@@ -45,7 +43,6 @@
 			opacity: 1;
 		}
 	</style>
-
 
 	<style>
 		label.error{
@@ -70,7 +67,7 @@
 			font-family: 'Ubuntu Mono', sans-serif;
 			height: 100%;
 			width: 100%;
-			background-image: url('picture/sea.jpg');
+			background-image: url("./picture/registerbg.jpg");
 			background-attachment: fixed;
 			background-size: cover;
 		}
@@ -93,12 +90,12 @@
 		}
 	</style>
 	</head>
-	<body class="style-3" >
+	<body>
 		<c:set value="${pageContext.request.contextPath}" var="path" scope="application"></c:set>
 
 		<%@ include file="jsp/connect/heard.jsp" %>
 
-		<div class="container">
+		<%--<div class="container" style="margin-top: 70px">
 			<section class="rw-wrapper">
 				<h2 class="rw-sentence">
 					<span>欢迎来到</span>
@@ -122,9 +119,7 @@
 				</h2>
 			</section>
 		</div>
-
-
-
+--%>
 		<div class="container">
 			
 			<div class="row">
@@ -132,25 +127,25 @@
 					
 
 					<!-- Start Sign In Form -->
-					<form action="${path}/member?method=register" id="registerForm" method="post" class="fh5co-form animate-box" data-animate-effect="fadeInRight" >
+					<form action="${path}/member?method=register" id="registerForm" method="post" class="fh5co-form animate-box" data-animate-effect="fadeInRight" style="margin-top: 10px" >
 						<div class="form-group">
 							<span style="font-size: 24px">注册</span><span style="margin-left: 19px;font-family: '华文行楷'">欢迎来到注册界面，主人</span>
 						</div>
 						<hr>
-						<div class="form-group" >
+						<div class="form-group" style="border: #0e0e0f solid 1px;">
 							<label for="name" class="sr-only">用户名</label>
 							<input type="text" class="form-control" id="name" name="name" placeholder="用户名" required autocomplete="off">
 						</div>
 
-						<div class="form-group" >
+						<div class="form-group" style="border: #0e0e0f solid 1px;">
 							<label for="password" class="sr-only">密码</label>
 							<input type="password" class="form-control" id="password" name="password" required placeholder="密码" autocomplete="off">
 						</div>
-						<div class="form-group" >
+						<div class="form-group" style="border: #0e0e0f solid 1px;">
 							<label for="repassword" class="sr-only">确认密码</label>
 							<input type="password" class="form-control" id="repassword" name="repassword" required placeholder="确认密码" autocomplete="off">
 						</div>
-						<div class="form-group" >
+						<div class="form-group" style="border: #0e0e0f solid 1px;">
 							<label for="email" class="sr-only">邮箱</label>
 							<input type="email" class="form-control" id="email" name="email" required  placeholder="邮箱" autocomplete="off">
 						</div>
@@ -161,6 +156,8 @@
 							<input type="submit" value="注册" class="btn btn-primary">
 						</div>
 					</form>
+
+
 				</div>
 			</div>
 		</div>

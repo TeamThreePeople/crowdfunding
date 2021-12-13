@@ -24,7 +24,7 @@
                         <th style="width: 210px;text-align: center;">回报</th>
                     </tr>
                     <tr>
-                        <td  >
+                        <td >
                             <img src="${path}/${product.pimgs}" style="width: 250px;height: 100px">
                             <br>
                             <span>${product.name}</span>

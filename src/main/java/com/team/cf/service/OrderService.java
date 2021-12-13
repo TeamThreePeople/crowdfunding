@@ -16,8 +16,8 @@ public interface OrderService {
     //添加收货地址
     public int addAddress(String username ,String phone , String address,int uid);
 
-
-
+    //查看收货地址
+    public Orders selectAddress(String oid);
 
     //插入订单及订单明细
     public boolean insertOrders(Orders orders);
@@ -39,5 +39,13 @@ public interface OrderService {
 
     //查看订单状态
     public PageVo<Orders> selectOrderStatus(int uid,int status, int pageNow);
+
+    //通过oid查询订单信息
+    public Orders selectFindOrder(String oid);
+
+    //通过uid，获取订全部单信息
+    public List<Orders> selectAllOrders(String uid);
+
+
 
 }

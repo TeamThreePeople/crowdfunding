@@ -1,6 +1,7 @@
 package com.team.cf.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description TODO
@@ -26,7 +27,10 @@ public class Items {
     private String pimgs;//图片
     private int cid;//商品分类id
 
-
+    //一对一关联发起人
+    private Member member;
+    //一对多关联回报
+    private List<ProjectReturn> projectReturns;
 
     public Items() {
     }

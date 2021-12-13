@@ -9,6 +9,7 @@ import com.team.cf.utils.CommonUtils;
 import com.team.cf.utils.MD5Utils;
 import com.team.cf.utils.MailUtils;
 import org.apache.commons.beanutils.BeanUtils;
+import org.junit.jupiter.api.Test;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -48,9 +49,14 @@ public class MemberServlet extends BasicServlet {
             password = MD5Utils.md5(password);
 
             Member member = service.login(username, password);
+
             if(member!=null){
+
                 HttpSession session = request.getSession();
                 session.setAttribute("member",member);
+
+
+
                 //记住用户名
                 String remember = request.getParameter("remember");
                 if(remember!=null&&remember.trim().equals("remember")){
@@ -76,7 +82,6 @@ public class MemberServlet extends BasicServlet {
 
     }
 
-
     //登出
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //销毁会话
@@ -91,8 +96,6 @@ public class MemberServlet extends BasicServlet {
         response.addCookie(passwordCookie);
         response.sendRedirect(request.getContextPath() + "/product?method=index");
     }
-
-
 
     //注册
     protected void register(HttpServletRequest request, HttpServletResponse response) throws InvocationTargetException, IllegalAccessException, IOException, ServletException {
@@ -130,7 +133,7 @@ public class MemberServlet extends BasicServlet {
         }else {
             System.out.println("注册失败");
             //response.sendRedirect(request.getContextPath()+"/register.jsp");
-            request.getRequestDispatcher("register.jsp").forward(request,response);
+            response.sendRedirect("register.jsp");
         }
     }
 
@@ -169,7 +172,7 @@ public class MemberServlet extends BasicServlet {
     }
 
     //个人中心 实名认证
-    protected void checkTrue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, MessagingException {
+    protected void checkTrue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, MessagingException, MessagingException {
         //账户类型:0-企业，1-个体，2-个人，3-政府
         String accttype = request.getParameter("accttype");
         System.out.println("账户类型:0-企业，1-个体，2-个人，3-政府: "+accttype);
@@ -242,4 +245,8 @@ public class MemberServlet extends BasicServlet {
             response.sendRedirect(request.getContextPath()+"/jsp/certification.jsp");
         }
     }
+
+
+
+
 }

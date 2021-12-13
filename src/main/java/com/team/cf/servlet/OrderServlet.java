@@ -35,20 +35,23 @@ public class OrderServlet extends BasicServlet {
     private ProjectReturnService projectReturnService = new ProjectReturnServiceImpl();
     private ItemsService itemsService = new ItemsServiceImpl();
 
-
     //支持详情页(点击支持)
     public void findProjectById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //拿到商品id
         String id = request.getParameter("id");
         System.out.println("zhichi id=" + id);
+        //回报数量
+        String rcount = request.getParameter("rcount");
 
         //执行业务 拿到商品 设置请求属性
-        Items items = orderService.findProjectById(id);
+        Items items = itemsService.findItemsById(id);
         request.setAttribute("items", items);
 
         //执行业务 查询发起人姓名
         String name = orderService.findNameById(id);
         request.setAttribute("name", name);
+
+
 
         //查询回报内容
         ProjectReturn aReturn = projectReturnService.findReturn(Integer.parseInt(id));
@@ -60,6 +63,7 @@ public class OrderServlet extends BasicServlet {
         int total = aReturn.getFreight() + Integer.parseInt(count);
         request.setAttribute("total", total);
         request.setAttribute("count", count);
+        request.setAttribute("rcount", rcount);
         request.setAttribute("aReturn", aReturn);//回报内容
 
         System.out.println("count=" + count);
@@ -118,7 +122,6 @@ public class OrderServlet extends BasicServlet {
         }
 
     }
-
 
     //确认订单
     public void confirmOrder(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
@@ -185,12 +188,11 @@ public class OrderServlet extends BasicServlet {
             //根据订单编号，查询订单明细及商品信息
             Items items = itemsService.selectItemAndProductByOid(oid);
             orders.setItems(items);
-            System.out.println(orders.getItems().getName());
+
         }
 
         request.getRequestDispatcher(request.getContextPath()+"/jsp/supportdetails.jsp").forward(request,response);
     }
-
 
     //删除订单
     public void delOrderItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -200,7 +202,9 @@ public class OrderServlet extends BasicServlet {
         boolean flag = orderService.delOrder(oid);
         if (flag){
             System.out.println("删除成功");
-            request.getRequestDispatcher(request.getContextPath()+"/jsp/supportdetails.jsp").forward(request,response);
+            //request.getRequestDispatcher(request.getContextPath()+"/jsp/supportdetails.jsp").forward(request,response);
+            response.sendRedirect(request.getContextPath()+"/jsp/supportdetails.jsp");
+
         }
     }
 
@@ -211,19 +215,16 @@ public class OrderServlet extends BasicServlet {
 
         //根据订单编号，查询订单明细及商品信息
         Items items = itemsService.selectItemAndProductByOid(oid);
-        System.out.println("items="+items);
+        System.out.println("oid查出来的商品items="+items);
         if (items!=null){
-
             ProjectReturn areturn = projectReturnService.findReturn(items.getId());
             System.out.println("我进来了，aReturn="+areturn);
             request.setAttribute("areturn",areturn);
             request.setAttribute("oid",oid);
             request.setAttribute("product",items);
-
             request.getRequestDispatcher(request.getContextPath()+"/jsp/modaldetails.jsp").forward(request,response);
         }
     }
-
 
     //查看订单状态
     public void orderStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -239,11 +240,16 @@ public class OrderServlet extends BasicServlet {
         if(page!=null){
             pageNow = Integer.parseInt(page);
         }
+        if (status==null){
+            status=3+"";
+        }
 
         //获取登陆者的用户编号 uid
         PageVo<Orders> vo = orderService.selectOrderStatus(user.getId(),Integer.parseInt(status), pageNow);
         System.out.println("vo="+vo);
         request.setAttribute("vo",vo);
+
+
 
         //获取订单编号，并且查询订单明细，及商品信息
         for (Orders orders : vo.getList()) {
@@ -251,6 +257,13 @@ public class OrderServlet extends BasicServlet {
             String oid = orders.getOrdernum();
             //根据订单编号，查询订单明细及商品信息
             Items items = itemsService.selectItemAndProductByOid(oid);
+            int percentage = (int) (items.getSupportmoney()/items.getMoney()*100);
+            if (percentage>=100){
+                items.setCompletion(100);
+                items.setStatus(1);
+            }else {
+                items.setCompletion(percentage);
+            }
             orders.setItems(items);
             System.out.println(orders.getItems().getName());
         }

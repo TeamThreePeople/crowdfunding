@@ -5,19 +5,33 @@
   Time: 17:32
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
 <!-- 分页产品 -->
-<div class="container" align="center" style="border: lightgray solid 1px;height: 720px;margin-top: 15px;">
+<div class="container" align="center" style="border: lightgray solid 1px;height: 850px;margin-top: 15px;">
     <div class="row" style="margin-top: 18px;padding: 0px;">
         <c:forEach items="${vo.list}" var="product">
             <div class="col-md-3" align="center" >
-                <img src="${path}/${product.pimgs}" style="width: 250px;height: 200px">
+                <a href="${path}/product?method=findItemsById&aid=${product.id}">
+                <img src="${path}/${product.pimgs}"  onclick="addView()" style="width: 250px;height: 200px">
+                </a>
+                <p>
+                    <c:if test="${product.completion < 100}">
+                    <div class="progress" style="width: 97%;height: 10px;">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${product.completion}%"></div>
+                    </div>
+                    </c:if>
+                    <c:if test="${product.completion >= 100}">
+                    <div class="progress" style="width: 97%;height: 10px;">
+                        <div class="progress-bar progress-bar-danger " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${product.completion}%"></div>
+                    </div>
+                    </c:if>
+                </p>
                 <p style="color: #000000;">
-                    <a href="${path}/product?method=findItemsById&aid=${product.id}" style="text-align: left;">${product.name}</a>
+                    <a href="${path}/product?method=findItemsById&aid=${product.id}" onclick="addView()" style="text-align: left;">${product.name}</a>
                 </p>
             </div>
         </c:forEach>
@@ -26,7 +40,7 @@
     <!--分页 -->
     <%-- 查询商品列表数据时，未发现符合条件的数据，则不显示翻页 --%>
     <c:if test="${vo.list.size() eq 0}">
-        <div style="width: 380px; margin: 0 auto;text-align: center">
+        <div style="width: 380px; margin: 0 auto;">
             <img src="${path}/picture/empty.jpg" />
         </div>
     </c:if>
@@ -39,7 +53,7 @@
     <c:if test="${vo.list.size() ne 0}">
 
         <div class="col-md-12" style="text-align: center">
-            <ul class="pagination" style="position: absolute;bottom: -750px;left: 578px;">
+            <ul class="pagination" style="position: relative;top: -30px;left: 400px;text-align: center">
 
                     <%-- 若当前页码是第一页，则上一页按钮失效 --%>
                 <c:if test="${vo.pageNow eq 1}">
@@ -71,7 +85,6 @@
                     </c:if>
 
                 </c:forEach>
-
                     <%-- 若当前页码是最后一页，则下一页按钮失效 --%>
                 <c:if test="${vo.pageNow eq vo.myPages}">
                     <li class="disabled" ><a  class="page-link" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>

@@ -16,31 +16,11 @@ public class Member {
     private String realname;    // 真实名称
     private String cardnum;     // 身份证号码
     private String accttype;    //账户类型:0-企业，1-个体，2-个人，3-政府
-    private String code;        //激活码
+    private String portrait;//头像
+    private String code;//验证码
+
 
     public Member() {
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Member(Integer id, String loginacct, String userpswd, String username, String email, String authstatus, String usertype, String realname, String cardnum, String accttype, String code) {
-        this.id = id;
-        this.loginacct = loginacct;
-        this.userpswd = userpswd;
-        this.username = username;
-        this.email = email;
-        this.authstatus = authstatus;
-        this.usertype = usertype;
-        this.realname = realname;
-        this.cardnum = cardnum;
-        this.accttype = accttype;
-        this.code = code;
     }
 
     public Member(String loginacct, String userpswd, String email) {
@@ -49,7 +29,8 @@ public class Member {
         this.email = email;
     }
 
-    public Member(Integer id, String loginacct, String userpswd, String username, String email, String authstatus, String usertype, String realname, String cardnum, String accttype) {
+
+    public Member(Integer id, String loginacct, String userpswd, String username, String email, String authstatus, String usertype, String realname, String cardnum, String accttype, String portrait, String code) {
         this.id = id;
         this.loginacct = loginacct;
         this.userpswd = userpswd;
@@ -60,6 +41,8 @@ public class Member {
         this.realname = realname;
         this.cardnum = cardnum;
         this.accttype = accttype;
+        this.portrait = portrait;
+        this.code = code;
     }
 
     /**
@@ -222,7 +205,39 @@ public class Member {
         this.accttype = accttype;
     }
 
+    /**
+     * 获取
+     * @return portrait
+     */
+    public String getPortrait() {
+        return portrait;
+    }
+
+    /**
+     * 设置
+     * @param portrait
+     */
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
+    }
+
+    /**
+     * 获取
+     * @return code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * 设置
+     * @param code
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String toString() {
-        return "Member{id = " + id + ", loginacct = " + loginacct + ", userpswd = " + userpswd + ", username = " + username + ", email = " + email + ", authstatus = " + authstatus + ", usertype = " + usertype + ", realname = " + realname + ", cardnum = " + cardnum + ", accttype = " + accttype + "}";
+        return "Member{id = " + id + ", loginacct = " + loginacct + ", userpswd = " + userpswd + ", username = " + username + ", email = " + email + ", authstatus = " + authstatus + ", usertype = " + usertype + ", realname = " + realname + ", cardnum = " + cardnum + ", accttype = " + accttype + ", portrait = " + portrait + ", code = " + code + "}";
     }
 }
