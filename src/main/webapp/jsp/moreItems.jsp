@@ -53,7 +53,7 @@
     <c:if test="${vo.list.size() ne 0}">
 
         <div class="col-md-12" style="text-align: center">
-            <ul class="pagination" style="position: relative;top: -30px;left: 400px;text-align: center">
+            <ul class="pagination" style="position: relative;top: 850px;left: 400px;text-align: center">
 
                     <%-- 若当前页码是第一页，则上一页按钮失效 --%>
                 <c:if test="${vo.pageNow eq 1}">

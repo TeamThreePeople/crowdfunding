@@ -1,0 +1,7 @@
+/* 图片缩放 */
+			img{
+				transition: all 2s linear;
+			}
+			img:hover{
+				transform: scale(1.2,1.2);
+			}
