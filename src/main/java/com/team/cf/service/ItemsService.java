@@ -1,6 +1,7 @@
 package com.team.cf.service;
 
 import com.team.cf.entity.Items;
+import com.team.cf.entity.Orders;
 import com.team.cf.vo.PageVo;
 
 import java.util.List;
@@ -18,6 +19,10 @@ public interface ItemsService {
 
     public Items findProductById(String pid);
 
+    //最新商品
+    public List<Items> selectNewItems();
+
+
     //修改关注数量
     public boolean modifyLikeNumerber(int id ,int count);
 
@@ -33,5 +38,21 @@ public interface ItemsService {
     //通过人id和商品id查找商品信息  浏览记录
     public List<Items> selectViewItemsByUid(int uid);
 
+    //通过pid修改当前商品金额&支持人数
+    public boolean modifyItemsMoney(int pid ,int money ,int count);
 
+    //个人中心-我发起的
+    public PageVo<Items> selectMyInitiated(int uid,int pageNow);
+
+    //查看项目状态
+    public PageVo<Items> selectItemsStatus(int uid, int status, int pageNow);
+
+    //通过pid下架商品
+    public boolean delItems(int pid);
+
+    //通过oid查询商品信息
+    public Items findItemsByOid(String oid);
+
+    //修改项目状态
+    public boolean updateItemsStatus(int pid );
 }

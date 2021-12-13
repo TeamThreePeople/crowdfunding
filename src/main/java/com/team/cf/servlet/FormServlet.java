@@ -20,22 +20,22 @@ import java.util.UUID;
 public class FormServlet extends BasicServlet {
     private  FormService service=new FormServiceImpl();
 
-
     //项目发起第一页
     protected void registerForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("registerForm执行了");
         String loginacct = request.getParameter("loginacct");
         String email = request.getParameter("email");
-
+        System.out.println(loginacct+","+email);
        //账户邮箱不能为空
-        if(loginacct!=null&& !loginacct.equals("") &&email!=null&& !email.equals("")) {
-            Member member = service.selectOneByEmailAndLoginAcct(email, loginacct);
-
+      /*  if(loginacct!=null&& !loginacct.equals("") &&email!=null&& !email.equals("")) {*/
+           /* Member member = service.selectOneByEmailAndLoginAcct(email, loginacct);*/
+       // System.out.println(member);
             //发起人存在 允许发起众筹
-            if(member!=null){
-                //用户id
-                HttpSession session = request.getSession();
-                Member user = (Member)session.getAttribute("member");
+        //用户id
+        HttpSession session = request.getSession();
+        Member user = (Member)session.getAttribute("member");
+        if(user!=null){
+
                 //项目分类信息
                 String type = request.getParameter("type");
                 System.out.println("type = "+type);
@@ -71,7 +71,6 @@ public class FormServlet extends BasicServlet {
                         items.setMemberid(user.getId());
                         //写出上传的图片，至图片服务器路径
                         part.write("E:\\IdeaProjects\\pic\\"+newName);
-                        System.out.println("E:\\IdeaProjects\\pic\\"+newName);
 
                     }
                 }
@@ -102,10 +101,10 @@ public class FormServlet extends BasicServlet {
                 request.setAttribute("msg","账户或邮箱错误，无法发起项目！！！");
                 request.getRequestDispatcher(request.getContextPath()+"/jsp/notexist.jsp").forward(request,response);
             }
-        }else{
+      /*  }else{
             request.setAttribute("msg","账户或邮箱为空，无法发起项目");
             request.getRequestDispatcher(request.getContextPath()+"/jsp/notexist.jsp").forward(request,response);
-        }
+        }*/
     }
 
 

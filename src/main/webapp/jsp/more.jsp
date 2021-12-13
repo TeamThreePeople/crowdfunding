@@ -55,28 +55,28 @@
 			<div class="row" style="height: 150px;border: lightgray 1px solid;border-radius: 4px;margin-top: 10px;">
 				<div class="one">
 					<ul class="nav nav-pills" id="l1">
-						<li style="background-color: #1abc9c"><a style="color: #000000;">分类：</a></li>
-						<li value="1"><a  style="color: #000000;">科技</a></li>
-						<li value="2"><a  style="color: #000000;">公益</a></li>
-						<li value="3"><a  style="color: #000000;">农业</a></li>
-						<li value="4"><a  style="color: #000000;">文化</a></li>
+						<li style="background-color: #1abc9c ;pointer-events:none"><a  style="color: #000000;">分类：</a></li>
+						<li value="1"><a  style="color: #000000;cursor: pointer">科技</a></li>
+						<li value="2"><a  style="color: #000000;cursor: pointer">公益</a></li>
+						<li value="3"><a  style="color: #000000;cursor: pointer">食品</a></li>
+						<li value="4"><a  style="color: #000000;cursor: pointer">文化</a></li>
 					</ul>
 				</div>
 				<p></p>
 				<div>
 					<ul class="nav nav-pills"  id="l2">
-						<li style="background-color: #1abc9c"><a  style="color: #000000;">状态：</a></li>
-						<li value="0"><a style="color: #000000;">众筹中</a></li>
-						<li value="1"><a style="color: #000000;">众筹成功</a></li>
+						<li style="background-color: #1abc9c ;pointer-events:none"><a  style="color: #000000;">状态：</a></li>
+						<li value="0"><a style="color: #000000;cursor: pointer">众筹中</a></li>
+						<li value="1"><a style="color: #000000;cursor: pointer">众筹成功</a></li>
 					</ul>
 				</div>
 				<p></p>
 				<div>
 					<ul class="nav nav-pills"  id="l3">
-						<li style="background-color: #1abc9c"><a  style="color: #000000;">排序：</a></li>
-						<li value="1"><a style="color: #000000;">最新上线</a></li>
-						<li value="2"><a style="color: #000000;">金额最多</a></li>
-						<li value="3"><a style="color: #000000;">支持最多</a></li>
+						<li style="background-color: #1abc9c;pointer-events:none"><a  style="color: #000000;">排序：</a></li>
+						<li value="1"><a style="color: #000000;cursor: pointer">最新上线</a></li>
+						<li value="2"><a style="color: #000000;cursor: pointer">金额最多</a></li>
+						<li value="3"><a style="color: #000000;cursor: pointer">支持最多</a></li>
 					</ul>
 				</div>
 				
@@ -109,10 +109,11 @@
 			<%@ include file="moreItems.jsp" %>
 		</div>
 
+		<div class="row" style="margin-top:450px">
+			<%@ include file="connect/foot.jsp"%>
 
-		<%@ include file="connect/foot.jsp"%>
-		<!-- 回到顶部 -->
-		<!-- 右侧小火箭图标返回顶部 -->
+			<!-- 回到顶部 -->
+			<!-- 右侧小火箭图标返回顶部 -->
 			<div id="shangxia2">
 				<span id="gotop1">
 					<a href="#top">
@@ -120,6 +121,12 @@
 					</a>
 				</span>
 			</div>
+
+		</div>
+
+
+
+
 	</div>
 	</body>
 
@@ -137,46 +144,68 @@
 
 	<script>
 
-		window.onload=myfunction;
+			$.ajax({
+				url:"${path}/product?method=findAllProducts",
+				success:function (data){
+					$(".main").html(data);
+				}
+			});
 
-			function myfunction(){
+			function addView(projectid) {
 				$.ajax({
-					url:"${path}/product?method=findAllProducts",
-					success:function (data){
-						$(".main").html(data);
+					url:"${path}/view?method=findView",
+					data:{"projectid":projectid},
+					type:"post",
+					success:function () {
+						console.log();
 					}
 				})
-			};
+			}
+
 
 			//分类
 			$(document).on('click','#l1 li',function (){
 				$(this).addClass("active");
 				$(this).siblings().removeClass("active");
 				var c_id = $(this).val();
-				$.ajax({
-					url:"${path}/product?method=findAllProducts&cid="+c_id,
-					//data:{"cid":c_id},
-					success:function (data){
-						$(".main").html(data);
-
-
+				var flag = true;
+				$("#l2").find("li").each(function() {
+					if ($(this).hasClass("active")){
+						flag = false;
+						var status = $(this).val();
+						$.ajax({
+							url:"${path}/product?method=findAllProducts&cid="+c_id+"&status="+status,
+							//data:{"cid":c_id},
+							success:function (data){
+								$(".main").html(data);
+							}
+						})
 					}
 				})
-
+				if (flag){
+					$.ajax({
+						url:"${path}/product?method=findAllProducts&cid="+c_id,
+						//data:{"cid":c_id},
+						success:function (data){
+							$(".main").html(data);
+						}
+					})
+				}
 			});
 			//状态
 			$(document).on('click','#l2 li',function (){
 				$(this).addClass("active");
 				var s_id = $(this).val();
+
 				$("#l1").find("li").each(function(){
 					if ($(this).hasClass("active")){
 						var cid = $(this).val();
+						flag=false;
 						$.ajax({
 							type:"get",
 							url:"${path}/product?method=findAllProducts&cid="+cid+"&status="+s_id,
 							success:function (data){
 								$(".main").html(data);
-
 							}
 						})
 					}
@@ -193,13 +222,11 @@
 						$("#l2").find("li").each(function(){
 							if ($(this).hasClass("active")){
 								var status = $(this).val();//状态id
-								console.log("l1="+cid+","+"l2="+status+",l3="+sort_id);
 								$.ajax({
 									type:"get",
 									url:"${path}/product?method=findAllProducts&cid="+cid+"&status="+status+"&sort_id="+sort_id,
 									success:function (data){
 										$(".main").html(data);
-
 									}
 								})
 							}
@@ -208,45 +235,46 @@
 				});
 				$(this).siblings().removeClass("active");
 			});
+
 			//下一页
 			function next(pageNow,query1,query2,query3,query4) {
+
 				$.ajax({
 					type:"get",
-					url:"${path}/product?method=findAllProducts&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					url:"${path}/product?method=findAllProducts&pageNow="+pageNow+"&cid="+query1+"&paname="+query2+"&status="+query3+"&sort_id="+query4,
 					success:function (content) {
 						$(".main").html(content);
-
 					}
 				})
 			};
+
 			//上一页
 			function first(pageNow,query1,query2,query3,query4) {
+
 				$.ajax({
 					type:"get",
-					url:"${path}/product?method=findAllProducts&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					url:"${path}/product?method=findAllProducts&pageNow="+pageNow+"&cid="+query1+"&paname="+query2+"&status="+query3+"&sort_id="+query4,
 					success:function (content) {
 						$(".main").html(content);
-
 					}
 				})
 			};
+
 			//当前页
 			function curr(pageNow,query1,query2,query3,query4) {
 				$.ajax({
 					type:"get",
-					url:"${path}/product?method=findAllProducts&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+					url:"${path}/product?method=findAllProducts&pageNow="+pageNow+"&cid="+query1+"&paname="+query2+"&status="+query3+"&sort_id="+query4,
 					success:function (content) {
 						$(".main").html(content);
-
 					}
 				})
 			};
 
 			function search() {
 				$.ajax({
-					//几个参数需要注意一下
 					type: "POST",//方法类型
-					url: "${path}/product?method=findAllProducts",//url
+					url: "${path}/product?method=findAllProducts",
 					data: $('#search').serialize(),
 					success: function (result) {
 						$(".main").html(result);

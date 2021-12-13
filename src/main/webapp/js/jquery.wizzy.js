@@ -13,9 +13,9 @@
             let navigator = elem.find('.wz-navigator');
             let content = elem.find('.wz-inner');
 
-           let btnNext = '<a href="#" class="btn btn-primary right" data-action="next">下一步 <i class="fas fa-angle-right"></i></a>';
-            let btnBack = '<a href="#" class="btn btn-default left" data-action="back"><i class="fas fa-angle-left"></i> 上一步</a>';
-			let btnFinish = '<a href="#" class="btn btn-success right" data-action="finish">OK<i class="fas fa-check"></i></a>';
+            let btnNext = '<a href="#" class="btn btn-primary right" data-action="next">Next <i class="fas fa-angle-right"></i></a>';
+            let btnBack = '<a href="#" class="btn btn-default left" data-action="back"><i class="fas fa-angle-left"></i> Back</a>';
+            let btnFinish = '<a href="#" class="btn btn-success right" data-action="finish" style="visibility: hidden">Finish <i class="fas fa-check"></i></a>';
 
             let step_links = elem.find('nav a').toArray();
             let step_count = step_links.length;
@@ -98,7 +98,7 @@
                     else if(action == 'finish'){
                         loader(true);
                         setTimeout(() => {
-                            loader(true);
+                            loader(false);
                         }, 3000);
                     }
                 }

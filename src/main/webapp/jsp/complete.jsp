@@ -1,5 +1,6 @@
-                                                                                                                                                                                                                                                                                              <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -92,7 +93,9 @@
 
 
 
-<%@ include file="connect/foot.jsp" %>
+	<div class="row">
+		<%@ include file="connect/foot.jsp"%>
+	</div>
 
 	<!-- 图片变换 -->
 	<script src="${pageContext.request.contextPath}/js/app33.js"></script>

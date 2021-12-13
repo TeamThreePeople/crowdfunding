@@ -24,6 +24,9 @@
 		<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
 		<!-- 引入BootStrap核心js文件 -->
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+
 		<style type="text/css">
 			table{
 				text-align: center;
@@ -44,11 +47,16 @@
 	</head>
 	
 	<body>
-	<%@ include file="connect/heard.jsp" %>
+	<div class="container">
+	<div class="row">
+		<%@ include file="connect/heard.jsp" %>
+	</div>
+	</div>
+
 		<!-- 订单支付 -->
-		<div class="container" style="background-color: lightgoldenrodyellow;">
+		<div class="container" style="background-color: lightgoldenrodyellow; margin-top: 16px;">
 			<div class="row" >
-				
+
 				<div class="col-lg-3 " style="text-align: center;"><h3 ><span class="label label-success" >1.确认回报内容</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >2.确认订单</span></h3></div>
 				<div class="col-lg-3 " style="text-align: center;"><h3><span class="label label-default" >3.付款</span></h3></div>
@@ -126,5 +134,7 @@
 			</div>
 		</div>
 
+	<div class="row">
+		<%@ include file="connect/foot.jsp" %>
+	</div>
 
-<%@ include file="connect/foot.jsp" %>

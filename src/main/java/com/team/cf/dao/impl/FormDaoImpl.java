@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @Author 郝者伦
  * @Date 2021/12/1 22:38
  */
-public class FormDaoImpl extends BaseDao implements FormDao {
+public class FormDaoImpl extends BaseDao<Member> implements FormDao {
     //通过账户查id（关联项目）
     @Override
     public Object selectIdByLoginAcct(String loginacct) throws SQLException {
@@ -34,6 +34,7 @@ public class FormDaoImpl extends BaseDao implements FormDao {
     public Member selectOneByEmailAndLoginAcct(String email, String loginacct) throws SQLException {
         String sql="select * from t_member where email=? and loginacct=?";
         Member member = (Member) this.getBean(DataSourceUtils.getConnection(),sql, Member.class, email, loginacct);
+        System.out.println(member);
         return member;
     }
 
@@ -71,8 +72,9 @@ public class FormDaoImpl extends BaseDao implements FormDao {
     @Override
     public Items selectOne(Object... params) throws Exception {
         String sql="select * from t_project where name=?";
-        Items items = (Items)this.getBean(DataSourceUtils.getConnection(),sql, Items.class, params);
-        return items;
+        //Items items = (Items)this.getBean(DataSourceUtils.getConnection(),sql, Items.class, params);
+        //return items;
+        return null;
     }
 
 

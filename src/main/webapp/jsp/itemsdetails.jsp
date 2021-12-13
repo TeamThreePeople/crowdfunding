@@ -21,7 +21,7 @@
 	<%@ include file="connect/heard.jsp"%>
 
 		<!-- 大标题 -->	
-		<div class="container" style="margin-top: 40px;padding: 0px;">
+		<div class="container" style="padding: 0px;">
 			<div class="row">
 				<!-- 文字 -->
 				<div class="col-md-2" style="font-size: 40px;">项目详情</div>
@@ -68,7 +68,7 @@
 					<img src="${pageContext.request.contextPath}/${item.pimgs}" style="width: 700px;height: 450px">
 				</div>
 				<!-- 介绍 -->
-				<div class="col-md-4 col-sm-12 col-xs-12"  style="border: lightgray 1px solid;height: 435px;">
+				<div class="col-md-4 col-sm-12 col-xs-12"  style="border: lightgray 1px solid;height: 460px;">
 
 					<c:if test="${item.status==0}">
 						<div style="font-style: italic;background-color: green;width: 55px;border-radius: 4px;margin-top: 10px;">
@@ -138,14 +138,14 @@
 							<td>
 								<p style="color: #5cb85c; font-size: 20px;font-weight: 800;">发起人：</p>
 								<div>
-									<span style="font-size: 24px;font-weight: 800; margin-left: 90px;">${memberById.realname}</span>
+									<span style="font-size: 24px;font-weight: 800; margin-left: 10px;">${memberById.realname}</span>
 									<c:if test="${memberById.authstatus eq 0}">
 										<div style="font-style: italic;background-color: crimson;width: 50px;border-radius: 4px;position: absolute;margin-left: 150px;margin-top: -25px;">
 											<span style="color: white;">未认证</span>
 										</div>
 									</c:if>
 									<c:if test="${memberById.authstatus eq 1}">
-										<div style="font-style: italic;background-color: green;width: 50px;border-radius: 4px;">
+										<div style="font-style: italic;background-color: green;width: 50px;border-radius: 4px;position: absolute;margin-left: 150px;margin-top: -25px;">
 											<span style="color: white;">已认证</span>
 										</div>
 									</c:if>
@@ -167,75 +167,8 @@
 		</div>
 
 
-	<!-- 尾部 -->
-	<div class="container" style="margin-top: 75px;padding: 0px;width: 1250px;height: auto;">
-		<div class="row" >
-			<nav class="navbar navbar-inverse" style="position: absolute;height: 200px;width: 99%;color: pink;bottom: -380px;">
-				<div class="container-fluid">
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<!--友情链接-->
-					<div align="center" style="margin-top: 10px;">
-
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">关于我们</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima1.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">联系我们</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima2.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">招贤纳士</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima3.png" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">友情链接</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima9.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 hidden-sm hidden-xs" align="center">
-							<p></p>
-							<a href="#">法律声明</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima5.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-4" align="center">
-							<p></p>
-							<a href="#">支付方式</a>
-							<p></p>
-							<img src="${pageContext.request.contextPath}/picture/erweima6.jpg" style="width: 100px;"/>
-							<p></p>
-
-						</div>
-						<p></p>
-						<table align="center" style="text-align: center;" >
-							<p></p>
-							<tr>
-								<td colspan="17" style="font-weight: 800;font-size: 18px;">扫描二维码，你想要的这里都有！！！</td>
-							</tr>
-						</table>
-					</div>
-
-				</div><!-- /.container-fluid -->
-			</nav>
-		</div>
+	<div class="row">
+		<%@ include file="connect/foot.jsp"%>
 	</div>
 
 

@@ -158,9 +158,9 @@ public class OrderServiceImpl implements OrderService {
             //获取总记录数
             int myCounts = dao.selectOrdersCountByUid(uid).intValue();//15
             //计算总页数
-            int myPages = (int)(myCounts%3==0?myCounts/3:Math.ceil(myCounts/3.0));//8
+            int myPages = (int)(myCounts%2==0?myCounts/2:Math.ceil(myCounts/2.0));//8
             //计算起始值
-            int begin = (pageNow-1)*3;
+            int begin = (pageNow-1)*2;
             //查询数据
             List<Orders> ordersList = dao.selectOrdersByUid(uid, begin);
             //封装VO
@@ -242,9 +242,9 @@ public class OrderServiceImpl implements OrderService {
             //获取总记录数(状态)
             int myCounts = dao.selectOrderStatusCount(uid,status).intValue();//15
             //计算总页数
-            int myPages = (int)(myCounts%3==0?myCounts/3:Math.ceil(myCounts/3.0));//8
+            int myPages = (int)(myCounts%2==0?myCounts/2:Math.ceil(myCounts/2.0));//8
             //计算起始值
-            int begin = (pageNow-1)*3;
+            int begin = (pageNow-1)*2;
             //查询数据
             List<Orders> ordersList = dao.selectOrderStatus(uid,status, begin);
             //封装VO
@@ -279,6 +279,25 @@ public class OrderServiceImpl implements OrderService {
                 e.printStackTrace();
             }
         }
+        return null;
+    }
+
+    //查看收货地址
+    @Override
+    public Orders selectAddress(String oid) {
+        try {
+            Orders orders = dao.selectAddress(oid);
+            return orders;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         return null;
     }
 }

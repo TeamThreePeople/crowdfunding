@@ -5,18 +5,18 @@
   Time: 17:32
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
 <!-- 分页产品 -->
-<div class="container" align="center" style="border: lightgray solid 1px;height: 555px;margin-top: 15px;">
+<div class="container" align="center" style="border: lightgray solid 1px;height: 850px;margin-top: 15px;">
     <div class="row" style="margin-top: 18px;padding: 0px;">
         <c:forEach items="${vo.list}" var="product">
             <div class="col-md-3" align="center" >
                 <a href="${path}/product?method=findItemsById&aid=${product.id}">
-                <img src="${path}/${product.pimgs}" style="width: 250px;height: 200px">
+                <img src="${path}/${product.pimgs}"  onclick="addView()" style="width: 250px;height: 200px">
                 </a>
                 <p>
                     <c:if test="${product.completion < 100}">
@@ -31,7 +31,7 @@
                     </c:if>
                 </p>
                 <p style="color: #000000;">
-                    <a href="${path}/product?method=findItemsById&aid=${product.id}" style="text-align: left;">${product.name}</a>
+                    <a href="${path}/product?method=findItemsById&aid=${product.id}" onclick="addView()" style="text-align: left;">${product.name}</a>
                 </p>
             </div>
         </c:forEach>
@@ -53,7 +53,7 @@
     <c:if test="${vo.list.size() ne 0}">
 
         <div class="col-md-12" style="text-align: center">
-            <ul class="pagination" style="position: absolute;top: 208px;left: 578px;">
+            <ul class="pagination" style="position: relative;top: -30px;left: 400px;text-align: center">
 
                     <%-- 若当前页码是第一页，则上一页按钮失效 --%>
                 <c:if test="${vo.pageNow eq 1}">
@@ -85,7 +85,6 @@
                     </c:if>
 
                 </c:forEach>
-
                     <%-- 若当前页码是最后一页，则下一页按钮失效 --%>
                 <c:if test="${vo.pageNow eq vo.myPages}">
                     <li class="disabled" ><a  class="page-link" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>

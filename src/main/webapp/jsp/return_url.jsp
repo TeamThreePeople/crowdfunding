@@ -63,13 +63,11 @@
 		//跳转回调至自己的项目中
 		Orders orders = (Orders)session.getAttribute("orders");
 		if(orders!=null && orders.getOrdernum().equals(out_trade_no) && (orders.getMoney()==Double.valueOf(total_amount))){
-
-
 			OrderServiceImpl service = new OrderServiceImpl();
 			ItemsServiceImpl itemsService = new ItemsServiceImpl();
 			ProjectReturnServiceImpl returnService = new ProjectReturnServiceImpl();
 			//修改订单状态
-			boolean flag = service.updateOrdersState(out_trade_no);
+			boolean b = service.updateOrdersState(out_trade_no);
 			//通过订单号查询到商品信息
 			Items items = itemsService.selectItemAndProductByOid(out_trade_no);
 			//通过订单号查询订单信息
@@ -81,7 +79,7 @@
 			//支持人数
 			int supporterCount = items.getSupporter()+1;
 			//修改当前商品金额&支持人数
-			boolean b = itemsService.modifyItemsMoney(items.getId(), totalAmount, supporterCount);
+			boolean a = itemsService.modifyItemsMoney(items.getId(), totalAmount, supporterCount);
 
 
 			//将会话中的购物车信息&订单信息移除掉

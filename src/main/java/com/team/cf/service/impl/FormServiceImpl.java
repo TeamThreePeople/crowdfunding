@@ -132,9 +132,10 @@ public class FormServiceImpl implements FormService {
     //通过账户和邮箱查询有没有这个人
     @Override
     public Member selectOneByEmailAndLoginAcct(String email, String loginacct) {
-        Member member=null;
+
         try {
-            member = dao.selectOneByEmailAndLoginAcct(email, loginacct);
+            Member  member = dao.selectOneByEmailAndLoginAcct(email, loginacct);
+            return member;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -144,7 +145,7 @@ public class FormServiceImpl implements FormService {
                 e.printStackTrace();
             }
         }
-        return member;
+        return null;
     }
     //校验项目名是否冲突
     @Override

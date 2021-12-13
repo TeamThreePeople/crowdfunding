@@ -9,7 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
 <!-- 我关注的 -->
     <div class="row" style="width:850px;" >
         <table class="table table-bordered" style="margin-left: 5px;" id="myLike">
@@ -25,8 +24,22 @@
                 <tr class="data" align="center">
                     <td><span style="color: #000000;">${like.name}</span></td>                           <%--项目名称--%>
                     <td>
-                        <c:if test="${like.pimgs!=null}">
-                            <img src="${path}/${like.pimgs}" width="200px" height="auto"/>   <%--项目图片--%>
+                        <c:if test="${like.pimgs!=null}" >
+                            <img src="${path}/${like.pimgs}" width="80px" height="auto"/>   <%--项目图片--%>
+                            <br>
+                            <c:if test="${like.completion < 100}">
+                                <div class="progress" style="width: 97%;height: 10px;">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${like.completion}%">
+                                    </div>
+                                </div>
+                            </c:if>
+                            <c:if test="${like.completion >= 100}">
+                                <div class="progress" style="width: 97%;height: 10px;">
+                                    <div class="progress-bar progress-bar-danger " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${like.completion}%">
+                                    </div>
+                                </div>
+                            </c:if>
+
                         </c:if>
                     </td>
                     <td><span style="color: #000000;">${like.supporter}</span></td>                      <%--支持人数--%>
@@ -40,52 +53,44 @@
         </table>
     </div>
 
-    <!--分页 -->
-    <%-- 查询商品列表数据时，未发现符合条件的数据，则不显示翻页 --%>
-    <c:if test="${pageVo.list.size() eq 0}">
-        <div style="width: 380px; margin: 0 auto;">
-            <img src="${path}/picture/empty.jpg" />
-        </div>
-    </c:if>
-
-    <%-- 查询商品列表数据时，发现符合条件的数据，则显示翻页 --%>
+<%-- 底部分页按钮 --%>
+<div class="row pad-15"  style="bottom: 240px ; position: absolute">
     <c:if test="${pageVo.list.size() ne 0}">
-        <div style="width: 380px; margin: 0 auto; margin-top: 50px;margin-left: 205px;">
-            <ul class="pagination" style="text-align: center; margin-top: 10px;">
+
+        <div class="col-md-12" style="text-align: center">
+            <ul class="pagination" style="position: relative;top: 265px;left: 280px;">
 
                     <%-- 若当前页码是第一页，则上一页按钮失效 --%>
                 <c:if test="${pageVo.pageNow eq 1}">
-                    <li class="disabled"><a  aria-label="Previous"><span aria-hidden="true" style="color: #000000;">&laquo;</span></a></li>
+                    <li class="disabled" ><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                 </c:if>
 
-                    <%-- 若当前页码不是第一页，则可以点击上一页 --%>
                 <c:if test="${pageVo.pageNow ne 1}">
-                    <li><a onclick="first1('${pageVo.pageNow-1}','${pageVo.query1}','${pageVo.query2}','${pageVo.query3}','${pageVo.query4}')" aria-label="Previous"><span aria-hidden="true" style="color: #000000;cursor: pointer;">&laquo;</span></a></li>
+                    <li ><a class="page-link" onclick="first1('${pageVo.pageNow-1}','${pageVo.query1}','${pageVo.query2}','${pageVo.query3}','${pageVo.query4}')" aria-label='Previous' ><span aria-hidden="true">&laquo;</span></a></li>
                 </c:if>
-
 
                     <%--  循环展示所有页码，并且迭代到当前页码，当前页码则不可以点击 --%>
                 <c:forEach begin="1" end="${pageVo.myPages}" var="page">
                     <c:if test="${pageVo.pageNow eq page}">
-                        <li class="active"><a >${page}</a></li>
+                        <li class=" active"><a class="page-link"  style="text-align: center">${page}</a></li>
+                    </c:if>
+                    <c:if test="${pageVo.pageNow ne page}">
+                        <li ><a class="page-link" onclick="curr1('${page}','${pageVo.query1}','${pageVo.query2}','${pageVo.query3}','${pageVo.query4}')" >${page}</a></li>
                     </c:if>
 
-                    <c:if test="${pageVo.pageNow ne page}">
-                        <li><a onclick="curr1('${page}','${pageVo.query1}','${pageVo.query2}','${pageVo.query3}','${pageVo.query4}')" style="cursor: pointer;">${page}</a></li>
-                    </c:if>
                 </c:forEach>
 
                     <%-- 若当前页码是最后一页，则下一页按钮失效 --%>
                 <c:if test="${pageVo.pageNow eq pageVo.myPages}">
-                    <li class="disabled"><a  aria-label="Next"> <span aria-hidden="true" style="color: #000000;">&raquo;</span></a></li>
+                    <li class="disabled" ><a  class="page-link" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>
                 </c:if>
 
                     <%-- 若当前页码不是最后一页，则可以点击下一页 --%>
                 <c:if test="${pageVo.pageNow ne pageVo.myPages}">
-                    <li><a onclick="next1('${pageVo.pageNow+1}','${pageVo.query1}','${pageVo.query2}','${pageVo.query3}','${pageVo.query4}')" aria-label="Next"> <span aria-hidden="true" style="color: #000000;cursor: pointer;">&raquo;</span></a></li>
+                    <li ><a class="page-link" onclick="next1('${pageVo.pageNow+1}','${pageVo.query1}','${pageVo.query2}','${pageVo.query3}','${pageVo.query4}')" ><span aria-hidden="true">&raquo;</span></a></li>
                 </c:if>
+
             </ul>
         </div>
     </c:if>
-    <!-- 分页结束 -->
-
+</div>

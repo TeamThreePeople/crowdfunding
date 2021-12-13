@@ -84,7 +84,7 @@ public class OrderDaoImpl extends BaseDao<Orders> implements OrderDao {
     //通过用户编号，查询所拥有的订单信息
     @Override
     public List<Orders> selectOrdersByUid(String uid, int begin) throws SQLException {
-        String sql = "select * from t_order where memberid = ? order by createdate desc limit ?,3";
+        String sql = "select * from t_order where status = 1  and memberid = ? order by createdate desc limit ?,2";
         List<Orders> ordersList = this.getBeanList(DataSourceUtils.getConnection(), sql, Orders.class, uid, begin);
         return ordersList;
     }
@@ -92,7 +92,7 @@ public class OrderDaoImpl extends BaseDao<Orders> implements OrderDao {
     //通过用户编号，查询所拥有的订单信息的数量
     @Override
     public Long selectOrdersCountByUid(String uid) throws SQLException {
-        String sql = "select count(*) from t_order where memberid = ?";
+        String sql = "select count(*) from t_order where status = 1 and memberid = ?";
         Object value = this.getSingleValue(DataSourceUtils.getConnection(), sql, uid);
         return Long.valueOf(value.toString());
     }
@@ -127,7 +127,7 @@ public class OrderDaoImpl extends BaseDao<Orders> implements OrderDao {
     public Long selectOrderStatusCount(int uid,int status) throws SQLException {
         String sql = "";
         Object value = null;
-        if (status==3){
+        if (status!=0 && status!=1){
                sql = "select count(*) from t_order where memberid=? ";
                value = this.getSingleValue(DataSourceUtils.getConnection(), sql, uid);
         }else {
@@ -143,11 +143,11 @@ public class OrderDaoImpl extends BaseDao<Orders> implements OrderDao {
     public List<Orders> selectOrderStatus(int  uid,int status, int begin) throws SQLException {
         String sql = "";
         List<Orders> ordersList = null;
-        if (status==3) {
-            sql = "select * from t_order where memberid = ?  order by createdate desc limit ?,3";
+        if (status!=0 && status!=1) {
+            sql = "select * from t_order where memberid = ?  order by createdate desc limit ?,2";
             ordersList = this.getBeanList(DataSourceUtils.getConnection(), sql, Orders.class, uid, begin);
         }else {
-            sql = "select * from t_order where memberid = ? and status = ?  order by createdate desc limit ?,3";
+            sql = "select * from t_order where memberid = ? and status = ?  order by createdate desc limit ?,2";
             ordersList = this.getBeanList(DataSourceUtils.getConnection(), sql, Orders.class, uid, status, begin);
         }
         return ordersList;
@@ -162,8 +162,14 @@ public class OrderDaoImpl extends BaseDao<Orders> implements OrderDao {
         return orders;
     }
 
-
-
-
+    //查看收货地址
+    @Override
+    public Orders selectAddress(String oid) throws SQLException {
+        String sql ="select *\n" +
+                "from t_order\n" +
+                "where ordernum = ?";
+        Orders orders = this.getBean(DataSourceUtils.getConnection(), sql, Orders.class, oid);
+        return orders;
+    }
 }
 

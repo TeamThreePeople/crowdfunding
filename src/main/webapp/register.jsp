@@ -29,14 +29,21 @@
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
-
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
+	<%--文字--%>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style4.css" />
+	<style>
+		.no-cssanimations .rw-wrapper .rw-sentence span:first-child{
+			opacity: 1;
+		}
+	</style>
+
 	<style>
 		label.error{
 			background:url(img/unchecked.png) no-repeat 10px 3px;
@@ -51,25 +58,80 @@
 			background:url(img/checked.png) no-repeat 10px 3px;
 			padding-left: 30px;
 		}
+
+		body,
+		html {
+			height: 100%;
+		}
+		body {
+			font-family: 'Ubuntu Mono', sans-serif;
+			height: 100%;
+			width: 100%;
+			background-image: url("./picture/registerbg.jpg");
+			background-attachment: fixed;
+			background-size: cover;
+		}
+		div.desc {
+			position: absolute;
+			top: 40%;
+			left: 20%;
+			color: white;
+			font-size: 1.2em;
+			text-shadow: #000 1px 1px 1px;
+			width: 1000px;
+			height: 200px;
+			padding: 20px;
+			background-color: rgba(0, 0, 0, 0.7);
+			border-radius: 6px;
+		}
+		div pre {
+			font-size: .7em;
+			word-break: break-all;
+		}
 	</style>
 	</head>
-	<body class="style-3">
+	<body>
 		<c:set value="${pageContext.request.contextPath}" var="path" scope="application"></c:set>
 
 		<%@ include file="jsp/connect/heard.jsp" %>
 
+		<%--<div class="container" style="margin-top: 70px">
+			<section class="rw-wrapper">
+				<h2 class="rw-sentence">
+					<span>欢迎来到</span>
+					<div class="rw-words rw-words-1">
+						<span>注册界面</span>
+						<span>注册界面</span>
+						<span>注册界面</span>
+						<span>注册界面</span>
+						<span>注册界面</span>
+						<span>注册界面</span>
+					</div>
+					<span style="display: block;text-indent: 5px;font-size: 145%;margin-right: 1000px;margin-top: 50px;">这里是</span>
+					<div class="rw-words rw-words-2">
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+					</div>
+				</h2>
+			</section>
+		</div>
+--%>
 		<div class="container">
 			
 			<div class="row">
-				<div class="col-md-4 col-md-push-8" style="left:55% ;">
+				<div class="col-md-4 col-md-push-8" style="left:2% ;">
 					
 
 					<!-- Start Sign In Form -->
-					<form action="${path}/member?method=register" id="registerForm" method="post" class="fh5co-form animate-box" data-animate-effect="fadeInRight" >
-						<h2>注册</h2>
+					<form action="${path}/member?method=register" id="registerForm" method="post" class="fh5co-form animate-box" data-animate-effect="fadeInRight" style="margin-top: 10px" >
 						<div class="form-group">
-							<div class="alert alert-success" role="alert">欢迎来到注册界面，主人</div>
+							<span style="font-size: 24px">注册</span><span style="margin-left: 19px;font-family: '华文行楷'">欢迎来到注册界面，主人</span>
 						</div>
+						<hr>
 						<div class="form-group" style="border: #0e0e0f solid 1px;">
 							<label for="name" class="sr-only">用户名</label>
 							<input type="text" class="form-control" id="name" name="name" placeholder="用户名" required autocomplete="off">
@@ -87,11 +149,6 @@
 							<label for="email" class="sr-only">邮箱</label>
 							<input type="email" class="form-control" id="email" name="email" required  placeholder="邮箱" autocomplete="off">
 						</div>
-
-
-<%--						<div class="form-group">--%>
-<%--							<label for="remember"><input type="checkbox" id="remember"> 记住密码</label>--%>
-<%--						</div>--%>
 						<div class="form-group">
 							<p style="color: #0e0e0f"> 已经注册了吗？ <a href="login.jsp" style="color: #2b669a">登录</a></p>
 						</div>
@@ -99,13 +156,9 @@
 							<input type="submit" value="注册" class="btn btn-primary">
 						</div>
 					</form>
-					<!-- END Sign In Form -->
 
 
 				</div>
-			</div>
-			<div class="row" style="padding-top: 60px; clear: both;">
-				<div class="col-md-12 text-center"><a href="http://www.moobnn.com/" target="_blank" title="股利多众筹" style="color: #0e0e0f">股利多众筹</a></div>
 			</div>
 		</div>
 	
@@ -134,5 +187,8 @@
 <!-- Main JS -->
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 <script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
+
+<!-- 背景滚动 -->
+<script src="${pageContext.request.contextPath}/js/gundongBackground.js"></script>
 </html>
 

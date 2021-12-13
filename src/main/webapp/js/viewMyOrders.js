@@ -2,7 +2,7 @@
 function next(pageNow,query1,query2,query3,query4) {
     $.ajax({
         type:"get",
-        url:"/project?method=viewMyOrders&pageNow="+pageNow,
+        url:"/project?method=orderStatus&pageNow="+pageNow,
         success:function (content) {
             $("#support").html(content);
         }
@@ -12,7 +12,7 @@ function next(pageNow,query1,query2,query3,query4) {
 function first(pageNow,query1,query2,query3,query4) {
     $.ajax({
         type:"get",
-        url:"/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+        url:"/project?method=orderStatus&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
         success:function (content) {
             $("#support").html(content);
 
@@ -23,7 +23,7 @@ function first(pageNow,query1,query2,query3,query4) {
 function curr(pageNow,query1,query2,query3,query4) {
     $.ajax({
         type:"get",
-        url:"/project?method=viewMyOrders&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
+        url:"/project?method=orderStatus&pageNow="+pageNow/*+"&cid="+query1+"&pname="+query2*/,
         success:function (content) {
             $("#support").html(content);
 

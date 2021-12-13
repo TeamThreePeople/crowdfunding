@@ -120,7 +120,9 @@
 
 
 
-<%@ include file="connect/foot.jsp" %>
+	<div class="row">
+		<%@ include file="connect/foot.jsp"%>
+	</div>
 
 	<!-- 图片变换 -->
 	<script src="${pageContext.request.contextPath}/js/app33.js"></script>

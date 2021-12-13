@@ -5,6 +5,7 @@ import com.team.cf.dao.MemberDao;
 import com.team.cf.entity.Member;
 import com.team.cf.utils.DataSourceUtils;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -54,12 +55,10 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
     //插入一个人
     @Override
     public int insertMember(Member member) throws Exception {
-        System.out.println("MemberDaoImpl 插入");
-        String sql = "insert into t_member values(default,?,?,?,?,0,?,?,?,?)";
+        String sql = "insert into t_member values(default,?,?,?,?,'0',?,?,?,?,?,?)";
         int i = this.update(DataSourceUtils.getConnection(),sql,
                 member.getLoginacct(), member.getUserpswd(), member.getUsername(), member.getEmail(),
-                member.getUsertype(), member.getRealname(), member.getCardnum(), member.getAccttype());
-        System.out.println("MemberDaoImpl 中 insertMember 的 i = "+i);
+                member.getUsertype(), member.getRealname(), member.getCardnum(), member.getAccttype(),member.getPortrait(),member.getCode());
         return i;
     }
 
@@ -73,10 +72,41 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
         return 0;
     }
 
-    //修改实名认证的状态 实名认证状态0一未实名认证，1 -实名认证申请中，| 2一已实名认证
+    //修改实名认证的状态 实名认证状态0一未实名认证，1 一已实名认证
     @Override
-    public int updateMemberAuthStatus(Member member) throws Exception {
-        String sql = "update t_member set authstatus = ？ where id = ?";
-        return 0;
+    public int updateMemberAuthStatus(String code) throws Exception {
+        String sql = "update t_member set authstatus = 1 where code = ?";
+        int i = this.update(DataSourceUtils.getConnection(), sql, code);
+        return i;
+    }
+
+    //通过oid查询商品发起人
+    @Override
+    public Member findConsignorByOid(String oid) throws SQLException {
+        String sql = "select u.*\n" +
+                "from t_order o,t_project p,t_member u\n" +
+                "where o.projectid = p.id and p.memberid = u.id\n" +
+                "and o.ordernum = ? ";
+        Member member = this.getBean(DataSourceUtils.getConnection(), sql, Member.class, oid);
+        return member;
+    }
+
+    //通过oid查询收货人
+    @Override
+    public Member findConsigneeByOid(String oid) throws SQLException {
+        String sql ="select u.*\n" +
+                "from t_order o,t_member u\n" +
+                "where o.memberid = u.id\n" +
+                "and o.ordernum = ? ";
+        Member member = this.getBean(DataSourceUtils.getConnection(), sql, Member.class, oid);
+        return member;
+    }
+
+    //修改实名认证 信息
+    @Override
+    public int memberTrue(String realname, String accttype, String cardnum, String code, int memberid) throws SQLException {
+        String sql = "update t_member set realname=? , accttype = ? ,cardnum = ? ,code = ? where id=? ";
+        int i = this.update(DataSourceUtils.getConnection(), sql, realname, accttype, cardnum,code, memberid);
+        return i;
     }
 }

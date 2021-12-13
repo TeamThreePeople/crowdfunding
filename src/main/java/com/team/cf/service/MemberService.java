@@ -29,5 +29,16 @@ public interface MemberService {
     //个人中心信息
     public Member findMemberById(Integer id);
 
+    //通过oid查询商品发起人
+    public Member findConsignorByOid(String oid);
+
+    //通过oid查询收货人
+    public Member findConsigneeByOid(String oid);
+
+    //修改实名认证 信息
+    public boolean memberTrue(String realname ,String accttype,String cardnum,String code,int memberid);
+
+    //改实名认证状态
+    public boolean updateMemberAuthStatus(String code);
 
 }

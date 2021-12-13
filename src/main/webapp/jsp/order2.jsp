@@ -19,7 +19,9 @@
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 		<!-- 引入Bootstrap核心样式文件 -->
 		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-		
+		<%--浏览记录--%>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/liulanjilu.css">
+
 		<style type="text/css">
 			table{
 				text-align: center;
@@ -108,7 +110,7 @@
 
 		
 		<!-- 订单支付 -->
-		<div class="container" style="background-color: lightgoldenrodyellow;">
+		<div class="container" style="background-color: lightgoldenrodyellow; margin-top: 16px;">
 			<div class="row" style="height: 40px;">
 				
 				<div class="col-lg-3 " style="text-align: center;"><h3 ><span class="label label-default" >1.确认回报内容</span></h3></div>
@@ -120,7 +122,7 @@
 		</div>
 		
 		
-		<div class="container" style="margin-top: 10px;">
+		<%--<div class="container" style="margin-top: 10px;">
 			<div class="row">
 				<!-- 请在下单后15分钟内付款，否则您的订单会被自动关闭。 -->
 				<div class="alert alert-warning alert-dismissible" role="alert" style=" width: 900px;">
@@ -128,7 +130,7 @@
 				  <strong>注意!</strong> 请在下单后15分钟内付款，否则您的订单会被自动关闭。
 				</div>
 			</div>	
-		</div>
+		</div>--%>
 
 
 		<!-- 收货地址 -->
@@ -303,26 +305,35 @@
 					</c:if>
 
 					<h2><span >支付总金额：￥${total}</span></h2><br>
-					<span class="span_right">请在下单后15分钟内付款，否则您的订单会被自动关闭。</span><br>
 					
 					<!-- 结算按钮 -->
 				<div class="row" style="text-align: right; margin: 5px; ">
 					<!-- Indicates caution should be taken with this action -->
 					<button type="submit"  id="" class="btn btn-warning"><span class="glyphicon glyphicon-credit-card"></span>立即付款</button>
 				</div>
-				
-				<span  class="">
-					<input type="checkbox" name="" id="" value="" style="font-size: 5px;"/>我已了解风险和规则
-				</span>
 
 				</div>
 				
 			</div>
+
+
 		</div>
 
 	</form>
 
-	<%@ include file="connect/foot.jsp" %>
+
+	<div class="row" style="margin-top:30px">
+		<%@ include file="connect/foot.jsp"%>
+	</div>
+
+
+	</body>
+</html>
+
+
+
+
+
 
 	<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js" ></script>
 	<!-- 先引入jQuery核心js文件 -->

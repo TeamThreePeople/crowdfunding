@@ -35,7 +35,6 @@ public class OrderServlet extends BasicServlet {
     private ProjectReturnService projectReturnService = new ProjectReturnServiceImpl();
     private ItemsService itemsService = new ItemsServiceImpl();
 
-
     //支持详情页(点击支持)
     public void findProjectById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //拿到商品id
@@ -189,12 +188,11 @@ public class OrderServlet extends BasicServlet {
             //根据订单编号，查询订单明细及商品信息
             Items items = itemsService.selectItemAndProductByOid(oid);
             orders.setItems(items);
-            System.out.println(orders.getItems().getName());
+
         }
 
         request.getRequestDispatcher(request.getContextPath()+"/jsp/supportdetails.jsp").forward(request,response);
     }
-
 
     //删除订单
     public void delOrderItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -228,7 +226,6 @@ public class OrderServlet extends BasicServlet {
         }
     }
 
-
     //查看订单状态
     public void orderStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //已经处于登陆状态
@@ -243,11 +240,16 @@ public class OrderServlet extends BasicServlet {
         if(page!=null){
             pageNow = Integer.parseInt(page);
         }
+        if (status==null){
+            status=3+"";
+        }
 
         //获取登陆者的用户编号 uid
         PageVo<Orders> vo = orderService.selectOrderStatus(user.getId(),Integer.parseInt(status), pageNow);
         System.out.println("vo="+vo);
         request.setAttribute("vo",vo);
+
+
 
         //获取订单编号，并且查询订单明细，及商品信息
         for (Orders orders : vo.getList()) {
@@ -255,6 +257,13 @@ public class OrderServlet extends BasicServlet {
             String oid = orders.getOrdernum();
             //根据订单编号，查询订单明细及商品信息
             Items items = itemsService.selectItemAndProductByOid(oid);
+            int percentage = (int) (items.getSupportmoney()/items.getMoney()*100);
+            if (percentage>=100){
+                items.setCompletion(100);
+                items.setStatus(1);
+            }else {
+                items.setCompletion(percentage);
+            }
             orders.setItems(items);
             System.out.println(orders.getItems().getName());
         }

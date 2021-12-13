@@ -37,7 +37,11 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 		<!--  设置网页的小图标logo  favicon.ico-->
 		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
-
+		<style>
+			body{
+				background: url("./picture/loginbg.jpg");
+			}
+		</style>
 
 	</head>
 	<body class="style-3">
@@ -100,7 +104,7 @@
 							<label for="remember"><input type="checkbox" id="remember" name="remember" value="remember">记住用户名</label>
 						</div>
 						<div class="form-group">
-							<p>没有注册？ <a href="register.jsp">注册</a> | <a href="forgot3.html">忘记密码？</a></p>
+							<p>没有注册？ <a href="register.jsp">注册</a></p>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="登录" class="btn btn-primary">
