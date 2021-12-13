@@ -31,5 +31,10 @@ public interface MemberService {
     //个人中心信息
     public Member findMemberById(Integer id);
 
+    //修改实名认证 信息
+    public boolean memberTrue(String realname ,String accttype,String cardnum,String code,int memberid);
+
+    //改实名认证状态
+    public boolean updateMemberAuthStatus(String code);
 
 }

@@ -5,9 +5,12 @@ import com.team.cf.entity.Member;
 
 import com.team.cf.service.MemberService;
 import com.team.cf.service.impl.MemberServiceImpl;
+import com.team.cf.utils.CommonUtils;
 import com.team.cf.utils.MD5Utils;
+import com.team.cf.utils.MailUtils;
 import org.apache.commons.beanutils.BeanUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -163,5 +166,80 @@ public class MemberServlet extends BasicServlet {
         System.out.println("member = " + member);
 
         request.getRequestDispatcher("personalcenter.jsp").forward(request,response);
+    }
+
+    //个人中心 实名认证
+    protected void checkTrue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, MessagingException {
+        //账户类型:0-企业，1-个体，2-个人，3-政府
+        String accttype = request.getParameter("accttype");
+        System.out.println("账户类型:0-企业，1-个体，2-个人，3-政府: "+accttype);
+
+        // 真实名称
+        String realname = request.getParameter("realname");
+        System.out.println("真实姓名 username = "+realname);
+
+        // 身份证号码
+        String cardnum = request.getParameter("cardnum");
+        System.out.println("身份证号码 personId ="+cardnum);
+
+        int memberid  = 0;
+        //获取会话信息
+        HttpSession session = request.getSession();
+        Member member = (Member)session.getAttribute("member");
+        String code = "";
+        if (member!=null){
+            System.out.println("此人已登录");
+            memberid = member.getId();
+            //设置激活码
+            code = CommonUtils.getUUID().replaceAll("-", "");
+            member.setCode(code);
+            System.out.println("激活码 code = "+code);
+            System.out.println("人id memberid = "+memberid);
+
+            boolean flag = service.memberTrue(realname, accttype, cardnum,code, memberid);
+            System.out.println("实名认证修改情况 flag ="+flag);
+            if(flag){
+                System.out.println("认证成功，快去激活");
+                member.setCode("1");
+                //邮件内容包含激活码，以及激活链接
+                String emailMsg = "这是一个激活邮件，激活后账户即可使用，激活码为：" +
+                        "<a href='#'>"+code+"</a>";
+                //发送至账号
+                String email = request.getParameter("email");
+                System.out.println("邮箱 email = "+email);
+                //邮件主题
+                String subject = "激活邮件";
+
+                //发送邮件
+                MailUtils.sendMail(email , subject , emailMsg);
+                String message = "恭喜您实名认证成功，请前往https://mail.qq.com/注册邮箱获取激活码！";
+                request.getSession().setAttribute("message", message);
+                response.sendRedirect(request.getContextPath()+"/jsp/certification.jsp");
+
+            }else{
+                String message = "抱歉，实名认证失败，请重新认证！";
+                request.getSession().setAttribute("message", message);
+                response.sendRedirect(request.getContextPath()+"/jsp/certification.jsp");
+            }
+        }
+    }
+
+    //激活
+    public void active(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        String code = request.getParameter("code");
+        System.out.println("code="+code);
+        boolean flag = service.updateMemberAuthStatus(code);
+        System.out.println(flag);
+        if(flag){
+           /* String message = "恭喜您实名认证激活成功！";
+            request.getSession().setAttribute("message", message);*/
+            //response.sendRedirect(request.getContextPath()+"/jsp/personalcenter.jsp");
+            request.getRequestDispatcher(request.getContextPath()+"/jsp/personalcenter.jsp").forward(request,response);
+        }else{
+            String message = "抱歉，实名认证激活失败，请重新激活！";
+            request.getSession().setAttribute("message", message);
+            response.sendRedirect(request.getContextPath()+"/jsp/certification.jsp");
+        }
     }
 }

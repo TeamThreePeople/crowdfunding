@@ -35,14 +35,45 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-		<!--  设置网页的小图标logo  favicon.ico-->
-		<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
+	<!--  设置网页的小图标logo  favicon.ico-->
+	<link href="${pageContext.request.contextPath}/picture/heard.png" rel="shortcut icon" />
 
-
+	<!-- 滚动背景 -->
+	<link href="${pageContext.request.contextPath}/css/gundongBackground.css" rel="stylesheet">
+	<%--欢迎页面	--%>
+	<link href='http://fonts.googleapis.com/css?family=Trocchi|Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style41.css" />
+	<style>
+		.no-cssanimations .rw-words span:first-child{
+			opacity: 1;
+			color: #fff;
+			text-shadow: none;
+		}
+	</style>
 	</head>
-	<body class="style-3">
+	<body>
 
 		<%@ include file="jsp/connect/heard.jsp" %>
+
+		<div class="container">
+			<section class="rw-wrapper">
+				<h2 class="rw-sentence">
+					<span>Welcome</span>
+					<span>欢迎来到</span>
+					<span>to</span>
+					<div class="rw-words">
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+						<span>股利多众筹</span>
+					</div>
+					<span>登录界面</span>
+				</h2>
+			</section>
+		</div>
+
 
 	<%
 	String username=null;
@@ -79,6 +110,7 @@
 					<form id="loginForm" action="${pageContext.request.contextPath}/member?method=login" method="post"
                           class="fh5co-form animate-box" id="loginForm" data-animate-effect="fadeInRight">
 						<h2>登录</h2>
+						<hr>
 <%--						错误登录提示--%>
 						<%
 						Object o = request.getAttribute("msg");
@@ -106,24 +138,14 @@
 							<input type="submit" value="登录" class="btn btn-primary">
 						</div>
 					</form>
-					<!-- END Sign In Form -->
-
-
 				</div>
-			</div>
-			<div class="row" style="padding-top: 60px; clear: both;">
-				<div class="col-md-12 text-center"><p><small>&copy; All Rights Reserved. More Templates <a href="http://www.moobnn.com/" target="_blank" title="股利多众筹">股利多众筹</a>  - Collect from <a href="http://www.moobnn.com/" title="股利多众筹" target="_blank">股利多众筹</a> </small></p></div>
 			</div>
 		</div>
 	</body>
 
 <!-- Modernizr JS -->
 <script src="${pageContext.request.contextPath}/js/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
 
-<![endif]-->
-<!-- jQuery -->
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -135,5 +157,7 @@
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 <script src="${pageContext.request.contextPath}/js/respond.min.js" ></script>
 
+<!-- 背景滚动 -->
+<script src="${pageContext.request.contextPath}/js/gundongBackground.js"></script>
 </html>
 

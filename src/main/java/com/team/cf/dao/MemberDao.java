@@ -3,6 +3,7 @@ package com.team.cf.dao;
 
 import com.team.cf.entity.Member;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface MemberDao {
@@ -29,6 +30,9 @@ public interface MemberDao {
     //改
     public int updateMember(Member member) throws Exception;
 
+    //修改实名认证 信息
+    public int memberTrue(String realname ,String accttype,String cardnum,String code,int memberid) throws SQLException;
+
     //改实名认证状态
-    public int updateMemberAuthStatus(Member member) throws Exception;
+    public int updateMemberAuthStatus(String code) throws Exception;
 }

@@ -8,12 +8,12 @@
 <div class="container" style="width: 100%;height: 50px;">
     <div class="row ">
         <!-- 导航条 -->
-        <nav class="navbar navbar-fixed-top <%--navbar-inverse--%>" style="height: 70px;background: #fff;border-bottom: 1px solid #dee0e1;">
+        <nav class="navbar navbar-fixed-top" style="height: 62px;background:whitesmoke;border-bottom: 1px solid #dee0e1;font-size: 12px;">
             <div class="container-fluid">
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px;">
-                    <ul class="nav navbar-nav">
+                <div class="collapse  navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px;">
+                    <ul class="nav  navbar-nav">
                         <li style="margin-left: 30px;"><img src="${pageContext.request.contextPath}/picture/heard.png" ></li>
                         <li style="margin-left: 30px;"><a class="navbar-brand" href="${pageContext.request.contextPath}/product?method=index" >首页</a></li>
                         <li class="active"><a href="${pageContext.request.contextPath}/jsp/more.jsp">众筹项目 <span class="sr-only">(current)</span></a></li>
@@ -63,22 +63,6 @@
             </div><!-- /.container-fluid -->
         </nav>
     </div>
-
-    <%-- 当前若是商品列表展示，则头部页面有表单显示 --%>
-   <%-- <c:if test="${vo!=null}">
-        <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search" id="searchName" name="pname" value="${vo.query2}">
-            </div>
-            <input type="button" class="btn btn-success" value="Submit" onclick="query()" />
-
-            <script>
-                function query() {
-                    window.location.href="${path}/product?method=viewProductListByCidPname&cid=${vo.query1}&pname="+$("#searchName").val();
-                }
-            </script>
-        </form>
-    </c:if>--%>
 
 </div>
 

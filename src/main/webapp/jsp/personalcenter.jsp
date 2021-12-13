@@ -118,19 +118,19 @@
 								<td align="center">
 										<c:if test="${member.authstatus==0}">
 											<div style="background-color: red;width: 90px;border-radius: 4px;margin-left: 85px;">
-											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">未实名认证</a></span>
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp" style="color: white">未实名认证</a></span>
 											</div>
 										</c:if>
 
 										<c:if test="${member.authstatus==1}">
 											<div style="background-color: deepskyblue;width: 120px;border-radius: 4px;margin-left: 70px;">
-											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">实名认证申请中</a></span>
+											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp" style="color: white">实名认证申请中</a></span>
 											</div>
 										</c:if>
 
 										<c:if test="${member.authstatus==2}">
 											<div style="background-color: forestgreen;width: 90px;border-radius: 4px;margin-left: 85px;">
-											<span style="color: white;"><a href="${pageContext.request.contextPath}/jsp/certification.jsp">已实名认证</a></span>
+											<span style="color: white;"><a style="color: white">已实名认证</a></span>
 											</div>
 										</c:if>
 

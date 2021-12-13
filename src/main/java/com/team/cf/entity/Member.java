@@ -16,9 +16,31 @@ public class Member {
     private String realname;    // 真实名称
     private String cardnum;     // 身份证号码
     private String accttype;    //账户类型:0-企业，1-个体，2-个人，3-政府
-
+    private String code;        //激活码
 
     public Member() {
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Member(Integer id, String loginacct, String userpswd, String username, String email, String authstatus, String usertype, String realname, String cardnum, String accttype, String code) {
+        this.id = id;
+        this.loginacct = loginacct;
+        this.userpswd = userpswd;
+        this.username = username;
+        this.email = email;
+        this.authstatus = authstatus;
+        this.usertype = usertype;
+        this.realname = realname;
+        this.cardnum = cardnum;
+        this.accttype = accttype;
+        this.code = code;
     }
 
     public Member(String loginacct, String userpswd, String email) {

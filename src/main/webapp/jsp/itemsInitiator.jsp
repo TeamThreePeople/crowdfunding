@@ -76,7 +76,7 @@
 		</div>
 		
 		<!-- 项目信息 -->
-		<div class="container" style="margin-top: 50px;">
+		<div class="container" style="margin-top: -5px;">
 			<div class="row" >
 				<%--当前表单支持文件上传功能 enctype="multipart/form-data"--%>
 				<form action="${pageContext.request.contextPath}/form?method=registerForm" method="post" enctype="multipart/form-data">

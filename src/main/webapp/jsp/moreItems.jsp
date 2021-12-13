@@ -11,7 +11,7 @@
 
 
 <!-- 分页产品 -->
-<div class="container" align="center" style="border: lightgray solid 1px;height: 500px;margin-top: 15px;">
+<div class="container" align="center" style="border: lightgray solid 1px;height: 720px;margin-top: 15px;">
     <div class="row" style="margin-top: 18px;padding: 0px;">
         <c:forEach items="${vo.list}" var="product">
             <div class="col-md-3" align="center" >
@@ -26,7 +26,7 @@
     <!--分页 -->
     <%-- 查询商品列表数据时，未发现符合条件的数据，则不显示翻页 --%>
     <c:if test="${vo.list.size() eq 0}">
-        <div style="width: 380px; margin: 0 auto;">
+        <div style="width: 380px; margin: 0 auto;text-align: center">
             <img src="${path}/picture/empty.jpg" />
         </div>
     </c:if>
@@ -39,7 +39,7 @@
     <c:if test="${vo.list.size() ne 0}">
 
         <div class="col-md-12" style="text-align: center">
-            <ul class="pagination" style="position: absolute;top: -70px;left: 578px;">
+            <ul class="pagination" style="position: absolute;bottom: -750px;left: 578px;">
 
                     <%-- 若当前页码是第一页，则上一页按钮失效 --%>
                 <c:if test="${vo.pageNow eq 1}">

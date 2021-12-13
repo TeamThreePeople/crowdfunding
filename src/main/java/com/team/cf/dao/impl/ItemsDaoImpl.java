@@ -48,39 +48,39 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
         String sql ="";
         List<Items> list = null;
         if (cid == null){
-            sql = "select * from t_project where name like concat('%',?,'%') limit ?,8";
+            sql = "select * from t_project where name like concat('%',?,'%') limit ?,12";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,pname,begin);
         } else if (cid == null && pname==null){
-            sql = "select * from t_project where name like concat('%',?,'%') limit ?,8";
+            sql = "select * from t_project where name like concat('%',?,'%') limit ?,12";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,pname,begin);
 
         } else if (cid!=null && status==null && sort_id==null){
             sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? "+
-                    "and p.name like concat('%',?,'%') limit ?,8";
+                    "and p.name like concat('%',?,'%') limit ?,12";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,pname,begin);
         }else if (cid!=null && status!=null && sort_id==null){//众筹状态
             //and p.`status`=?"
             sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
-                    "and p.name like concat('%',?,'%') limit ?,8";
+                    "and p.name like concat('%',?,'%') limit ?,12";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
         }else if (cid!=null && status!=null && sort_id.equals("1")){//最新上线
             sql ="select p.id,p.name,p.money ,p.pimgs ,p.deploydate,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
-                    "and p.name like concat('%',?,'%') ORDER BY p.deploydate desc limit ?,8";
+                    "and p.name like concat('%',?,'%') ORDER BY p.deploydate desc limit ?,12";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
 
         }else if (cid!=null && status!=null && sort_id.equals("2")){//金额最多
             sql ="select p.id,p.name,p.money ,p.pimgs ,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
-                    "and p.name like concat('%',?,'%') ORDER BY p.money desc limit ?,8";
+                    "and p.name like concat('%',?,'%') ORDER BY p.money desc limit ?,12";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
 
         }else if (cid!=null && status!=null && sort_id.equals("3")){//支持最多
             sql ="select p.id,p.name,p.money ,p.pimgs ,p.supporter,t.cname " +
                     "from t_type t ,t_project p  where p.cid = t.cid and t.cid = ? and p.`status`=?"+
-                    "and p.name like concat('%',?,'%') ORDER BY p.supporter desc limit ?,8";
+                    "and p.name like concat('%',?,'%') ORDER BY p.supporter desc limit ?,12";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,cid,status,pname,begin);
         }
 
@@ -101,7 +101,7 @@ public class ItemsDaoImpl extends BaseDao<Items> implements ItemsDao{
     public List<Items> showAll(String cid, String pname, String status, String sort_id, int begin) throws SQLException {
         String sql ="";
         List<Items> list = null;
-            sql = "select * from t_project where name like concat('%',?,'%') limit ?,8";
+            sql = "select * from t_project where name like concat('%',?,'%') limit ?,12";
             list = this.getBeanList(DataSourceUtils.getConnection(),sql,Items.class,pname,begin);
         return list;
     }

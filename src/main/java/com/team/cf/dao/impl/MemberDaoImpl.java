@@ -5,6 +5,7 @@ import com.team.cf.dao.MemberDao;
 import com.team.cf.entity.Member;
 import com.team.cf.utils.DataSourceUtils;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -73,10 +74,19 @@ public class MemberDaoImpl extends BaseDao<Member> implements MemberDao {
         return 0;
     }
 
+    //修改实名认证 信息
+    @Override
+    public int memberTrue(String realname ,String accttype,String cardnum,String code,int memberid) throws SQLException {
+        String sql = "update t_member set realname=? , accttype = ? ,cardnum = ? ,code = ? where id=? ";
+        int i = this.update(DataSourceUtils.getConnection(), sql, realname, accttype, cardnum,code, memberid);
+        return i;
+    }
+
     //修改实名认证的状态 实名认证状态0一未实名认证，1 -实名认证申请中，| 2一已实名认证
     @Override
-    public int updateMemberAuthStatus(Member member) throws Exception {
-        String sql = "update t_member set authstatus = ？ where id = ?";
-        return 0;
+    public int updateMemberAuthStatus(String code) throws Exception {
+        String sql = "update t_member set authstatus = 2 where code = ?";
+        int i = this.update(DataSourceUtils.getConnection(), sql, code);
+        return i;
     }
 }

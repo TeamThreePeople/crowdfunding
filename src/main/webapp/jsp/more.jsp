@@ -23,9 +23,9 @@
 		<!-- 分页按钮 -->
 		<link href="${pageContext.request.contextPath}/css/fenyeanniu.css" rel="stylesheet">
 		<!-- 图片缩放 -->
-		<link href="${pageContext.request.contextPath}/css/picturechange.css" rel="stylesheet">
+<%--		<link href="${pageContext.request.contextPath}/css/picturechange.css" rel="stylesheet">--%>
 		<!-- 滚动背景 -->
-		<link href="${pageContext.request.contextPath}/css/gundongBackground.css" rel="stylesheet">
+<%--		<link href="${pageContext.request.contextPath}/css/gundongBackground.css" rel="stylesheet">--%>
 		<%--<!-- 分类按钮 -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style24.css"/>--%>
 		<%--浏览记录--%>
@@ -52,31 +52,31 @@
 
 		<!-- 分类标签 -->
 		<div class="container">
-			<div class="row" style="height: 150px;border: lightgray 1px solid;border-radius: 4px;margin-top: 10px;">
+			<div class="row" style="height: 142px;border: lightgray 1px solid;border-radius: 4px;margin-top: 0px;">
 				<div class="one">
 					<ul class="nav nav-pills" id="l1">
-						<li style="background-color: #1abc9c"><a style="color: #000000;">分类：</a></li>
-						<li value="1"><a  style="color: #000000;">科技</a></li>
-						<li value="2"><a  style="color: #000000;">公益</a></li>
-						<li value="3"><a  style="color: #000000;">农业</a></li>
-						<li value="4"><a  style="color: #000000;">文化</a></li>
+						<li style="background-color: #1abc9c"><a style="color: #000000;cursor: pointer">分类：</a></li>
+						<li value="1"><a  style="color: #000000;cursor: pointer">科技</a></li>
+						<li value="2"><a  style="color: #000000;cursor: pointer">公益</a></li>
+						<li value="3"><a  style="color: #000000;cursor: pointer">农业</a></li>
+						<li value="4"><a  style="color: #000000;cursor: pointer">文化</a></li>
 					</ul>
 				</div>
 				<p></p>
 				<div>
 					<ul class="nav nav-pills"  id="l2">
-						<li style="background-color: #1abc9c"><a  style="color: #000000;">状态：</a></li>
-						<li value="0"><a style="color: #000000;">众筹中</a></li>
-						<li value="1"><a style="color: #000000;">众筹成功</a></li>
+						<li style="background-color: #1abc9c"><a  style="color: #000000;cursor: pointer">状态：</a></li>
+						<li value="0"><a style="color: #000000;cursor: pointer">众筹中</a></li>
+						<li value="1"><a style="color: #000000;cursor: pointer">众筹成功</a></li>
 					</ul>
 				</div>
 				<p></p>
 				<div>
 					<ul class="nav nav-pills"  id="l3">
-						<li style="background-color: #1abc9c"><a  style="color: #000000;">排序：</a></li>
-						<li value="1"><a style="color: #000000;">最新上线</a></li>
-						<li value="2"><a style="color: #000000;">金额最多</a></li>
-						<li value="3"><a style="color: #000000;">支持最多</a></li>
+						<li style="background-color: #1abc9c"><a  style="color: #000000;cursor: pointer">排序：</a></li>
+						<li value="1"><a style="color: #000000;cursor: pointer">最新上线</a></li>
+						<li value="2"><a style="color: #000000;cursor: pointer">金额最多</a></li>
+						<li value="3"><a style="color: #000000;cursor: pointer">支持最多</a></li>
 					</ul>
 				</div>
 				
@@ -97,7 +97,7 @@
 							</c:if>
 							<input type="text" class="form-control" placeholder="Search" name="pname" value="${vo.query2}">
 						</div>
-						<button type="button" class="btn btn-default"  onclick="search()" >Submit</button>
+						<button type="button" class="btn btn-default"  onclick="search()" >搜索</button>
 					</form>
 				</c:if>
 			</div>
@@ -110,7 +110,10 @@
 		</div>
 
 
-		<%@ include file="connect/foot.jsp"%>
+		<div style="margin-top: 330px">
+			<%@ include file="connect/foot.jsp"%>
+		</div>
+
 		<!-- 回到顶部 -->
 		<!-- 右侧小火箭图标返回顶部 -->
 			<div id="shangxia2">
@@ -128,7 +131,7 @@
 	<!-- 引入BootStrap核心js文件 -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<!-- 背景滚动 -->
-	<script src="${pageContext.request.contextPath}/js/gundongBackground.js"></script>
+<%--	<script src="${pageContext.request.contextPath}/js/gundongBackground.js"></script>--%>
 
 	<%--浏览记录--%>
 	<script>window.jQuery || document.write('<script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"><\/script>')</script>

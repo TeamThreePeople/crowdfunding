@@ -1,13 +1,13 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400);
+
 			body,
 			html {
 			  height: 100%;
 			}
 			body {
 			  font-family: 'Ubuntu Mono', sans-serif;
-			  height: 200%;
+			  height: 100%;
 			  width: 100%;
-			  background-image: url('../more/12/img/bg.jpg');
+			  background-image: url("../picture/sky.jpg");
 			  background-attachment: fixed;
 			  background-size: cover;
 			}
@@ -29,13 +29,3 @@
 			  word-break: break-all;
 			}
 			
-			#mask{
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: auto;
-				/*background-color: lightyellow;*/
-				background-color: #f8f8f9;
-				opacity: 0.8;
-			}

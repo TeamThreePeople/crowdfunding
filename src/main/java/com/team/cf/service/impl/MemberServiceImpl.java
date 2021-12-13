@@ -101,6 +101,18 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
+    //修改实名认证 信息
+    @Override
+    public boolean memberTrue(String realname, String accttype, String cardnum,String code, int memberid) {
+        try {
+            int i = dao.memberTrue(realname, accttype, cardnum,code, memberid);
+            return i>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     //校验账户与密码是否匹配
     @Override
     public Member confirm(String loginacct, String userpswd) {
@@ -117,5 +129,22 @@ public class MemberServiceImpl implements MemberService {
             }
         }
         return member;
+    }
+
+    @Override
+    public boolean updateMemberAuthStatus(String code) {
+        try {
+            int i = dao.updateMemberAuthStatus(code);
+            return i>0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                DataSourceUtils.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 }
